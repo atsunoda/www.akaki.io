@@ -3,21 +3,22 @@
     <head>
         <script async src="https://www.googletagmanager.com/gtag/js?id=UA-136221103-1"></script>
         <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'UA-136221103-1');
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'UA-136221103-1');
         </script>
 
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>{% block title %}{{ config.title }}{% endblock %}</title>
+        <title>{% block title %}{{ config.title|d("GitBook", true) }}{% endblock %}</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="{% block description %}{% endblock %}">
+        <meta name="generator" content="GitBook {{ gitbook.version }}">
 
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:title" content="{{ page.title }}" />
-        <meta name="twitter:image" content="https://raw.githubusercontent.com/atsunoda/www.akaki.io/master/docs/gitbook/images/apple-touch-icon-precomposed-152.png" />
+        <meta name="twitter:image" content="https://akaki.io/gitbook/images/apple-touch-icon-precomposed-152.png" />
 
         {% if config.author %}<meta name="author" content="{{ config.author }}">{% endif %}
         {% if config.isbn %}<meta name="identifier" content="{{ config.isbn }}" scheme="ISBN">{% endif %}

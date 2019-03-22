@@ -1,0 +1,433 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-136221103-1"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'UA-136221103-1');
+        </script>
+
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>SSRFを利用したメール送信ドメインの乗っ取り · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content="SSRFを利用したメール送信ドメインの乗っ取り" />
+        <meta name="twitter:image" content="/gitbook/images/apple-touch-icon-precomposed-152.png" />
+
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+        <link rel="stylesheet" href="../book.css">
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="ssrf_in_cybozu.html" />
+    
+    
+    <link rel="prev" href="open_redirect_via_path.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Akaki I/O
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">2019</li>
+        
+        
+    
+        <li class="chapter " data-level="2.1" data-path="../2019/hackedu.html">
+            
+                <a href="../2019/hackedu.html">
+            
+                    
+                    HackerOneに報告された脆弱性をHackEDUで再現する
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="../2019/text_injection.html">
+            
+                <a href="../2019/text_injection.html">
+            
+                    
+                    脆弱性報奨金制度で認定されづらいテキストインジェクション
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">2018</li>
+        
+        
+    
+        <li class="chapter " data-level="3.1" data-path="practical_open_redirect_via_path.html">
+            
+                <a href="practical_open_redirect_via_path.html">
+            
+                    
+                    Request-URIのパスからのオープンリダイレクト 実践編
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="open_redirect_via_path.html">
+            
+                <a href="open_redirect_via_path.html">
+            
+                    
+                    Request-URIのパスからのオープンリダイレクト
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="3.3" data-path="smtp_domain_takeover.html">
+            
+                <a href="smtp_domain_takeover.html">
+            
+                    
+                    SSRFを利用したメール送信ドメインの乗っ取り
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4" data-path="ssrf_in_cybozu.html">
+            
+                <a href="ssrf_in_cybozu.html">
+            
+                    
+                    サイボウズ脆弱性報奨金制度で認定されたSSRF
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.5" data-path="401i_in_monabako.html">
+            
+                <a href="401i_in_monabako.html">
+            
+                    
+                    モナバコ脆弱性報奨金制度で認定された401インジェクション
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.6" data-path="learning_pentest_in_kobe.html">
+            
+                <a href="learning_pentest_in_kobe.html">
+            
+                    
+                    大和SEC×神戸脆弱性診断の会でペネトレーションテストを学ぶ
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.7" data-path="impact_of_cookie_bomb.html">
+            
+                <a href="impact_of_cookie_bomb.html">
+            
+                    
+                    CRLFインジェクションによるCookie Bombの脅威
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.8" data-path="analyzing_samy_xss_worm.html">
+            
+                <a href="analyzing_samy_xss_worm.html">
+            
+                    
+                    XSSワーム「Samy」の動作を解析する
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.9" data-path="crlfi_via_path_of_request-uri.html">
+            
+                <a href="crlfi_via_path_of_request-uri.html">
+            
+                    
+                    Request-URIのパスからのCRLFインジェクション
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+    
+    <li class="divider"></li>
+
+    <li>
+        <a href="/#privacy-policy" target="blank">
+            Privacy Policy
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >SSRFを利用したメール送信ドメインの乗っ取り</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="ssrf&#x3092;&#x5229;&#x7528;&#x3057;&#x305F;&#x30E1;&#x30FC;&#x30EB;&#x9001;&#x4FE1;&#x30C9;&#x30E1;&#x30A4;&#x30F3;&#x306E;&#x4E57;&#x3063;&#x53D6;&#x308A;">SSRF&#x3092;&#x5229;&#x7528;&#x3057;&#x305F;&#x30E1;&#x30FC;&#x30EB;&#x9001;&#x4FE1;&#x30C9;&#x30E1;&#x30A4;&#x30F3;&#x306E;&#x4E57;&#x3063;&#x53D6;&#x308A;</h1>
+<p><a href="ssrf_in_cybozu.html">&#x524D;&#x56DE;&#x306E;&#x30A8;&#x30F3;&#x30C8;&#x30EA;&#x30FC;</a>&#x306B;&#x7D9A;&#x304D;&#x3001;&#x30B5;&#x30A4;&#x30DC;&#x30A6;&#x30BA;&#x306E;<a href="https://cybozu.co.jp/products/bug-bounty/" target="_blank">&#x8106;&#x5F31;&#x6027;&#x5831;&#x5968;&#x91D1;&#x5236;&#x5EA6;</a>&#x3067;&#x8A8D;&#x5B9A;&#x3055;&#x308C;&#x305F;SSRF&#x306E;&#x8A73;&#x7D30;&#x3092;&#x958B;&#x793A;&#x3059;&#x308B;&#x3002;&#x4ECA;&#x56DE;&#x306F;&#x30E1;&#x30FC;&#x30EB;&#x30EF;&#x30A4;&#x30BA;&#x306B;&#x5B58;&#x5728;&#x3057;&#x305F;SSRF&#x3092;&#x73FE;&#x5B9F;&#x7684;&#x306A;&#x8105;&#x5A01;&#x306B;&#x767A;&#x5C55;&#x3055;&#x305B;&#x308B;&#x3053;&#x3068;&#x306B;&#x6210;&#x529F;&#x3057;&#x305F;&#x3002;&#x305D;&#x306E;&#x7D4C;&#x7DEF;&#x3092;&#x307E;&#x3068;&#x3081;&#x3066;&#x3044;&#x308B;&#x3002;</p>
+<h2 id="&#x30E1;&#x30FC;&#x30EB;&#x30EF;&#x30A4;&#x30BA;&#x306E;&#x6982;&#x8981;">&#x30E1;&#x30FC;&#x30EB;&#x30EF;&#x30A4;&#x30BA;&#x306E;&#x6982;&#x8981;</h2>
+<p>&#x300C;&#x30E1;&#x30FC;&#x30EB;&#x30EF;&#x30A4;&#x30BA;&#x300D;&#x306F;&#x30B5;&#x30A4;&#x30DC;&#x30A6;&#x30BA;&#x304C;&#x63D0;&#x4F9B;&#x3059;&#x308B;&#x4F01;&#x696D;&#x5411;&#x3051;&#x306E;&#x30E1;&#x30FC;&#x30E9;&#x30FC;&#x3067;&#x3042;&#x308B;&#x3002;&#x30AF;&#x30E9;&#x30A6;&#x30C9;&#x7248;&#x3068;&#x30D1;&#x30C3;&#x30B1;&#x30FC;&#x30B8;&#x7248;&#x306E;2&#x7A2E;&#x985E;&#x304C;&#x63D0;&#x4F9B;&#x3055;&#x308C;&#x3066;&#x304A;&#x308A;&#x3001;&#x8106;&#x5F31;&#x6027;&#x306F;&#x30AF;&#x30E9;&#x30A6;&#x30C9;&#x7248;&#x3060;&#x3051;&#x306B;&#x5F71;&#x97FF;&#x3057;&#x305F;&#x3002;</p>
+<p>&#x30AF;&#x30E9;&#x30A6;&#x30C9;&#x7248;&#x306E;&#x30E1;&#x30FC;&#x30EB;&#x30EF;&#x30A4;&#x30BA;&#x306F;&#x30B5;&#x30A4;&#x30DC;&#x30A6;&#x30BA;&#x304C;&#x6240;&#x6709;&#x3059;&#x308B;&#x30B5;&#x30FC;&#x30D0;&#x30FC;&#x4E0A;&#x3067;&#x52D5;&#x4F5C;&#x3059;&#x308B;&#x3002;&#x4F01;&#x696D;&#x304C;&#x30E1;&#x30FC;&#x30EB;&#x30EF;&#x30A4;&#x30BA;&#x3092;&#x5229;&#x7528;&#x3059;&#x308B;&#x5834;&#x5408;&#x3001;&#x307E;&#x305A;&#x81EA;&#x793E;&#x306E;&#x30E1;&#x30FC;&#x30EB;&#x30B5;&#x30FC;&#x30D0;&#x30FC;&#x3092;&#x30E1;&#x30FC;&#x30EB;&#x30EF;&#x30A4;&#x30BA;&#x306B;&#x767B;&#x9332;&#x3059;&#x308B;&#x5FC5;&#x8981;&#x304C;&#x3042;&#x308B;&#x3002;&#x30E1;&#x30FC;&#x30EB;&#x30B5;&#x30FC;&#x30D0;&#x30FC;&#x3092;&#x767B;&#x9332;&#x3059;&#x308B;&#x306B;&#x306F;&#x4EE5;&#x4E0B;&#x306E;&#x30DA;&#x30FC;&#x30B8;&#x304B;&#x3089;&#x30B5;&#x30FC;&#x30D0;&#x30FC;&#x540D;&#x3068;&#x30DD;&#x30FC;&#x30C8;&#x756A;&#x53F7;&#x3092;&#x5165;&#x529B;&#x3059;&#x308B;&#x3002;&#x8106;&#x5F31;&#x6027;&#x306F;&#x30E1;&#x30FC;&#x30EB;&#x30B5;&#x30FC;&#x30D0;&#x30FC;&#x306E;&#x767B;&#x9332;&#x51E6;&#x7406;&#x306B;&#x5B58;&#x5728;&#x3057;&#x3066;&#x3044;&#x305F;&#x3002;</p>
+<p><img src="https://user-images.githubusercontent.com/5434303/44625665-c190d000-a949-11e8-937d-ec7f46b98674.png" alt="mw_server"></p>
+<h2 id="ssrf&#x306E;&#x8106;&#x5F31;&#x6027;">SSRF&#x306E;&#x8106;&#x5F31;&#x6027;</h2>
+<p>&#x30E1;&#x30FC;&#x30EB;&#x30B5;&#x30FC;&#x30D0;&#x30FC;&#x306E;&#x767B;&#x9332;&#x51E6;&#x7406;&#x3092;&#x5B9F;&#x884C;&#x3059;&#x308B;&#x3068;&#x3001;&#x30E1;&#x30FC;&#x30EB;&#x30EF;&#x30A4;&#x30BA;&#x306F;&#x5165;&#x529B;&#x3055;&#x308C;&#x305F;&#x30B5;&#x30FC;&#x30D0;&#x30FC;&#x540D;&#x3068;&#x30DD;&#x30FC;&#x30C8;&#x756A;&#x53F7;&#x3078;&#x63A5;&#x7D9A;&#x3092;&#x8A66;&#x307F;&#x308B;&#x3002;&#x30B5;&#x30FC;&#x30D0;&#x30FC;&#x540D;&#x306E;&#x5165;&#x529B;&#x5024;&#x691C;&#x8A3C;&#x306B;&#x4E0D;&#x5099;&#x304C;&#x5B58;&#x5728;&#x3057;&#x305F;&#x305F;&#x3081;SSRF&#x304C;&#x53EF;&#x80FD;&#x3068;&#x306A;&#x3063;&#x305F;&#x3002;&#x8106;&#x5F31;&#x6027;&#x306F;&#x53D7;&#x4FE1;&#x30E1;&#x30FC;&#x30EB;&#x30B5;&#x30FC;&#x30D0;&#x30FC;&#xFF08;POP&#x307E;&#x305F;&#x306F;IMAP&#x30B5;&#x30FC;&#x30D0;&#x30FC;&#xFF09;&#x3068;&#x9001;&#x4FE1;&#x30E1;&#x30FC;&#x30EB;&#x30B5;&#x30FC;&#x30D0;&#x30FC;&#xFF08;SMTP&#x30B5;&#x30FC;&#x30D0;&#x30FC;&#xFF09;&#x306E;&#x4E21;&#x65B9;&#x306E;&#x767B;&#x9332;&#x51E6;&#x7406;&#x306B;&#x5B58;&#x5728;&#x3057;&#x3066;&#x304A;&#x308A;&#x3001;SMTP&#x30B5;&#x30FC;&#x30D0;&#x30FC;&#x306E;&#x767B;&#x9332;&#x51E6;&#x7406;&#x3067;&#x306E;&#x8106;&#x5F31;&#x6027;&#x3092;&#x73FE;&#x5B9F;&#x7684;&#x306A;&#x8105;&#x5A01;&#x306B;&#x3064;&#x306A;&#x3052;&#x3089;&#x308C;&#x305F;&#x3002;&#x4EE5;&#x964D;&#x306F;SMTP&#x30B5;&#x30FC;&#x30D0;&#x30FC;&#x306E;&#x767B;&#x9332;&#x51E6;&#x7406;&#x3067;&#x306E;&#x8ABF;&#x67FB;&#x3092;&#x89E3;&#x8AAC;&#x3057;&#x3066;&#x3044;&#x304F;&#x3002;</p>
+<h3 id="ip&#x30A2;&#x30C9;&#x30EC;&#x30B9;&#x691C;&#x8A3C;&#x306E;&#x4E0D;&#x5099;">IP&#x30A2;&#x30C9;&#x30EC;&#x30B9;&#x691C;&#x8A3C;&#x306E;&#x4E0D;&#x5099;</h3>
+<p>SSRF&#x306E;&#x8ABF;&#x67FB;&#x3067;&#x306F;&#x3001;&#x307E;&#x305A;&#x30EB;&#x30FC;&#x30D7;&#x30D0;&#x30C3;&#x30AF;&#x3092;&#x5165;&#x529B;&#x3057;&#x3066;&#x30B5;&#x30FC;&#x30D0;&#x30FC;&#x81EA;&#x8EAB;&#x3078;&#x306E;&#x63A5;&#x7D9A;&#x3092;&#x8A66;&#x307F;&#x308B;&#x3002;&#x30B5;&#x30FC;&#x30D0;&#x30FC;&#x540D;&#x306B; <code>localhost</code> &#x3084; <code>127.0.0.1</code> &#x3092;&#x3001;&#x30DD;&#x30FC;&#x30C8;&#x756A;&#x53F7;&#x306B; <code>25</code> &#x3092;&#x5165;&#x529B;&#x3059;&#x308B;&#x3068;&#x3001;&#x4EE5;&#x4E0B;&#x306E;&#x30A8;&#x30E9;&#x30FC;&#x306B;&#x3088;&#x308A;&#x767B;&#x9332;&#x3092;&#x62D2;&#x5426;&#x3055;&#x308C;&#x308B;&#x3002;</p>
+<p><img src="https://user-images.githubusercontent.com/5434303/44303831-f3bc9380-a385-11e8-9ecf-713ad5a6fa9b.png" alt="127.0.0.1:25"></p>
+<p>&#x30B5;&#x30FC;&#x30D0;&#x30FC;&#x540D;&#x3092;&#x4E00;&#x822C;&#x7684;&#x3067;&#x306A;&#x3044;&#x30EB;&#x30FC;&#x30D7;&#x30D0;&#x30C3;&#x30AF;&#x30A2;&#x30C9;&#x30EC;&#x30B9;&#x3067;&#x3042;&#x308B; <code>127.0.0.2</code> &#x306B;&#x5909;&#x66F4;&#x3059;&#x308B;&#x3068;&#x30A8;&#x30E9;&#x30FC;&#x306E;&#x5185;&#x5BB9;&#x3082;&#x5909;&#x5316;&#x3059;&#x308B;&#x3002;</p>
+<p><img src="https://user-images.githubusercontent.com/5434303/44303833-f4552a00-a385-11e8-9ee9-40a284085a97.png" alt="127.0.0.2:25"></p>
+<p><code>127.0.0.2:25</code> &#x3067;&#x306F;SMTP&#x30B5;&#x30FC;&#x30D0;&#x30FC;&#x306F;&#x52D5;&#x4F5C;&#x3057;&#x3066;&#x3044;&#x306A;&#x3044;&#x304C;&#x3001;&#x63A5;&#x7D9A;&#x30EA;&#x30AF;&#x30A8;&#x30B9;&#x30C8;&#x306F;&#x9001;&#x4FE1;&#x3067;&#x304D;&#x3066;&#x3044;&#x308B;&#x3053;&#x3068;&#x304C;&#x30A8;&#x30E9;&#x30FC;&#x306E;&#x5185;&#x5BB9;&#x304B;&#x3089;&#x8AAD;&#x307F;&#x53D6;&#x308C;&#x308B;&#x3002;&#x30DD;&#x30FC;&#x30C8;&#x756A;&#x53F7;&#x3092;&#x5909;&#x66F4;&#x3057;&#x3066; <code>127.0.0.2:22</code> &#x306B;&#x63A5;&#x7D9A;&#x30EA;&#x30AF;&#x30A8;&#x30B9;&#x30C8;&#x3092;&#x9001;&#x4FE1;&#x3059;&#x308B;&#x3068;&#x3001;&#x30A8;&#x30E9;&#x30FC;&#x306E;&#x5185;&#x5BB9;&#x306B;&#x30B5;&#x30FC;&#x30D0;&#x30FC;&#x304B;&#x3089;&#x306E;&#x30EC;&#x30B9;&#x30DD;&#x30F3;&#x30B9;&#x304C;&#x542B;&#x307E;&#x308C;&#x308B;&#x3002;</p>
+<p><img src="https://user-images.githubusercontent.com/5434303/44303832-f4552a00-a385-11e8-9f38-7ccf7a72e1fb.png" alt="127.0.0.2:22"></p>
+<p><code>127.0.0.2:22</code> &#x3067;&#x306F;SSH&#x30B5;&#x30FC;&#x30D0;&#x30FC;&#x304C;&#x52D5;&#x4F5C;&#x3057;&#x3066;&#x3044;&#x308B;&#x3053;&#x3068;&#x304C;&#x308F;&#x304B;&#x308A;&#x3001;&#x30D0;&#x30FC;&#x30B8;&#x30E7;&#x30F3;&#x60C5;&#x5831;&#x3082;&#x53D6;&#x5F97;&#x3067;&#x304D;&#x308B;&#x3002;&#x307E;&#x305F; <code>127.0.0.2:8080</code> &#x3067;&#x306F;Web&#x30B5;&#x30FC;&#x30D0;&#x30FC;&#x3082;&#x52D5;&#x4F5C;&#x3057;&#x3066;&#x3044;&#x308B;&#x3002;</p>
+<p><img src="https://user-images.githubusercontent.com/5434303/44303834-f4552a00-a385-11e8-8336-09b431706996.png" alt="127.0.0.2:8080"></p>
+<p>&#x5185;&#x90E8;&#x30DB;&#x30B9;&#x30C8;&#xFF08;&#x30B5;&#x30FC;&#x30D0;&#x30FC;&#x81EA;&#x8EAB;&#xFF09;&#x3078;&#x306E;&#x30EA;&#x30AF;&#x30A8;&#x30B9;&#x30C8;&#x3092;&#x507D;&#x88C5;&#x3067;&#x304D;&#x308B;&#x3053;&#x3068;&#x304B;&#x3089;SSRF&#x306E;&#x8106;&#x5F31;&#x6027;&#x3068;&#x3044;&#x3048;&#x308B;&#x3002;&#x3053;&#x3053;&#x307E;&#x3067;&#x306E;&#x6319;&#x52D5;&#x3092;&#x4E00;&#x65E6;&#x30B5;&#x30A4;&#x30DC;&#x30A6;&#x30BA;&#x3078;&#x5831;&#x544A;&#x3057;&#x305F;&#x3002;</p>
+<h2 id="&#x5185;&#x90E8;&#x30CD;&#x30C3;&#x30C8;&#x30EF;&#x30FC;&#x30AF;&#x306E;&#x8ABF;&#x67FB;">&#x5185;&#x90E8;&#x30CD;&#x30C3;&#x30C8;&#x30EF;&#x30FC;&#x30AF;&#x306E;&#x8ABF;&#x67FB;</h2>
+<p>&#x5185;&#x90E8;&#x30CD;&#x30C3;&#x30C8;&#x30EF;&#x30FC;&#x30AF;&#x306B;&#x5B58;&#x5728;&#x3059;&#x308B;&#x4ED6;&#x306E;&#x30DB;&#x30B9;&#x30C8;&#x306B;&#x63A5;&#x7D9A;&#x3059;&#x308B;&#x306B;&#x306F;&#x5185;&#x90E8;IP&#x30A2;&#x30C9;&#x30EC;&#x30B9;&#x3092;&#x7279;&#x5B9A;&#x3059;&#x308B;&#x5FC5;&#x8981;&#x304C;&#x3042;&#x308B;&#x3002;&#x5185;&#x90E8;IP&#x30A2;&#x30C9;&#x30EC;&#x30B9;&#x306E;&#x7BC4;&#x56F2;&#x3092;&#x7DCF;&#x5F53;&#x308A;&#x3059;&#x308B;&#x3053;&#x3068;&#x3067;&#x7279;&#x5B9A;&#x3082;&#x53EF;&#x80FD;&#x3060;&#x304C;&#x3001;&#x691C;&#x8A3C;&#x74B0;&#x5883;&#x3078;&#x306E;&#x9AD8;&#x8CA0;&#x8377;&#x304C;&#x61F8;&#x5FF5;&#x3055;&#x308C;&#x308B;&#x3002;&#x7DCF;&#x5F53;&#x305F;&#x308A;&#x306F;&#x5B9F;&#x65BD;&#x305B;&#x305A;&#x3001;&#x30B5;&#x30FC;&#x30D0;&#x30FC;&#x306E;&#x8A2D;&#x5B9A;&#x4E0D;&#x5099;&#x306B;&#x3088;&#x308A;&#x6F0F;&#x6D29;&#x3057;&#x305F;&#x5185;&#x90E8;IP&#x30A2;&#x30C9;&#x30EC;&#x30B9;&#x3092;&#x63A2;&#x3059;&#x3068;&#x3001;&#x691C;&#x8A3C;&#x74B0;&#x5883;&#x304B;&#x3089;&#x9001;&#x4FE1;&#x3055;&#x308C;&#x308B;&#x30B7;&#x30B9;&#x30C6;&#x30E0;&#x30E1;&#x30FC;&#x30EB;&#x306E;&#x30D8;&#x30C3;&#x30C0;&#x60C5;&#x5831;&#x306B;&#x305D;&#x308C;&#x3089;&#x3057;&#x304D;&#x5024;&#x304C;&#x898B;&#x3064;&#x304B;&#x308B;&#x3002;</p>
+<p><img src="https://user-images.githubusercontent.com/5434303/44625668-ce152880-a949-11e8-975c-936ee9da704f.png" alt="recived_header"></p>
+<p>Received&#x30D8;&#x30C3;&#x30C0;&#x306B;&#x306F;&#x9001;&#x4FE1;&#x5143;&#x30B5;&#x30FC;&#x30D0;&#x30FC;&#x306E;&#x5185;&#x90E8;IP&#x30A2;&#x30C9;&#x30EC;&#x30B9;&#x3067;&#x3042;&#x308B; <code>10.176.64.171</code> &#x304C;&#x542B;&#x307E;&#x308C;&#x3066;&#x3044;&#x308B;<sup id="f1"><a href="#fn1">1</a></sup>&#x3002;&#x3055;&#x3063;&#x305D;&#x304F; <code>10.176.64.171:25</code> &#x3092;&#x30E1;&#x30FC;&#x30EB;&#x30EF;&#x30A4;&#x30BA;&#x306E;SMTP&#x30B5;&#x30FC;&#x30D0;&#x30FC;&#x3068;&#x3057;&#x3066;&#x767B;&#x9332;&#x3092;&#x8A66;&#x307F;&#x308B;&#x304C;&#x3001;&#x4EE5;&#x4E0B;&#x306E;&#x30A8;&#x30E9;&#x30FC;&#x306B;&#x3088;&#x308A;&#x5931;&#x6557;&#x306B;&#x7D42;&#x308F;&#x308B;&#x3002;</p>
+<p><img src="https://user-images.githubusercontent.com/5434303/44303830-f3bc9380-a385-11e8-92a8-54ac8b26189d.png" alt="10.176.64.171:25"></p>
+<h3 id="&#x7279;&#x6B8A;&#x306A;ip&#x30A2;&#x30C9;&#x30EC;&#x30B9;&#x3078;&#x306E;&#x63A5;&#x7D9A;">&#x7279;&#x6B8A;&#x306A;IP&#x30A2;&#x30C9;&#x30EC;&#x30B9;&#x3078;&#x306E;&#x63A5;&#x7D9A;</h3>
+<p>&#x8AE6;&#x3081;&#x304B;&#x3051;&#x3066;Twitter&#x3092;&#x773A;&#x3081;&#x3066;&#x3044;&#x308B;&#x3068;<a href="https://www.corben.io/hackertarget/" target="_blank">DNSDumpster&#x3067;&#x306E;SSRF</a>&#x306E;&#x30EC;&#x30DD;&#x30FC;&#x30C8;&#x304C;&#x6D41;&#x308C;&#x3066;&#x304D;&#x305F;&#x3002;&#x5831;&#x544A;&#x8005;&#x3067;&#x3042;&#x308B;<a href="https://twitter.com/hacker_" target="_blank">@hacker_</a>&#x6C0F;&#x306F;&#x8ABF;&#x67FB;&#x306E;&#x4E2D;&#x3067; <code>0x0.0x0.0x0.0x0</code> &#x3084; <code>0000.0000.0000.0000</code> &#x3068;&#x3044;&#x3046;&#x898B;&#x6163;&#x308C;&#x306A;&#x3044;IP&#x30A2;&#x30C9;&#x30EC;&#x30B9;&#x3092;&#x4F7F;&#x7528;&#x3057;&#x3066;&#x3044;&#x308B;&#x3002;&#x3053;&#x308C;&#x3089;&#x306F;&#x30AA;&#x30AF;&#x30C6;&#x30C3;&#x30C8;&#x3054;&#x3068;&#x306B;16&#x9032;&#x6570;&#x3084;8&#x9032;&#x6570;&#x306B;&#x5909;&#x63DB;&#x3055;&#x308C;&#x305F;&#x5F62;&#x5F0F;&#x306E;IP&#x30A2;&#x30C9;&#x30EC;&#x30B9;&#x3067;&#x3042;&#x308A;&#x3001;&#x3069;&#x3061;&#x3089;&#x3082; <code>0.0.0.0</code> &#x3068;&#x3057;&#x3066;&#x89E3;&#x91C8;&#x3055;&#x308C;&#x308B;&#x3002;</p>
+<p>Linux&#x4E0A;&#x3067;&#x306F; <code>0.0.0.0</code> &#x306B;ping&#x3092;&#x6253;&#x3064;&#x3068; <code>127.0.0.1</code> &#x306B;&#x30A8;&#x30B3;&#x30FC;&#x30EA;&#x30AF;&#x30A8;&#x30B9;&#x30C8;&#x304C;&#x9001;&#x4FE1;&#x3055;&#x308C;&#x308B;&#x3002;&#x30E1;&#x30FC;&#x30EB;&#x30EF;&#x30A4;&#x30BA;&#x306F;Ubuntu&#x4E0A;&#x3067;&#x52D5;&#x4F5C;&#x3057;&#x3066;&#x3044;&#x308B;&#x3053;&#x3068;&#x304C;SSH&#x30B5;&#x30FC;&#x30D0;&#x30FC;&#x306E;&#x30D0;&#x30FC;&#x30B8;&#x30E7;&#x30F3;&#x60C5;&#x5831;&#x304B;&#x3089;&#x5224;&#x660E;&#x3057;&#x3066;&#x3044;&#x308B;&#x3002;&#x305D;&#x306E;&#x305F;&#x3081; <code>0.0.0.0</code> &#x306F; <code>127.0.0.1</code> &#x3068;&#x3057;&#x3066;&#x6271;&#x308F;&#x308C;&#x308B;&#x3068;&#x60F3;&#x5B9A;&#x3057;&#x3001;<code>0.0.0.0:25</code> &#x3092;SMTP&#x30B5;&#x30FC;&#x30D0;&#x30FC;&#x3068;&#x3057;&#x3066;&#x5165;&#x529B;&#x3059;&#x308B;&#x3068;&#x767B;&#x9332;&#x306B;&#x6210;&#x529F;&#x3059;&#x308B;&#x3002;</p>
+<p><img src="https://user-images.githubusercontent.com/5434303/46911906-59eb1e80-cfa3-11e8-8b24-0f2c883c8f8a.png" alt="0.0.0.0:25"></p>
+<p>&#x306A;&#x305C; <code>127.0.0.2:25</code> &#x3067;&#x306F;SMTP&#x30B5;&#x30FC;&#x30D0;&#x30FC;&#x306B;&#x63A5;&#x7D9A;&#x3067;&#x304D;&#x305A;&#x3001;<code>0.0.0.0:25</code> &#x3067;&#x306F;&#x63A5;&#x7D9A;&#x3067;&#x304D;&#x305F;&#x306E;&#x304B;&#x3002;&#x30D6;&#x30E9;&#x30C3;&#x30AF;&#x30DC;&#x30C3;&#x30AF;&#x30B9;&#x3067;&#x3042;&#x308B;&#x305F;&#x3081;&#x539F;&#x56E0;&#x306F;&#x4E0D;&#x660E;&#x3060;&#x304C;&#x3001;&#x30B5;&#x30A4;&#x30DC;&#x30A6;&#x30BA;&#x306E;&#x5185;&#x90E8;&#x30CD;&#x30C3;&#x30C8;&#x30EF;&#x30FC;&#x30AF;&#x306B;&#x5B58;&#x5728;&#x3059;&#x308B;SMTP&#x30B5;&#x30FC;&#x30D0;&#x30FC;&#x3092;&#x30E1;&#x30FC;&#x30EB;&#x30EF;&#x30A4;&#x30BA;&#x306B;&#x767B;&#x9332;&#x3067;&#x304D;&#x305F;&#x3002;</p>
+<h2 id="&#x9001;&#x4FE1;&#x30C9;&#x30E1;&#x30A4;&#x30F3;&#x306E;&#x4E57;&#x3063;&#x53D6;&#x308A;">&#x9001;&#x4FE1;&#x30C9;&#x30E1;&#x30A4;&#x30F3;&#x306E;&#x4E57;&#x3063;&#x53D6;&#x308A;</h2>
+<p>&#x30E1;&#x30FC;&#x30EB;&#x30B5;&#x30FC;&#x30D0;&#x30FC;&#x306E;&#x767B;&#x9332;&#x5F8C;&#x306B;&#x30E1;&#x30FC;&#x30EB;&#x30A2;&#x30AB;&#x30A6;&#x30F3;&#x30C8;&#x3092;&#x4F5C;&#x6210;&#x3059;&#x308B;&#x3053;&#x3068;&#x3067;&#x3001;&#x30E1;&#x30FC;&#x30EB;&#x30EF;&#x30A4;&#x30BA;&#x4E0A;&#x304B;&#x3089;&#x30E1;&#x30FC;&#x30EB;&#x3092;&#x9001;&#x4FE1;&#x3067;&#x304D;&#x308B;&#x3088;&#x3046;&#x306B;&#x306A;&#x308B;&#x3002;&#x30E1;&#x30FC;&#x30EB;&#x30A2;&#x30AB;&#x30A6;&#x30F3;&#x30C8;&#x306B;&#x306F;&#x30E1;&#x30FC;&#x30EB;&#x9001;&#x4FE1;&#x6642;&#x306E;From&#x30D8;&#x30C3;&#x30C0;&#x306E;&#x5024;&#xFF08;&#x30E1;&#x30FC;&#x30EB;&#x30A2;&#x30C9;&#x30EC;&#x30B9;&#x3068;&#x8868;&#x8A18;&#x540D;&#xFF09;&#x3092;&#x8A2D;&#x5B9A;&#x3067;&#x304D;&#x308B;&#x3002;&#x30E1;&#x30FC;&#x30EB;&#x30A2;&#x30C9;&#x30EC;&#x30B9;&#x306B;&#x306F;&#x691C;&#x8A3C;&#x74B0;&#x5883;&#x306E;&#x30C9;&#x30E1;&#x30A4;&#x30F3;&#x3092;&#x542B;&#x3081;&#x305F; <code>security@cybozu-dev.com</code> &#x3092;&#x3001;&#x8868;&#x8A18;&#x540D;&#x306B;&#x306F; <code>&#x30BB;&#x30AD;&#x30E5;&#x30EA;&#x30C6;&#x30A3;&#x4E8B;&#x52D9;&#x5C40;</code> &#x3092;&#x5165;&#x529B;&#x3057;&#x3066;&#x30E1;&#x30FC;&#x30EB;&#x30A2;&#x30AB;&#x30A6;&#x30F3;&#x30C8;&#x3092;&#x4F5C;&#x6210;&#x3059;&#x308B;&#x3002;</p>
+<p><img src="https://user-images.githubusercontent.com/5434303/46911909-6ec7b200-cfa3-11e8-9134-2047ce70ce5e.png" alt="mw_account"></p>
+<p>&#x3053;&#x308C;&#x306B;&#x3088;&#x308A; <code>&quot;&#x30BB;&#x30AD;&#x30E5;&#x30EA;&#x30C6;&#x30A3;&#x4E8B;&#x52D9;&#x5C40;&quot; &lt;security@cybozu-dev.com&gt;</code> &#x304B;&#x3089;&#x4EFB;&#x610F;&#x306E;&#x5B9B;&#x5148;&#x306B;&#x30E1;&#x30FC;&#x30EB;&#x3092;&#x9001;&#x4FE1;&#x3067;&#x304D;&#x308B;&#x3088;&#x3046;&#x306B;&#x306A;&#x308B;&#x3002;&#x8A66;&#x3057;&#x306B;&#x79C1;&#x304C;&#x6240;&#x6709;&#x3059;&#x308B;Gmail&#x5B9B;&#x306B;&#x30E1;&#x30FC;&#x30EB;&#x3092;&#x9001;&#x4FE1;&#x3059;&#x308B;&#x3002;</p>
+<p><img src="https://user-images.githubusercontent.com/5434303/47263272-5292ba80-d539-11e8-8f4a-7f5fd763322e.png" alt="mw_send"></p>
+<p>Gmail&#x306B;&#x306F; <code>&#x30BB;&#x30AD;&#x30E5;&#x30EA;&#x30C6;&#x30A3;&#x4E8B;&#x52D9;&#x5C40;</code> &#x304B;&#x3089;&#x5DEE;&#x3057;&#x51FA;&#x3055;&#x308C;&#x305F;&#x30E1;&#x30FC;&#x30EB;&#x304C;&#x5C4A;&#x304F;&#x3002;&#x30E1;&#x30FC;&#x30EB;&#x306E;&#x9001;&#x4FE1;&#x5143;IP&#x30A2;&#x30C9;&#x30EC;&#x30B9;&#x306F; <code>103.79.13.22</code> &#x3067;&#x3042;&#x308A;&#x3001;&#x3053;&#x306E;IP&#x30A2;&#x30C9;&#x30EC;&#x30B9;&#x306F; <code>cybozu-dev.com</code> &#x306E;SPF&#x30EC;&#x30B3;&#x30FC;&#x30C9;&#x306B;&#x542B;&#x307E;&#x308C;&#x3066;&#x3044;&#x308B;&#x305F;&#x3081;&#x9001;&#x4FE1;&#x30C9;&#x30E1;&#x30A4;&#x30F3;&#x8A8D;&#x8A3C;&#x306B;&#x6210;&#x529F;&#x3059;&#x308B;&#x3002;&#x53D7;&#x4FE1;&#x3057;&#x305F;&#x30E1;&#x30FC;&#x30E9;&#x30FC;&#x3067;&#x4E0D;&#x6B63;&#x306A;&#x30E1;&#x30FC;&#x30EB;&#x3068;&#x5224;&#x5B9A;&#x3055;&#x308C;&#x306A;&#x3044;&#x672C;&#x7269;&#x306E;&#x30E1;&#x30FC;&#x30EB;&#x3092;&#x507D;&#x88C5;&#x3067;&#x304D;&#x308B;&#x72B6;&#x614B;&#x3060;&#x3063;&#x305F;&#x3002;</p>
+<p><img src="https://user-images.githubusercontent.com/5434303/44625677-ef761480-a949-11e8-9f22-9cf47ef1f733.png" alt="mw_spf"></p>
+<h3 id="&#x6A19;&#x7684;&#x578B;&#x653B;&#x6483;&#x3078;&#x306E;&#x5FDC;&#x7528;">&#x6A19;&#x7684;&#x578B;&#x653B;&#x6483;&#x3078;&#x306E;&#x5FDC;&#x7528;</h3>
+<p>&#x30B5;&#x30A4;&#x30DC;&#x30A6;&#x30BA;&#x306E;&#x7BA1;&#x7406;&#x8005;&#x3084;&#x30BB;&#x30AD;&#x30E5;&#x30EA;&#x30C6;&#x30A3;&#x90E8;&#x9580;&#x304C;&#x4F7F;&#x3044;&#x305D;&#x3046;&#x306A;&#x30E1;&#x30FC;&#x30EB;&#x30A2;&#x30C9;&#x30EC;&#x30B9;&#x304B;&#x3089;&#x9001;&#x3089;&#x308C;&#x305F;&#x30E1;&#x30FC;&#x30EB;&#x3067;&#x3042;&#x308C;&#x3070;&#x3001;&#x30B5;&#x30A4;&#x30DC;&#x30A6;&#x30BA;&#x88FD;&#x54C1;&#x306E;&#x5229;&#x7528;&#x8005;&#x306F;&#x4F55;&#x306E;&#x7591;&#x3044;&#x3082;&#x306A;&#x304F;&#x958B;&#x304F;&#x3060;&#x308D;&#x3046;&#x3002;&#x30E1;&#x30FC;&#x30EB;&#x30EF;&#x30A4;&#x30BA;&#x3067;&#x306F;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x3092;&#x6DFB;&#x4ED8;&#x3057;&#x305F;&#x30E1;&#x30FC;&#x30EB;&#x3082;&#x9001;&#x4FE1;&#x3067;&#x304D;&#x308B;&#x305F;&#x3081;&#x3001;&#x4EE5;&#x4E0B;&#x306E;&#x3088;&#x3046;&#x306A;&#x30E1;&#x30FC;&#x30EB;&#x3092;&#x5229;&#x7528;&#x8005;&#x306B;&#x9001;&#x308A;&#x3064;&#x3051;&#x308B;&#x3053;&#x3068;&#x3067;&#x9AD8;&#x3044;&#x6DFB;&#x4ED8;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x958B;&#x5C01;&#x7387;&#x304C;&#x671F;&#x5F85;&#x3067;&#x304D;&#x308B;&#x3002;</p>
+<p><img src="https://user-images.githubusercontent.com/5434303/44625680-f00eab00-a949-11e8-9e10-ac511772b975.png" alt="targeted_mail"></p>
+<p>&#x30B5;&#x30A4;&#x30DC;&#x30A6;&#x30BA;&#x306B;&#x6240;&#x5C5E;&#x3059;&#x308B;&#x7279;&#x5B9A;&#x306E;&#x4EBA;&#x7269;&#x306B;&#x306A;&#x308A;&#x3059;&#x307E;&#x3059;&#x3053;&#x3068;&#x3067;&#x3001;&#x30B5;&#x30A4;&#x30DC;&#x30A6;&#x30BA;&#x81EA;&#x4F53;&#x3084;&#x95A2;&#x9023;&#x4F01;&#x696D;&#x3078;&#x306E;&#x6A19;&#x7684;&#x578B;&#x653B;&#x6483;&#x306E;&#x6210;&#x529F;&#x7387;&#x3082;&#x9AD8;&#x304F;&#x306A;&#x308B;&#x3002;&#x672C;&#x756A;&#x74B0;&#x5883;&#x306E;&#x9001;&#x4FE1;&#x30C9;&#x30E1;&#x30A4;&#x30F3;&#x306F; <code>cybozu.com</code> &#x3067;&#x3042;&#x308B;&#x305F;&#x3081; <code>&quot;&#x9752;&#x91CE; &#x4E45;&#x6176;&quot; &lt;haono@cybozu.com&gt;</code> &#x306B;&#x3082;&#x306A;&#x308A;&#x3059;&#x307E;&#x305B;&#x308B;&#x72B6;&#x614B;&#x3060;&#x3063;&#x305F;&#x3002;</p>
+<h2 id="&#x6240;&#x611F;">&#x6240;&#x611F;</h2>
+<p>&#x9001;&#x4FE1;&#x30C9;&#x30E1;&#x30A4;&#x30F3;&#x306E;&#x4E57;&#x3063;&#x53D6;&#x308A;&#x306B;&#x3064;&#x3044;&#x3066;&#x3082;&#x8FFD;&#x52A0;&#x60C5;&#x5831;&#x3068;&#x3057;&#x3066;&#x5831;&#x544A;&#x3057;&#x3001;&#x30E1;&#x30FC;&#x30EB;&#x30EF;&#x30A4;&#x30BA;&#x3067;&#x306E;SSRF&#x306F;&#x300C;&#x30E1;&#x30FC;&#x30EB;&#x30B5;&#x30FC;&#x30D0;&#x306E;&#x8A2D;&#x5B9A;&#x6A5F;&#x80FD;&#x3092;&#x5229;&#x7528;&#x3057;&#x305F; SSRF&#xFF08;CyVDB-1686&#xFF09;&#x300D;&#x3068;&#x3057;&#x3066;&#x8A8D;&#x5B9A;&#x3055;&#x308C;&#x305F;&#x3002;&#x30B5;&#x30A4;&#x30DC;&#x30A6;&#x30BA;&#x304C;&#x63D0;&#x4F9B;&#x3059;&#x308B;&#x4ED6;&#x306E;&#x30B5;&#x30FC;&#x30D3;&#x30B9;&#x3067;&#x3082;&#x540C;&#x69D8;&#x306E;&#x8106;&#x5F31;&#x6027;&#x3092;&#x767A;&#x898B;&#x3057;&#x3001;<a href="https://kb.cybozu.support/article/33103/" target="_blank">CyVDB-1687</a>&#x3068;<a href="https://kb.cybozu.support/article/33779/" target="_blank">CyVDB-1689</a><sup id="f2"><a href="#fn2">2</a></sup>&#x3067;&#x8A8D;&#x5B9A;&#x3055;&#x308C;&#x3066;&#x3044;&#x308B;&#x3002;IP&#x30A2;&#x30C9;&#x30EC;&#x30B9;&#x3084;URL&#x306E;&#x691C;&#x8A3C;&#x4E0D;&#x5099;&#x306B;&#x3088;&#x308B;SSRF&#x306F;&#x904E;&#x53BB;&#x306B;&#x3082;&#x4F55;&#x5EA6;&#x304B;&#x898B;&#x3064;&#x3051;&#x305F;&#x304C;&#x3001;XSPA&#x306E;&#x5B9F;&#x8A3C;&#x3060;&#x3051;&#x3067;&#x5831;&#x544A;&#x3057;&#x3066;&#x3044;&#x305F;<sup id="f3"><a href="#fn3">3</a></sup>&#x3002;&#x3055;&#x3089;&#x306A;&#x308B;&#x8105;&#x5A01;&#x306B;&#x767A;&#x5C55;&#x3055;&#x305B;&#x308B;&#x305F;&#x3081;&#x306E;&#x8ABF;&#x67FB;&#x306F;&#x76EE;&#x7684;&#x306B;&#x3088;&#x3063;&#x3066;&#x8981;&#x5426;&#x306E;&#x5224;&#x65AD;&#x304C;&#x5206;&#x304B;&#x308C;&#x308B;&#x3002;&#x8106;&#x5F31;&#x6027;&#x306E;&#x6D17;&#x3044;&#x51FA;&#x3057;&#x304C;&#x76EE;&#x7684;&#x306E;&#x8106;&#x5F31;&#x6027;&#x8A3A;&#x65AD;&#x3067;&#x306F;&#x4E0D;&#x8981;&#x3060;&#x304C;&#x3001;&#x5185;&#x90E8;&#x30CD;&#x30C3;&#x30C8;&#x30EF;&#x30FC;&#x30AF;&#x3078;&#x306E;&#x4FB5;&#x5165;&#x3092;&#x76EE;&#x7684;&#x3068;&#x3057;&#x305F;&#x30DA;&#x30CD;&#x30C8;&#x30EC;&#x30FC;&#x30B7;&#x30E7;&#x30F3;&#x30C6;&#x30B9;&#x30C8;&#x3067;&#x306F;&#x5FC5;&#x8981;&#x306B;&#x306A;&#x308B;&#x3002;</p>
+<p>&#x30D0;&#x30B0;&#x30D0;&#x30A6;&#x30F3;&#x30C6;&#x30A3;&#x3067;&#x306F;&#x3001;&#x5185;&#x90E8;&#x30CD;&#x30C3;&#x30C8;&#x30EF;&#x30FC;&#x30AF;&#x306E;&#x30B5;&#x30FC;&#x30D3;&#x30B9;&#x3084;&#x4ED6;&#x306E;&#x8106;&#x5F31;&#x6027;&#x3068;&#x7D44;&#x307F;&#x5408;&#x308F;&#x305B;&#x3066;&#x3001;&#x3088;&#x308A;&#x6DF1;&#x523B;&#x306A;&#x554F;&#x984C;&#x3092;&#x5831;&#x544A;&#x3059;&#x308B;&#x3053;&#x3068;&#x304C;&#x8A55;&#x4FA1;&#x3055;&#x308C;&#x308B;&#x306E;&#x3067;&#x3042;&#x308C;&#x3070;&#x3001;&#x5165;&#x5FF5;&#x306B;&#x8ABF;&#x67FB;&#x3059;&#x308B;&#x4FA1;&#x5024;&#x306F;&#x3042;&#x308B;&#x3002;&#x6210;&#x529F;&#x4F8B;&#x3068;&#x3057;&#x3066;&#x3001;&#x53F0;&#x6E7E;&#x306E;&#x30D0;&#x30B0;&#x30CF;&#x30F3;&#x30BF;&#x30FC;&#x3067;&#x3042;&#x308B;<a href="https://twitter.com/orange_8361" target="_blank">@orange_8361</a>&#x6C0F;&#x304C;&#x767A;&#x898B;&#x3057;&#x305F;<a href="http://blog.orange.tw/2017/07/how-i-chained-4-vulnerabilities-on.html" target="_blank">GitHub&#x3067;&#x306E;SSRF</a>&#x304C;&#x6319;&#x3052;&#x3089;&#x308C;&#x308B;&#x3002;&#x6C0F;&#x306F;SSRF&#x306B;&#x3088;&#x308A;GitHub&#x306E;&#x5185;&#x90E8;&#x30CD;&#x30C3;&#x30C8;&#x30EF;&#x30FC;&#x30AF;&#x3092;&#x8ABF;&#x67FB;&#x3059;&#x308B;&#x3053;&#x3068;&#x3067;&#x3001;4&#x3064;&#x306E;&#x8106;&#x5F31;&#x6027;&#x3092;&#x7D44;&#x307F;&#x5408;&#x308F;&#x305B;&#x305F;RCE&#x3092;&#x5B9F;&#x8A3C;&#x3057;&#x3001;&#x5408;&#x8A08;&#x3067;12,500&#x30C9;&#x30EB;&#x306E;&#x5831;&#x5968;&#x91D1;&#x3092;&#x7372;&#x5F97;&#x3057;&#x305F;&#x3002;&#x305F;&#x3060;&#x3057;&#x5168;&#x3066;&#x306E;&#x4F01;&#x696D;&#x304C;&#x3053;&#x306E;&#x3088;&#x3046;&#x306A;&#x9AD8;&#x8A55;&#x4FA1;&#x3092;&#x3057;&#x3066;&#x304F;&#x308C;&#x308B;&#x3068;&#x306F;&#x9650;&#x3089;&#x306A;&#x3044;&#x3002;&#x5185;&#x90E8;&#x30CD;&#x30C3;&#x30C8;&#x30EF;&#x30FC;&#x30AF;&#x306E;&#x8ABF;&#x67FB;&#x3092;&#x7981;&#x6B62;&#x3057;&#x3066;&#x3044;&#x308B;&#x4F01;&#x696D;&#x3082;&#x3042;&#x308B;&#x306E;&#x3067;&#x3001;&#x5165;&#x5FF5;&#x306A;&#x8ABF;&#x67FB;&#x306B;&#x53D6;&#x308A;&#x639B;&#x304B;&#x308B;&#x524D;&#x306B;&#x5831;&#x5968;&#x91D1;&#x5236;&#x5EA6;&#x306E;&#x65B9;&#x91DD;&#x3092;&#x518D;&#x78BA;&#x8A8D;&#x3057;&#x305F;&#x3044;&#x3002;</p>
+<p>&#x4ECA;&#x56DE;&#x767A;&#x898B;&#x3057;&#x305F;CyVDB-1686&#x306F;&#x521D;&#x3081;<a href="https://www.first.org/cvss/calculator/3.0#CVSS:3.0/AV:N/AC:L/PR:H/UI:N/S:U/C:L/I:L/A:N" target="_blank">CVSS 3.8</a>&#x3068;&#x8A55;&#x4FA1;&#x3055;&#x308C;&#x305F;&#x304C;&#x3001;&#x9001;&#x4FE1;&#x30C9;&#x30E1;&#x30A4;&#x30F3;&#x3092;&#x4E57;&#x3063;&#x53D6;&#x308C;&#x305F;&#x4E8B;&#x5B9F;&#x306B;&#x57FA;&#x3065;&#x3044;&#x305F;&#x8A55;&#x4FA1;&#x3092;&#x4F9D;&#x983C;&#x3057;&#x3001;<a href="https://www.first.org/cvss/calculator/3.0#CVSS:3.0/AV:N/AC:L/PR:H/UI:N/S:C/C:L/I:L/A:N" target="_blank">CVSS 5.5</a>&#x306B;&#x5909;&#x66F4;&#x3055;&#x308C;&#x305F;&#x3002;&#x5909;&#x66F4;&#x7406;&#x7531;&#x306B;&#x3064;&#x3044;&#x3066;&#x30B5;&#x30A4;&#x30DC;&#x30A6;&#x30BA;&#x306F;&#x300C;&#x507D;&#x88C5;&#x3057;&#x305F;&#x30E1;&#x30FC;&#x30EB;&#x3092;&#x9001;&#x4FE1;&#x53EF;&#x80FD;&#x3067;&#x3042;&#x308B;&#x3068;&#x3044;&#x3046;&#x70B9;&#x306F;&#x88AB;&#x5BB3;&#x304C;&#x30B3;&#x30F3;&#x30DD;&#x30FC;&#x30CD;&#x30F3;&#x30C8;&#x306E;&#x5916;&#x306B;&#x62E1;&#x5927;&#x3057;&#x3066;&#x3044;&#x308B;&#x3068;&#x5224;&#x65AD;&#x3057;&#x305F;&#x300D;&#x3068;&#x8FF0;&#x3079;&#x3066;&#x3044;&#x308B;&#x3002;&#x5F71;&#x97FF;&#x7BC4;&#x56F2;&#x3092;&#x5E83;&#x3052;&#x3089;&#x308C;&#x3066;&#x9AD8;&#x8A55;&#x4FA1;&#x306B;&#x3082;&#x3064;&#x306A;&#x304C;&#x3063;&#x305F;&#x306E;&#x3067;&#x3001;&#x5165;&#x5FF5;&#x306A;&#x8ABF;&#x67FB;&#x306B;&#x8CBB;&#x3084;&#x3057;&#x305F;&#x6642;&#x9593;&#x304C;&#x5831;&#x308F;&#x308C;&#x305F;&#x3002;</p>
+<p>&#x6642;&#x7CFB;&#x5217;&#xFF1A;<br>2017&#x5E74;12&#x6708;19&#x65E5; - SSRF&#x3092;&#x767A;&#x898B;<br>2017&#x5E74;12&#x6708;20&#x65E5; - SSRF&#x3092;&#x30B5;&#x30A4;&#x30DC;&#x30A6;&#x30BA;&#x3078;&#x5831;&#x544A;<br>2017&#x5E74;12&#x6708;21&#x65E5; - &#x9001;&#x4FE1;&#x30C9;&#x30E1;&#x30A4;&#x30F3;&#x306E;&#x4E57;&#x3063;&#x53D6;&#x308A;&#x3092;&#x30B5;&#x30A4;&#x30DC;&#x30A6;&#x30BA;&#x3078;&#x8FFD;&#x52A0;&#x5831;&#x544A;<br>2018&#x5E74;2&#x6708;13&#x65E5; - &#x30B5;&#x30A4;&#x30DC;&#x30A6;&#x30BA;&#x304B;&#x3089;CVSS 3.8&#x3067;&#x8A8D;&#x5B9A;&#x3068;&#x306E;&#x9023;&#x7D61;<br>2018&#x5E74;3&#x6708;16&#x65E5; - CVSS&#x306E;&#x518D;&#x8A55;&#x4FA1;&#x3092;&#x30B5;&#x30A4;&#x30DC;&#x30A6;&#x30BA;&#x3078;&#x4F9D;&#x983C;<br>2018&#x5E74;3&#x6708;22&#x65E5; - &#x30B5;&#x30A4;&#x30DC;&#x30A6;&#x30BA;&#x304B;&#x3089;CVSS 5.5&#x306B;&#x5909;&#x66F4;&#x3068;&#x306E;&#x9023;&#x7D61;<br>2018&#x5E74;8&#x6708;31&#x65E5; - &#x30B5;&#x30A4;&#x30DC;&#x30A6;&#x30BA;&#x304B;&#x3089;110,000&#x5186;&#x304C;&#x5165;&#x91D1;<br>2018&#x5E74;10&#x6708;18&#x65E5; - &#x30B5;&#x30A4;&#x30DC;&#x30A6;&#x30BA;&#x304C;&#x8106;&#x5F31;&#x6027;&#x306E;&#x958B;&#x793A;&#x3092;&#x627F;&#x8AFE;  </p>
+<hr>
+<p><sup id="fn1"><a href="#f1">1</a></sup> &#x5185;&#x90E8;IP&#x30A2;&#x30C9;&#x30EC;&#x30B9;&#x306E;&#x6F0F;&#x6D29;&#x306F;&#x5225;&#x306E;&#x8106;&#x5F31;&#x6027;&#x3068;&#x3057;&#x3066;&#x5831;&#x544A;&#x3057;&#x305F;&#x304C;&#x3001;&#x65E2;&#x306B;CyVDB-1179&#x3067;&#x8A8D;&#x5B9A;&#x3055;&#x308C;&#x3066;&#x304A;&#x308A;&#x30B5;&#x30A4;&#x30DC;&#x30A6;&#x30BA;&#x306F;&#x3053;&#x308C;&#x3092;&#x8A31;&#x5BB9;&#x3057;&#x3066;&#x3044;&#x305F;&#x3002;<br><sup id="fn2"><a href="#f2">2</a></sup> Garoon&#x306E;&#x30D1;&#x30C3;&#x30B1;&#x30FC;&#x30B8;&#x7248;&#x3067;&#x306F;&#x4E00;&#x90E8;&#x6A5F;&#x80FD;&#x306B;&#x8106;&#x5F31;&#x6027;&#x304C;&#x6B8B;&#x5B58;&#x3057;&#x3066;&#x3044;&#x308B;&#x304C;&#x3001;&#x30B5;&#x30A4;&#x30DC;&#x30A6;&#x30BA;&#x306F;&#x88FD;&#x54C1;&#x306E;&#x6027;&#x8CEA;&#x4E0A;&#x306E;&#x7406;&#x7531;&#x304B;&#x3089;&#x30EA;&#x30B9;&#x30AF;&#x3092;&#x8A31;&#x5BB9;&#x3057;&#x3066;&#x3044;&#x308B;&#x3002;<br><sup id="fn3"><a href="#f3">3</a></sup> &#x30B5;&#x30A4;&#x30DC;&#x30A6;&#x30BA;&#x306F;2018&#x5E74;9&#x6708;&#x306B;<a href="https://github.com/cybozu/bugbounty/blob/master/scope/XSPA.md" target="_blank">XSPA&#x3092;&#x8A8D;&#x5B9A;&#x5BFE;&#x8C61;&#x5916;</a>&#x3068;&#x3057;&#x305F;&#x305F;&#x3081;&#x3001;&#x73FE;&#x5728;&#x306F;XSPA&#x306E;&#x5B9F;&#x8A3C;&#x3060;&#x3051;&#x3067;&#x306F;&#x8A8D;&#x5B9A;&#x3055;&#x308C;&#x306A;&#x3044;&#x53EF;&#x80FD;&#x6027;&#x304C;&#x3042;&#x308B;&#x3002;  </p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="open_redirect_via_path.html" class="navigation navigation-prev " aria-label="Previous page: Request-URIのパスからのオープンリダイレクト">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="ssrf_in_cybozu.html" class="navigation navigation-next " aria-label="Next page: サイボウズ脆弱性報奨金制度で認定されたSSRF">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"SSRFを利用したメール送信ドメインの乗っ取り","level":"3.3","depth":1,"next":{"title":"サイボウズ脆弱性報奨金制度で認定されたSSRF","level":"3.4","depth":1,"path":"2018/ssrf_in_cybozu.md","ref":"2018/ssrf_in_cybozu.md","articles":[]},"previous":{"title":"Request-URIのパスからのオープンリダイレクト","level":"3.2","depth":1,"path":"2018/open_redirect_via_path.md","ref":"2018/open_redirect_via_path.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["-sharing"],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"book.css"}},"file":{"path":"2018/smtp_domain_takeover.md","mtime":"2019-03-21T23:53:02.686Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-03-22T00:20:47.557Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

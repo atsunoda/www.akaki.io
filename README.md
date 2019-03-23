@@ -6,8 +6,6 @@ https://github.com/atsunoda/www.akaki.io
 エントリーの更新はTwitterでお知らせします。  
 https://twitter.com/akakitsunoda
 
-## Summary
-
 ### 2019
 
 * [HackerOneに報告された脆弱性をHackEDUで再現する](/2019/hackedu.md)
@@ -25,7 +23,7 @@ https://twitter.com/akakitsunoda
 * [XSSワーム「Samy」の動作を解析する](/2018/analyzing_samy_xss_worm.md)
 * [Request-URIのパスからのCRLFインジェクション](/2018/crlfi_via_path_of_request-uri.md)
 
-## Privacy Policy
+### Privacy Policy
 
-このサイトでは利用状況を把握するためにGoogle Analyticsを使用しています。Google AnalyticsはCookieを使用して個人を特定できない形式の情報を収集します。Google社が収集している情報やその使用方法については以下をご覧ください。  
+このサイトでは利用状況を把握するためにGoogle Analyticsを使用しています。Google AnalyticsはCookieを使用して個人を特定できない形式の情報を収集します。Googleが収集している情報やその使用方法については以下をご覧ください。  
 https://policies.google.com/technologies/partner-sites?hl=ja

@@ -4,6 +4,7 @@
 
 ## 2019
 
+* [大和セキュリティ勉強会でPowerShellの基礎を学ぶ](/2019/learning_powershell.md)
 * [HackerOneに報告された脆弱性をHackEDUで再現する](/2019/hackedu.md)
 * [脆弱性報奨金制度で認定されづらいテキストインジェクション](/2019/text_injection.md)
 

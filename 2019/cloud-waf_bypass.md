@@ -126,9 +126,9 @@ Webサイトの管理不備により公開状態になったログファイル�
 
 | ツール名称 | 特定方法 | 特定可否 | 可否理由 |
 | --- | :---: | :---: | --- |
-|[CloudFlair](https://github.com/christophetd/CloudFlair)|[3.1](#31-ssl証明書)|否|`akaki.io` と `www.akaki.io` ではSSL証明書が異なるため|
-|[Cloudsnare](https://gist.github.com/chokepoint/28bed027606c5086ed9eeb274f3b840a)|[3.1](#31-ssl証明書)|否|`akaki.io` と `www.akaki.io` ではSSL証明書が異なるため|
-|[CloudBunny](https://github.com/Warflop/CloudBunny)|[3.1](#31-ssl証明書) [3.2](#32-サイト固有の情報)|否|`akaki.io` と `www.akaki.io` ではSSL証明書が異なり、`www.akaki.io` にはtitle要素が無いため|
+|[CloudFlair](https://github.com/christophetd/CloudFlair)|[3.1](#31-ssl証明書)|否|`akaki.io` はCloudflareのSSL証明書を使用しているため|
+|[Cloudsnare](https://gist.github.com/chokepoint/28bed027606c5086ed9eeb274f3b840a)|[3.1](#31-ssl証明書)|否|`akaki.io` はCloudflareのSSL証明書を使用しているため|
+|[CloudBunny](https://github.com/Warflop/CloudBunny)|[3.1](#31-ssl証明書) [3.2](#32-サイト固有の情報)|否|`akaki.io` はCloudflareのSSL証明書を使用しており、`www.akaki.io` もCloudflareの保護下にあるため|
 |[CloudPiercer](https://cloudpiercer.org/)|[1](#1-サブドメインからの特定) [2.1](#21-過去のdnsレコード) [2.2](#22-他のdnsレコード) [3.1](#31-ssl証明書) [4.1](#41-アウトバウンド通信) [4.2](#42-コンテンツ)|可|DNS履歴サービスの検索で `akaki.io` の過去のIPアドレスが見つかったため|
 |[Bypass firewalls by abusing DNS history](https://github.com/vincentcox/bypass-firewalls-by-DNS-history)|[2.1](#21-過去のdnsレコード)|否|DNS履歴サービスの検索で `*.akaki.io` の過去のIPアドレスが見つからなかったため|
 

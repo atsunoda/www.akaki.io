@@ -128,7 +128,7 @@ https://atsunoda.github.io/gist/impact_of_cookie_bomb/example.html
 
 このURLはドメインが対象サイトのものでないためアクセス率の低下が懸念される。[偽装ドメインを利用する](https://www.farsightsecurity.com/2018/01/17/mschiffm-touched_by_an_idn/)という手もあるが、対象サイトの運営会社や不特定多数のユーザーへの不利益を望むのであれば、このURLをSNSで拡散するだけでも効果があるだろう。Twitterでは[Twitterカード](https://dev.twitter.com/web/sign-inhttps://dev.twitter.com/ja/cards/overview)の仕組みを悪用し、対象サイトのタイトルや概要、画像を設置することでツイート上のリンクを偽装できる。
 
-<p align="center"><img src="https://user-images.githubusercontent.com/5434303/37240313-070f9022-248d-11e8-9d55-987843e285a9.png" alt="Fake Tweet" /></p>
+<p align="center"><img src="/assets/2018/impact_of_cookie_bomb/fake_tweet.png" alt="fake_tweet" /></p>
 
 このツイートを閲覧したユーザーがリンクを踏むとブラウザまたはアプリに非常に長いCookieが付与され、対象サイトにアクセスできなくなる恐れがある。今回のケースではiPhoneのTwitterアプリとChrome、Safari、EdgeでCookie Bombの影響を受け、対象サイトにアクセスできなくなった<sup id="f2">[2](#fn2)</sup>。Androidでは検証していないが同様の可能性はあった。
 

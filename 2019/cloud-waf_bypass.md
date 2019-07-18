@@ -30,25 +30,25 @@ Cloudflareに限らずクラウド型WAFのバイパスは2016年頃には既に
 
 ハードウェアを設置するようなアプライアンス型のWAFとは異なり、クラウド型（SaaS型）のWAFはDNSの切り替えだけで導入できる。保護するWebサイトのドメインをWAFセンターのIPアドレスに名前解決させることで、WAFセンターはリバースプロキシとしてクライアント／サーバー間の通信に介入して攻撃を遮断する。
 
-![cloud-waf](/assets/cloud-waf.png)
+![cloud-waf](/assets/2019/cloud-waf_bypass/cloud-waf.png)
 <p align="right">図1. クラウド型WAFはリバースプロキシとして通信に介入する</p>
 
 ### Cloudflareの導入
 
 クラウド型WAFの検証のため一時的にこのサイトへCloudflareのWAFを導入する。`akaki.io` はGitHub Pagesで提供しているため、本来はGitHubが所有するIPアドレスに名前解決される<sup id="f6">[6](#fn6)</sup>。今回は `akaki.io` のNSレコードにCloudflareのネームサーバーを設定し、WAFセンターのIPアドレスに名前解決されるように変更する。
 
-![dig_ns](/assets/dig_ns.png)  
-![dig_a](/assets/dig_a.png)  
+![dig_ns](/assets/2019/cloud-waf_bypass/dig_ns.png)  
+![dig_a](/assets/2019/cloud-waf_bypass/dig_a.png)  
 
 WAFの導入によりクエリ文字列に [`' or 1 = 1 --`](https://akaki.io/?q=%27%20or%201%20%3D%201%20--) のようなSQLiペイロードを付与したアクセスは遮断される。
 
-![cloudflare-waf](/assets/cloudflare-waf.png)
+![cloudflare-waf](/assets/2019/cloud-waf_bypass/cloudflare-waf.png)
 
 ## バイパスの仕組み
 
 クラウド型WAFで保護すべきサーバーを「オリジンサーバー」と呼び、そこに割り当てられたグローバルIPアドレスを「オリジンIP」と呼ぶ。オリジンIPへのアクセスがWAFセンター以外にも許可されている場合、インターネットからWAFを経由せずにWebサーバーに直接アクセスできる状態となる。つまり攻撃者は標的サイトのオリジンIPを特定できればWAFに遮断されずに攻撃できる。
 
-![cloud-waf_bypass](/assets/cloud-waf_bypass.png)
+![cloud-waf_bypass](/assets/2019/cloud-waf_bypass/cloud-waf_bypass.png)
 <p align="right">図2. オリジンサーバーへの直接攻撃はクラウド型WAFで防げない</p>
 
 特定したIPアドレスが本当にオリジンIPかどうかを確かめるには、そのIPアドレスにアクセスした際のレスポンスとドメインにアクセスした際のレスポンスを比較する。コンテンツの内容がほぼ一致していればオリジンIPだと断定できる。ブラウザからIPアドレスにアクセスしただけではレスポンスが返らない場合は、バーチャルホストで動作している可能性があるため Hostヘッダを本来のドメインに変更して再確認する。
@@ -57,7 +57,7 @@ WAFの導入によりクエリ文字列に [`' or 1 = 1 --`](https://akaki.io/?q
 
 GitHub Pagesが使用するIPアドレスの1つである `185.199.108.153` にアクセスしただけではコンテンツは返らない。Hostヘッダの値を `akaki.io` に変更するとドメインにアクセスした際と同じコンテンツが返ってくる。
 
-![cloudflare-waf_bypass](/assets/cloudflare-waf_bypass.png)
+![cloudflare-waf_bypass](/assets/2019/cloud-waf_bypass/cloudflare-waf_bypass.png)
 
 オリジンIPに直接アクセスされるとクラウド型WAFでは保護できなくなる。そのためhostsファイルに `185.199.108.153 akaki.io` を追記するなどしてドメインがオリジンIPに名前解決される状態であれば、クエリ文字列に [`' or 1 = 1 --`](https://akaki.io/?q=%27%20or%201%20%3D%201%20--) を付与したアクセスでも遮断されない。攻撃者はクラウド型WAFをバイパスしてこのサイトを攻撃できる。
 
@@ -101,7 +101,7 @@ CloudflareではBusinessプランから他社の認証局で発行したSSL証�
 
 オリジンサーバーから外部サーバーへ向かう通信はWAFセンターを経由しない。そのためクラウド型WAFで保護されたサイトに外部サーバーへの通信を発生させられる機能が存在する場合、管理下のサーバーに通信を発生させることで接続元IPアドレスからオリジンIPを特定できる。URLから画像を取得する機能や、WebhookやPingbackといった機能は任意のサーバーに通信を発生させられるためオリジンIPの特定に利用できる。
 
-![outbound](/assets/outbound.png)
+![outbound](/assets/2019/cloud-waf_bypass/outbound.png)
 <p align="right">図3. アウトバウンド通信はWAFセンターを経由しない</p>
 
 Webサイトにメール配信機能がありオリジンサーバーからメールが送信される場合、受信したメールのReceivedヘッダに含まれる送信元IPアドレスからオリジンIPを特定できる。アカウント登録完了やパスワード再設定の際に送信されるメールなどから特定できる可能性がある。
@@ -120,7 +120,7 @@ Webサイトの管理不備により公開状態になったログファイル�
 
 オリジンIPを特定するツールとして取り上げた4つのツールと、KU LeuvenとStony Brook Universityの共同研究チームが開発した「[CloudPiercer](https://cloudpiercer.org/)」というWebサービスを加えた合計5つのツールを使用して `akaki.io` を検査する。CloudPiercerは対象サイトの管理者のみ検査できる仕様であり、今回は `akaki.io` のTXTレコードに認証コードを含めることでサイト管理者であることを証明している。
 
-![dig_txt](/assets/dig_txt.png)
+![dig_txt](/assets/2019/cloud-waf_bypass/dig_txt.png)
 
 各ツールでの検査は以下のような結果になった。CloudPiercerだけが `akaki.io` のオリジンIPを特定できた。
 
@@ -134,7 +134,7 @@ Webサイトの管理不備により公開状態になったログファイル�
 
 CloudPiercerは6種類の方法によりオリジンIPの特定を試みる。今回の検査ではDNS履歴の追跡によりオリジンIPを特定している。CloudPiercerはOSSではないため詳細な検査ロジックは不明だが、論文によるとDNS履歴の追跡には「[DomainTools](https://www.domaintools.com/)」と「[Myip.ms](https://myip.ms/)」を使用しているとのこと。実際にMyip.msで `akaki.io` を検索するとCloudflareの導入前に使用していたIPアドレスが見つかるため、CloudPiercerも同様にオリジンIPを特定したと推測する。
 
-![cloudpiercer](/assets/cloudpiercer.png)
+![cloudpiercer](/assets/2019/cloud-waf_bypass/cloudpiercer.png)
 
 ## バイパスへの対策
 

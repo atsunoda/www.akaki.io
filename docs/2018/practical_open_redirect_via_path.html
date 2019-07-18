@@ -12,10 +12,9 @@
 
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>Request-URIのパスからのオープンリダイレクト 実践編 · GitBook</title>
+        <title>Request-URIのパスからのオープンリダイレクト 実践編 · Akaki I/O</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 3.2.3">
 
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:title" content="Request-URIのパスからのオープンリダイレクト 実践編" />
@@ -51,23 +50,14 @@
         
     
 
-        
-    
-    
-    <meta name="HandheldFriendly" content="true"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
-    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
-
-    
-    <link rel="next" href="open_redirect_via_path.html" />
-    
-    
-    <link rel="prev" href="../" />
-    
-
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+        <link rel="next" href="open_redirect_via_path.html" />
+        <link rel="prev" href="../" />
     </head>
     <body>
         
@@ -428,7 +418,7 @@ Location: //zzz/
 <h2 id="&#x5B9F;&#x8A3C;">&#x5B9F;&#x8A3C;</h2>
 <p>Location&#x30D8;&#x30C3;&#x30C0;&#x306B; <code>//</code> &#x304B;&#x3089;&#x59CB;&#x307E;&#x308B;&#x30B9;&#x30AD;&#x30FC;&#x30E0;&#x3092;&#x7701;&#x7565;&#x3057;&#x305F;&#x5F62;&#x5F0F;&#x306E;&#x7D76;&#x5BFE;&#x30D1;&#x30B9;&#x3092;&#x633F;&#x5165;&#x3059;&#x308B;&#x3053;&#x3068;&#x3067;&#x3001;&#x5916;&#x90E8;&#x30B5;&#x30A4;&#x30C8;&#x3078;&#x306E;&#x30EA;&#x30C0;&#x30A4;&#x30EC;&#x30AF;&#x30C8;&#x304C;&#x767A;&#x751F;&#x3059;&#x308B;&#x3002;</p>
 <p>hxxps://www[.]example.com///xxx//evil.com</p>
-<p><img src="https://user-images.githubusercontent.com/5434303/49969638-5c023700-ff6c-11e8-9e99-bef36a2f2ce4.png" alt="open_redirect"></p>
+<p><img src="../assets/2018/practical_open_redirect_via_path/open_redirect.png" alt="open_redirect"></p>
 <p>&#x4E0A;&#x8A18;&#x306E;URL&#x306B;&#x306F;&#x653B;&#x6483;&#x8005;&#x306E;&#x6240;&#x6709;&#x3059;&#x308B;&#x30C9;&#x30E1;&#x30A4;&#x30F3;&#x304C;&#x542B;&#x307E;&#x308C;&#x3066;&#x3044;&#x308B;&#x305F;&#x3081;&#x3001;&#x8B66;&#x6212;&#x5FC3;&#x306E;&#x5F37;&#x3044;&#x88AB;&#x5BB3;&#x8005;&#x306F;&#x4E0D;&#x4FE1;&#x611F;&#x3092;&#x62B1;&#x304F;&#x53EF;&#x80FD;&#x6027;&#x304C;&#x9AD8;&#x3044;&#x3002;&#x56FA;&#x5B9A;IP&#x30A2;&#x30C9;&#x30EC;&#x30B9;&#x304C;&#x632F;&#x3089;&#x308C;&#x305F;&#x30C9;&#x30E1;&#x30A4;&#x30F3;&#x3067;&#x3042;&#x308C;&#x3070;&#x6574;&#x6570;&#x5909;&#x63DB;&#x306B;&#x3088;&#x308A;&#x96E3;&#x8AAD;&#x5316;&#x3067;&#x304D;&#x308B;&#x3002;&#x4F8B;&#x3048;&#x3070; <code>evil.com</code> &#x306E;IP&#x30A2;&#x30C9;&#x30EC;&#x30B9; <code>66.96.146.129</code> &#x306F; <code>1113625217</code> &#x306B;&#x5909;&#x63DB;&#x3067;&#x304D;&#x308B;<sup id="f1"><a href="#fn1">1</a></sup><sup id="f2"><a href="#fn2">2</a></sup>&#x3002;&#x30D1;&#x30B9;&#x306B;&#x542B;&#x307E;&#x308C;&#x308B;&#x968E;&#x5C64; <code>xxx</code> &#x306F;&#x4EFB;&#x610F;&#x306E;&#x6587;&#x5B57;&#x5217;&#x306B;&#x7F6E;&#x304D;&#x63DB;&#x3048;&#x3089;&#x308C;&#x308B;&#x305F;&#x3081;&#x3001;&#x653B;&#x6483;&#x8005;&#x306F;&#x5BFE;&#x8C61;&#x30B5;&#x30A4;&#x30C8;&#x306E;&#x7279;&#x6027;&#x306B;&#x5408;&#x308F;&#x305B;&#x3066;&#x4EE5;&#x4E0B;&#x306E;&#x3088;&#x3046;&#x306A;URL&#x306B;&#x507D;&#x88C5;&#x3059;&#x308B;&#x3053;&#x3068;&#x3067;&#x88AB;&#x5BB3;&#x8005;&#x3092;&#x8A98;&#x5C0E;&#x3067;&#x304D;&#x308B;&#x3060;&#x308D;&#x3046;&#x3002;</p>
 <p>hxxps://www[.]example.com///articles//1113625217/index.html</p>
 <pre><code class="lang-http">HTTP/1.1 301 Moved Permanently
@@ -483,7 +473,7 @@ Location: //1113625217/index.html/
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Request-URIのパスからのオープンリダイレクト 実践編","level":"2.2.1","depth":2,"next":{"title":"Request-URIのパスからのオープンリダイレクト","level":"2.2.2","depth":2,"path":"2018/open_redirect_via_path.md","ref":"2018/open_redirect_via_path.md","articles":[]},"previous":{"title":"2018","level":"2.2","depth":1,"anchor":"#2018","path":"README.md","ref":"README.md#2018","articles":[{"title":"Request-URIのパスからのオープンリダイレクト 実践編","level":"2.2.1","depth":2,"path":"2018/practical_open_redirect_via_path.md","ref":"2018/practical_open_redirect_via_path.md","articles":[]},{"title":"Request-URIのパスからのオープンリダイレクト","level":"2.2.2","depth":2,"path":"2018/open_redirect_via_path.md","ref":"2018/open_redirect_via_path.md","articles":[]},{"title":"SSRFを利用したメール送信ドメインの乗っ取り","level":"2.2.3","depth":2,"path":"2018/smtp_domain_takeover.md","ref":"2018/smtp_domain_takeover.md","articles":[]},{"title":"サイボウズ脆弱性報奨金制度で認定されたSSRF","level":"2.2.4","depth":2,"path":"2018/ssrf_in_cybozu.md","ref":"2018/ssrf_in_cybozu.md","articles":[]},{"title":"モナバコ脆弱性報奨金制度で認定された401インジェクション","level":"2.2.5","depth":2,"path":"2018/401i_in_monabako.md","ref":"2018/401i_in_monabako.md","articles":[]},{"title":"大和SEC×神戸脆弱性診断の会でペネトレーションテストを学ぶ","level":"2.2.6","depth":2,"path":"2018/learning_pentest_in_kobe.md","ref":"2018/learning_pentest_in_kobe.md","articles":[]},{"title":"CRLFインジェクションによるCookie Bombの脅威","level":"2.2.7","depth":2,"path":"2018/impact_of_cookie_bomb.md","ref":"2018/impact_of_cookie_bomb.md","articles":[]},{"title":"XSSワーム「Samy」の動作を解析する","level":"2.2.8","depth":2,"path":"2018/analyzing_samy_xss_worm.md","ref":"2018/analyzing_samy_xss_worm.md","articles":[]},{"title":"Request-URIのパスからのCRLFインジェクション","level":"2.2.9","depth":2,"path":"2018/crlfi_via_path_of_request-uri.md","ref":"2018/crlfi_via_path_of_request-uri.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["-sharing"],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"book.css"}},"file":{"path":"2018/practical_open_redirect_via_path.md","mtime":"2019-03-21T23:49:19.609Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-05-27T08:38:10.014Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Request-URIのパスからのオープンリダイレクト 実践編","level":"2.2.1","depth":2,"next":{"title":"Request-URIのパスからのオープンリダイレクト","level":"2.2.2","depth":2,"path":"2018/open_redirect_via_path.md","ref":"2018/open_redirect_via_path.md","articles":[]},"previous":{"title":"2018","level":"2.2","depth":1,"anchor":"#2018","path":"README.md","ref":"README.md#2018","articles":[{"title":"Request-URIのパスからのオープンリダイレクト 実践編","level":"2.2.1","depth":2,"path":"2018/practical_open_redirect_via_path.md","ref":"2018/practical_open_redirect_via_path.md","articles":[]},{"title":"Request-URIのパスからのオープンリダイレクト","level":"2.2.2","depth":2,"path":"2018/open_redirect_via_path.md","ref":"2018/open_redirect_via_path.md","articles":[]},{"title":"SSRFを利用したメール送信ドメインの乗っ取り","level":"2.2.3","depth":2,"path":"2018/smtp_domain_takeover.md","ref":"2018/smtp_domain_takeover.md","articles":[]},{"title":"サイボウズ脆弱性報奨金制度で認定されたSSRF","level":"2.2.4","depth":2,"path":"2018/ssrf_in_cybozu.md","ref":"2018/ssrf_in_cybozu.md","articles":[]},{"title":"モナバコ脆弱性報奨金制度で認定された401インジェクション","level":"2.2.5","depth":2,"path":"2018/401i_in_monabako.md","ref":"2018/401i_in_monabako.md","articles":[]},{"title":"大和SEC×神戸脆弱性診断の会でペネトレーションテストを学ぶ","level":"2.2.6","depth":2,"path":"2018/learning_pentest_in_kobe.md","ref":"2018/learning_pentest_in_kobe.md","articles":[]},{"title":"CRLFインジェクションによるCookie Bombの脅威","level":"2.2.7","depth":2,"path":"2018/impact_of_cookie_bomb.md","ref":"2018/impact_of_cookie_bomb.md","articles":[]},{"title":"XSSワーム「Samy」の動作を解析する","level":"2.2.8","depth":2,"path":"2018/analyzing_samy_xss_worm.md","ref":"2018/analyzing_samy_xss_worm.md","articles":[]},{"title":"Request-URIのパスからのCRLFインジェクション","level":"2.2.9","depth":2,"path":"2018/crlfi_via_path_of_request-uri.md","ref":"2018/crlfi_via_path_of_request-uri.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["-sharing"],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"book.css"}},"file":{"path":"2018/practical_open_redirect_via_path.md","mtime":"2019-07-17T03:56:48.380Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-07-18T22:51:44.006Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

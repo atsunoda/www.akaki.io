@@ -11,10 +11,9 @@
 
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>{% block title %}{{ config.title|d("GitBook", true) }}{% endblock %}</title>
+        <title>{% if file.path == "README.md" %}{{ config.title|d("Akaki I/O", true) }}{% else %}{{ page.title }} · {{ config.title|d("Akaki I/O", true) }}{% endif %}</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="{% block description %}{% endblock %}">
-        <meta name="generator" content="GitBook {{ gitbook.version }}">
 
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:title" content="{{ page.title }}" />
@@ -31,7 +30,14 @@
                 {% endif %}
             {% endfor %}
         {% endblock %}
-        {% block head %}{% endblock %}
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="{{ "images/apple-touch-icon-precomposed-152.png"|resolveAsset }}">
+        <link rel="shortcut icon" href="{{ "images/favicon.ico"|resolveAsset }}" type="image/x-icon">
+        {% if page.next and page.next.path %}<link rel="next" href="{{ page.next.path|resolveFile }}" />{% endif %}
+        {% if page.previous and page.previous.path %}<link rel="prev" href="{{ page.previous.path|resolveFile }}" />{% endif %}
     </head>
     <body>
         {% block body %}{% endblock %}

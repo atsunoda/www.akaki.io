@@ -12,10 +12,9 @@
 
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>CRLFインジェクションによるCookie Bombの脅威 · GitBook</title>
+        <title>CRLFインジェクションによるCookie Bombの脅威 · Akaki I/O</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 3.2.3">
 
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:title" content="CRLFインジェクションによるCookie Bombの脅威" />
@@ -51,23 +50,14 @@
         
     
 
-        
-    
-    
-    <meta name="HandheldFriendly" content="true"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
-    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
-
-    
-    <link rel="next" href="analyzing_samy_xss_worm.html" />
-    
-    
-    <link rel="prev" href="learning_pentest_in_kobe.html" />
-    
-
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+        <link rel="next" href="analyzing_samy_xss_worm.html" />
+        <link rel="prev" href="learning_pentest_in_kobe.html" />
     </head>
     <body>
         
@@ -490,7 +480,7 @@ Cookie
 <p>&#x6982;&#x5FF5;&#x5B9F;&#x8A3C;&#x3067;&#x793A;&#x3057;&#x305F;URL&#x30EA;&#x30F3;&#x30AF;&#x307B;&#x3069;&#x9577;&#x304F;&#x3066;&#x306F;&#x975E;&#x6280;&#x8853;&#x8005;&#x3067;&#x3042;&#x3063;&#x3066;&#x3082;&#x4E0D;&#x5BE9;&#x306B;&#x611F;&#x3058;&#x3066;&#x8E0F;&#x3080;&#x306E;&#x3092;&#x305F;&#x3081;&#x3089;&#x3046;&#x3060;&#x308D;&#x3046;&#x3002;&#x653B;&#x6483;&#x8005;&#x306E;&#x6240;&#x6709;&#x3059;&#x308B;&#x30B5;&#x30A4;&#x30C8;&#x304B;&#x3089;&#x30EA;&#x30C0;&#x30A4;&#x30EC;&#x30AF;&#x30C8;&#x3055;&#x305B;&#x308B;&#x3053;&#x3068;&#x3067;&#x9577;&#x3044;URL&#x3092;&#x96A0;&#x853D;&#x3067;&#x304D;&#x308B;<sup id="f1"><a href="#fn1">1</a></sup>&#x3002;</p>
 <p><a href="https://atsunoda.github.io/gist/impact_of_cookie_bomb/example.html" target="_blank">https://atsunoda.github.io/gist/impact_of_cookie_bomb/example.html</a></p>
 <p>&#x3053;&#x306E;URL&#x306F;&#x30C9;&#x30E1;&#x30A4;&#x30F3;&#x304C;&#x5BFE;&#x8C61;&#x30B5;&#x30A4;&#x30C8;&#x306E;&#x3082;&#x306E;&#x3067;&#x306A;&#x3044;&#x305F;&#x3081;&#x30A2;&#x30AF;&#x30BB;&#x30B9;&#x7387;&#x306E;&#x4F4E;&#x4E0B;&#x304C;&#x61F8;&#x5FF5;&#x3055;&#x308C;&#x308B;&#x3002;<a href="https://www.farsightsecurity.com/2018/01/17/mschiffm-touched_by_an_idn/" target="_blank">&#x507D;&#x88C5;&#x30C9;&#x30E1;&#x30A4;&#x30F3;&#x3092;&#x5229;&#x7528;&#x3059;&#x308B;</a>&#x3068;&#x3044;&#x3046;&#x624B;&#x3082;&#x3042;&#x308B;&#x304C;&#x3001;&#x5BFE;&#x8C61;&#x30B5;&#x30A4;&#x30C8;&#x306E;&#x904B;&#x55B6;&#x4F1A;&#x793E;&#x3084;&#x4E0D;&#x7279;&#x5B9A;&#x591A;&#x6570;&#x306E;&#x30E6;&#x30FC;&#x30B6;&#x30FC;&#x3078;&#x306E;&#x4E0D;&#x5229;&#x76CA;&#x3092;&#x671B;&#x3080;&#x306E;&#x3067;&#x3042;&#x308C;&#x3070;&#x3001;&#x3053;&#x306E;URL&#x3092;SNS&#x3067;&#x62E1;&#x6563;&#x3059;&#x308B;&#x3060;&#x3051;&#x3067;&#x3082;&#x52B9;&#x679C;&#x304C;&#x3042;&#x308B;&#x3060;&#x308D;&#x3046;&#x3002;Twitter&#x3067;&#x306F;<a href="https://dev.twitter.com/web/sign-inhttps://dev.twitter.com/ja/cards/overview" target="_blank">Twitter&#x30AB;&#x30FC;&#x30C9;</a>&#x306E;&#x4ED5;&#x7D44;&#x307F;&#x3092;&#x60AA;&#x7528;&#x3057;&#x3001;&#x5BFE;&#x8C61;&#x30B5;&#x30A4;&#x30C8;&#x306E;&#x30BF;&#x30A4;&#x30C8;&#x30EB;&#x3084;&#x6982;&#x8981;&#x3001;&#x753B;&#x50CF;&#x3092;&#x8A2D;&#x7F6E;&#x3059;&#x308B;&#x3053;&#x3068;&#x3067;&#x30C4;&#x30A4;&#x30FC;&#x30C8;&#x4E0A;&#x306E;&#x30EA;&#x30F3;&#x30AF;&#x3092;&#x507D;&#x88C5;&#x3067;&#x304D;&#x308B;&#x3002;</p>
-<p align="center"><img src="https://user-images.githubusercontent.com/5434303/37240313-070f9022-248d-11e8-9d55-987843e285a9.png" alt="Fake Tweet"></p>
+<p align="center"><img src="../assets/2018/impact_of_cookie_bomb/fake_tweet.png" alt="fake_tweet"></p>
 
 <p>&#x3053;&#x306E;&#x30C4;&#x30A4;&#x30FC;&#x30C8;&#x3092;&#x95B2;&#x89A7;&#x3057;&#x305F;&#x30E6;&#x30FC;&#x30B6;&#x30FC;&#x304C;&#x30EA;&#x30F3;&#x30AF;&#x3092;&#x8E0F;&#x3080;&#x3068;&#x30D6;&#x30E9;&#x30A6;&#x30B6;&#x307E;&#x305F;&#x306F;&#x30A2;&#x30D7;&#x30EA;&#x306B;&#x975E;&#x5E38;&#x306B;&#x9577;&#x3044;Cookie&#x304C;&#x4ED8;&#x4E0E;&#x3055;&#x308C;&#x3001;&#x5BFE;&#x8C61;&#x30B5;&#x30A4;&#x30C8;&#x306B;&#x30A2;&#x30AF;&#x30BB;&#x30B9;&#x3067;&#x304D;&#x306A;&#x304F;&#x306A;&#x308B;&#x6050;&#x308C;&#x304C;&#x3042;&#x308B;&#x3002;&#x4ECA;&#x56DE;&#x306E;&#x30B1;&#x30FC;&#x30B9;&#x3067;&#x306F;iPhone&#x306E;Twitter&#x30A2;&#x30D7;&#x30EA;&#x3068;Chrome&#x3001;Safari&#x3001;Edge&#x3067;Cookie Bomb&#x306E;&#x5F71;&#x97FF;&#x3092;&#x53D7;&#x3051;&#x3001;&#x5BFE;&#x8C61;&#x30B5;&#x30A4;&#x30C8;&#x306B;&#x30A2;&#x30AF;&#x30BB;&#x30B9;&#x3067;&#x304D;&#x306A;&#x304F;&#x306A;&#x3063;&#x305F;<sup id="f2"><a href="#fn2">2</a></sup>&#x3002;Android&#x3067;&#x306F;&#x691C;&#x8A3C;&#x3057;&#x3066;&#x3044;&#x306A;&#x3044;&#x304C;&#x540C;&#x69D8;&#x306E;&#x53EF;&#x80FD;&#x6027;&#x306F;&#x3042;&#x3063;&#x305F;&#x3002;</p>
 <h2 id="&#x6240;&#x611F;">&#x6240;&#x611F;</h2>
@@ -543,7 +533,7 @@ Cookie
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"CRLFインジェクションによるCookie Bombの脅威","level":"2.2.7","depth":2,"next":{"title":"XSSワーム「Samy」の動作を解析する","level":"2.2.8","depth":2,"path":"2018/analyzing_samy_xss_worm.md","ref":"2018/analyzing_samy_xss_worm.md","articles":[]},"previous":{"title":"大和SEC×神戸脆弱性診断の会でペネトレーションテストを学ぶ","level":"2.2.6","depth":2,"path":"2018/learning_pentest_in_kobe.md","ref":"2018/learning_pentest_in_kobe.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["-sharing"],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"book.css"}},"file":{"path":"2018/impact_of_cookie_bomb.md","mtime":"2019-03-21T23:52:36.993Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-05-27T08:38:10.014Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"CRLFインジェクションによるCookie Bombの脅威","level":"2.2.7","depth":2,"next":{"title":"XSSワーム「Samy」の動作を解析する","level":"2.2.8","depth":2,"path":"2018/analyzing_samy_xss_worm.md","ref":"2018/analyzing_samy_xss_worm.md","articles":[]},"previous":{"title":"大和SEC×神戸脆弱性診断の会でペネトレーションテストを学ぶ","level":"2.2.6","depth":2,"path":"2018/learning_pentest_in_kobe.md","ref":"2018/learning_pentest_in_kobe.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["-sharing"],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"book.css"}},"file":{"path":"2018/impact_of_cookie_bomb.md","mtime":"2019-07-17T23:40:16.917Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-07-18T22:51:44.006Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

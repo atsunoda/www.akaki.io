@@ -12,10 +12,9 @@
 
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>XSSワーム「Samy」の動作を解析する · GitBook</title>
+        <title>XSSワーム「Samy」の動作を解析する · Akaki I/O</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 3.2.3">
 
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:title" content="XSSワーム「Samy」の動作を解析する" />
@@ -51,23 +50,14 @@
         
     
 
-        
-    
-    
-    <meta name="HandheldFriendly" content="true"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
-    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
-
-    
-    <link rel="next" href="crlfi_via_path_of_request-uri.html" />
-    
-    
-    <link rel="prev" href="impact_of_cookie_bomb.html" />
-    
-
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+        <link rel="next" href="crlfi_via_path_of_request-uri.html" />
+        <link rel="prev" href="impact_of_cookie_bomb.html" />
     </head>
     <body>
         
@@ -386,7 +376,7 @@
 <p>2005&#x5E74;10&#x6708;4&#x65E5;&#x306B;Kamkar&#x6C0F;&#x306E;&#x30D7;&#x30ED;&#x30D5;&#x30A3;&#x30FC;&#x30EB;&#x3067;&#x516C;&#x958B;&#x3055;&#x308C;&#x305F;Samy&#x306F;&#x3001;&#x308F;&#x305A;&#x304B;20&#x6642;&#x9593;&#x3067;100&#x4E07;&#x4EBA;&#x4EE5;&#x4E0A;&#x306E;MySpace&#x30E6;&#x30FC;&#x30B6;&#x30FC;&#x306B;&#x611F;&#x67D3;&#x3057;&#x305F;&#x3002;&#x3053;&#x306E;&#x30EF;&#x30FC;&#x30E0;&#x306F;&#x6700;&#x3082;&#x6025;&#x901F;&#x306B;&#x611F;&#x67D3;&#x3092;&#x5E83;&#x3052;&#x305F;&#x30DE;&#x30EB;&#x30A6;&#x30A7;&#x30A2;&#x3068;&#x8003;&#x3048;&#x3089;&#x308C;&#x3066;&#x304A;&#x308A;&#x3001;XSS&#x30EF;&#x30FC;&#x30E0;&#x306E;&#x8D77;&#x6E90;&#x306B;&#x3057;&#x3066;&#x9802;&#x70B9;&#x3068;&#x8A00;&#x3048;&#x308B;&#x3060;&#x308D;&#x3046;&#x3002;&#x611F;&#x67D3;&#x3057;&#x305F;&#x30E6;&#x30FC;&#x30B6;&#x30FC;&#x306F;Kamkar&#x6C0F;&#x306E;&#x30A2;&#x30AB;&#x30A6;&#x30F3;&#x30C8;&#x3078;&#x306E;&#x30D5;&#x30EC;&#x30F3;&#x30C9;&#x7533;&#x8ACB;&#x3092;&#x5F37;&#x5236;&#x3055;&#x308C;&#x3001;&#x30D7;&#x30ED;&#x30D5;&#x30A3;&#x30FC;&#x30EB;&#x306E;&#x30D2;&#x30FC;&#x30ED;&#x30FC;&#x6B04;&#x306B; <code>but most of all, samy is my hero.</code> &#x3068;&#x306E;&#x6587;&#x8A00;&#x3068;&#x30DA;&#x30A4;&#x30ED;&#x30FC;&#x30C9;&#xFF08;Samy&#x81EA;&#x8EAB;&#xFF09;&#x3092;&#x66F8;&#x304D;&#x8FBC;&#x307E;&#x308C;&#x308B;&#x3002;&#x60C5;&#x5831;&#x8CC7;&#x7523;&#x306E;&#x7A83;&#x53D6;&#x3084;&#x91D1;&#x92AD;&#x306E;&#x8981;&#x6C42;&#x306A;&#x3069;&#x306E;&#x60AA;&#x8CEA;&#x306A;&#x884C;&#x70BA;&#x306F;&#x304A;&#x3053;&#x306A;&#x308F;&#x308C;&#x306A;&#x304B;&#x3063;&#x305F;&#x3002;</p>
 <h2 id="samy&#x306E;&#x611F;&#x67D3;&#x52D5;&#x4F5C;">Samy&#x306E;&#x611F;&#x67D3;&#x52D5;&#x4F5C;</h2>
 <p>&#x4ECA;&#x56DE;&#x306F;<a href="https://samy.pl/popular/tech.html" target="_blank">Kamkar&#x6C0F;&#x306E;&#x30B5;&#x30A4;&#x30C8;</a>&#x306B;&#x6B8B;&#x3055;&#x308C;&#x3066;&#x3044;&#x308B;<a href="https://gist.github.com/atsunoda/efe6970e522b6af9c0cdecea0fa251bf#file-samy" target="_blank">Samy&#x306E;&#x30B3;&#x30FC;&#x30C9;</a>&#x3092;&#x6574;&#x5F62;&#x3057;&#x3001;<a href="https://gist.github.com/atsunoda/efe6970e522b6af9c0cdecea0fa251bf#file-samy-js" target="_blank">&#x5909;&#x6570;&#x540D;&#x3092;&#x4ED8;&#x4E0E;&#x3057;&#x305F;&#x30B3;&#x30FC;&#x30C9;</a>&#x3092;&#x5F15;&#x7528;&#x3057;&#x306A;&#x304C;&#x3089;&#x611F;&#x67D3;&#x52D5;&#x4F5C;&#x3092;&#x89E3;&#x6790;&#x3059;&#x308B;&#x3002;&#x30B3;&#x30FC;&#x30C9;&#x30D5;&#x30ED;&#x30FC;&#x3092;&#x56F3;&#x306B;&#x793A;&#x3059;&#x3068;&#x4EE5;&#x4E0B;&#x306E;&#x3088;&#x3046;&#x306B;&#x306A;&#x308B;&#x3002;</p>
-<p align="center"><img src="https://user-images.githubusercontent.com/5434303/36792459-fd3f868a-1cdd-11e8-91f5-aa9e0aea9e70.png" alt="Samy&apos;s activity"></p>
+<p align="center"><img src="../assets/2018/analyzing_samy_xss_worm/samy&apos;s_activity.png" alt="samy&apos;s_activity"></p>
 
 <p>MySpace&#x306E;&#x30D7;&#x30ED;&#x30D5;&#x30A3;&#x30FC;&#x30EB;&#x306F; <code>profile.myspace.com</code> &#x3068; <code>www.myspace.com</code> &#x306E;&#x4E21;&#x65B9;&#x306E;&#x30C9;&#x30E1;&#x30A4;&#x30F3;&#x304B;&#x3089;&#x95B2;&#x89A7;&#x3067;&#x304D;&#x305F;&#x3002;&#x3057;&#x304B;&#x3057;&#x7DE8;&#x96C6;&#x306F;&#x5F8C;&#x8005;&#x304B;&#x3089;&#x3057;&#x304B;&#x304A;&#x3053;&#x306A;&#x3048;&#x306A;&#x304B;&#x3063;&#x305F;&#x305F;&#x3081;&#x3001;&#x6700;&#x521D;&#x306B;&#x30B5;&#x30D6;&#x30C9;&#x30E1;&#x30A4;&#x30F3;&#x3092;&#x78BA;&#x8A8D;&#x3057;&#x3066;&#x3044;&#x308B;&#x3002;&#x611F;&#x67D3;&#x52D5;&#x4F5C;&#x306B;&#x5229;&#x7528;&#x3059;&#x308B;&#x30DA;&#x30FC;&#x30B8;&#x3068;&#x305D;&#x306E;URL&#x306F;&#x4EE5;&#x4E0B;&#x3067;&#x3042;&#x308B;&#x3002;</p>
 <ul>
@@ -533,7 +523,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"XSSワーム「Samy」の動作を解析する","level":"2.2.8","depth":2,"next":{"title":"Request-URIのパスからのCRLFインジェクション","level":"2.2.9","depth":2,"path":"2018/crlfi_via_path_of_request-uri.md","ref":"2018/crlfi_via_path_of_request-uri.md","articles":[]},"previous":{"title":"CRLFインジェクションによるCookie Bombの脅威","level":"2.2.7","depth":2,"path":"2018/impact_of_cookie_bomb.md","ref":"2018/impact_of_cookie_bomb.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["-sharing"],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"book.css"}},"file":{"path":"2018/analyzing_samy_xss_worm.md","mtime":"2019-03-21T11:29:46.789Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-05-27T08:38:10.014Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"XSSワーム「Samy」の動作を解析する","level":"2.2.8","depth":2,"next":{"title":"Request-URIのパスからのCRLFインジェクション","level":"2.2.9","depth":2,"path":"2018/crlfi_via_path_of_request-uri.md","ref":"2018/crlfi_via_path_of_request-uri.md","articles":[]},"previous":{"title":"CRLFインジェクションによるCookie Bombの脅威","level":"2.2.7","depth":2,"path":"2018/impact_of_cookie_bomb.md","ref":"2018/impact_of_cookie_bomb.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["-sharing"],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"book.css"}},"file":{"path":"2018/analyzing_samy_xss_worm.md","mtime":"2019-07-18T03:20:20.903Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-07-18T22:51:44.006Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

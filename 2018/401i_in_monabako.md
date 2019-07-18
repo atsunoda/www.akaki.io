@@ -8,7 +8,7 @@
 
 開設された質問ページにはアクセス制御が施されていないため、URLを知っていれば誰でもアクセスできる。脆弱性はこのページに存在していた。
 
-![monabako](https://user-images.githubusercontent.com/5434303/40058271-a624a184-588b-11e8-8289-ac6768bfc0b7.png)
+![monabako](/assets/2018/401i_in_monabako/monabako.png)
 
 ## 401インジェクションの脆弱性
 
@@ -36,18 +36,18 @@
 
 質問ページにはアイコン画像が設置されるため、一部のブラウザからアクセスすると認証ダイアログが表示される。以下はSafariからアクセスした際の様子である。
 
-![401i_dialog](https://user-images.githubusercontent.com/5434303/39912351-6c49ddbc-5539-11e8-8f7a-8d4df206baf9.png)
+![401i_dialog](/assets/2018/401i_in_monabako/401i_dialog.png)
 
 imgタグのsrc属性にはBasic認証を設定したページのURLが挿入されている。
 
-![401i_src](https://user-images.githubusercontent.com/5434303/40064090-c2f678c4-5899-11e8-8674-14c2087dd1b5.png)
+![401i_src](/assets/2018/401i_in_monabako/401i_src.png)
 
 攻撃者は不正なURLを仕込んだ質問ページをTwitterなどで拡散する。そこにアクセスした被害者が表示された認証タイアログをモナバコのログイン認証と誤認した場合、入力した認証情報が攻撃者の手に渡る恐れがあった。
 
 ## 脆弱性の修正漏れ
 この脆弱性への対策として、Twitter社が所有するドメイン `twimg.com` のURLしか指定できないように修正された。しかしドメイン検証の実装に不備があったため、`twimg.com.example.com` のような任意のドメインのURLを指定できた。
 
-![401i_bypass](https://user-images.githubusercontent.com/5434303/40062109-65a8a830-5895-11e8-8585-9fa14556321e.png)
+![401i_bypass](/assets/2018/401i_in_monabako/401i_bypass.png)
 
 攻撃者は所有するドメインに2階層のサブドメイン `twimg.com.*` を設定することで、そのドメイン上のリソースを挿入できる状態だった。
 

@@ -5,6 +5,7 @@
 ---
 
 * [2019](/README.md#2019)
+  * [SMSで送信元の電話番号を偽装したメッセージを送る](/2019/sms_spoofing_2.md)
   * [SMSで送信元を偽装したメッセージを送る](/2019/sms_spoofing.md)
   * [オリジンIPの特定によるクラウド型WAFのバイパス](/2019/cloud-waf_bypass.md)
   * [大和セキュリティ勉強会でPowerShellの基礎を学ぶ](/2019/learning_powershell.md)

@@ -58,7 +58,7 @@ URLリンクを含んだ日本語のメッセージも送信できた。Android�
 
 <p align="center"><img src="/assets/2019/sms_spoofing/google_fake.png" width="400" alt="google_fake"></p>
 
-なお当初は `Amazon` ではなく `Apple` のスレッドでの実証を予定していたが、Fromの値に `Apple` を指定すると[Error 21212](https://www.twilio.com/docs/errors/21212)が発生した。Fromの値を `Applo` に変更するとメッセージを送信できるため、Twilio側で特定の送信者IDの指定を禁止していると推測する。
+なお当初はAmazonではなくAppleのスレッドでの実証を予定していたが、Fromの値に `Apple` を指定すると[Error 21212](https://www.twilio.com/docs/errors/21212)が発生した。Fromの値を `Applo` に変更するとメッセージを送信できるため、Twilio側で特定の送信者IDの指定を禁止していると推測する。
 
 ```console
 $ curl -X POST https://api.twilio.com/2010-04-01/Accounts/{$ACCOUNT_SID}/Messages.json \

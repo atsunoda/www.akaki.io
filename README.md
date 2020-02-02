@@ -6,6 +6,10 @@ https://github.com/atsunoda/www.akaki.io
 エントリーの更新はTwitterでお知らせします。  
 https://twitter.com/akakitsunoda
 
+### 2020
+
+* [Yahoo! JAPAN IDに登録された電話番号の列挙](/2020/phone_number_enumeration.md)
+
 ### 2019
 
 * [SMSで送信元の電話番号を偽装したメッセージを送る](/2019/sms_spoofing_2.md)

@@ -4,6 +4,8 @@
 
 ---
 
+* [2020](/README.md#2020)
+  * [Yahoo! JAPAN IDに登録された電話番号の列挙](/2020/phone_number_enumeration.md)
 * [2019](/README.md#2019)
   * [SMSで送信元の電話番号を偽装したメッセージを送る](/2019/sms_spoofing_2.md)
   * [SMSで送信元を偽装したメッセージを送る](/2019/sms_spoofing.md)
@@ -11,7 +13,6 @@
   * [大和セキュリティ勉強会でPowerShellの基礎を学ぶ](/2019/learning_powershell.md)
   * [HackerOneに報告された脆弱性をHackEDUで再現する](/2019/hackedu.md)
   * [脆弱性報奨金制度で認定されづらいテキストインジェクション](/2019/text_injection.md)
-
 * [2018](/README.md#2018)
   * [Request-URIのパスからのオープンリダイレクト 実践編](/2018/practical_open_redirect_via_path.md)
   * [Request-URIのパスからのオープンリダイレクト](/2018/open_redirect_via_path.md)

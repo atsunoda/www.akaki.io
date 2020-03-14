@@ -16,7 +16,7 @@ Yahoo! JAPANのアカウントリカバリー機能は、Yahoo! JAPAN IDやそ�
 
 ### 紐づきを特定できる挙動
 
-アカウントリカバリー機能には機械的な試行を防止するCAPTCHA認証が搭載されている。私のYahoo! JAPAN IDに紐づけた電話番号 `080░░░░░░03` と正しいCAPTCHA文字を入力すると、次の本人確認フェーズに進める。
+アカウントリカバリー機能には機械的な試行を防止するCAPTCHA認証が搭載されている。私のYahoo! JAPAN IDに紐づけた電話番号 `080░░░░░░03` と正しいCAPTCHA文字を以下のように入力すると、次の本人確認フェーズに進める。
 
 ![yj_ar](/assets/2020/phone_number_enumeration/yj_ar.png)
 

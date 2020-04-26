@@ -8,6 +8,7 @@ https://twitter.com/akakitsunoda
 
 ### 2020
 
+* [Slackで認定されたURLリンク偽装の脆弱性](/2020/url_link_spoofing.md)
 * [Yahoo! JAPAN IDに登録された電話番号の列挙](/2020/phone_number_enumeration.md)
 
 ### 2019

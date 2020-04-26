@@ -5,6 +5,7 @@
 ---
 
 * [2020](/README.md#2020)
+  * [Slackで認定されたURLリンク偽装の脆弱性](/2020/url_link_spoofing.md)
   * [Yahoo! JAPAN IDに登録された電話番号の列挙](/2020/phone_number_enumeration.md)
 * [2019](/README.md#2019)
   * [SMSで送信元の電話番号を偽装したメッセージを送る](/2019/sms_spoofing_2.md)

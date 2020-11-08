@@ -2,6 +2,7 @@
 
 * [Akaki I/O](README.md)
 * [2020](2020/README.md)
+  * [Evilginx2によるPayPayのSMS認証強化策の回避](2020/bypass_2fa_with_evilginx2.md)
   * [共同購入型ソーシャルECでのフィッシング詐欺の手口](2020/pinduoduo_phishing.md)
   * [Slackで認定されたURLリンク偽装の脆弱性](2020/url_link_spoofing.md)
   * [Yahoo! JAPAN IDに登録された電話番号の列挙](2020/phone_number_enumeration.md)

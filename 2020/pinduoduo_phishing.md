@@ -6,6 +6,8 @@ description: 'Aug 26, 2020'
 
 中国のEC市場ではSNS要素を取り入れたソーシャルECが台頭している。なかでも共同購入型のソーシャルEC「拼多多（Pinduoduo）」は、設立から5年で時価総額が10兆円を超え、6億人以上のアクティブユーザーを獲得するなど著しい成長を遂げている¹。このような拼多多の急速な成長は今後、世界中の企業に模倣されるとY Combinatorは予見している²。もし日本でも共同購入型のソーシャルECが普及すれば、中国で起きた共同購入にまつわる詐欺が日本でも発生する恐れがある。そこで、拼多多での共同購入の仕組みと中国での詐欺事例を参考に、日本で起こりうる詐欺の手口を把握したいと考えた。
 
+## 要約
+
 中国の共同購入型ソーシャルECでは、詐欺師が消費者に接触しやすい環境が整っていた。拼多多の普及により、消費者は自分のSNSアカウントを利用して、共同購入への招待リンクを知人同士で送り合うようになった。さらに消費者たちはSNS上のグループチャットで招待リンクを共有し、他人同士で共同購入し合うようにもなった。その結果、詐欺師は偽の招待リンクを利用して、消費者をフィッシングサイトへ誘導する手口が可能になった。
 
 ## SNSを利用した共同購入の募集
@@ -16,7 +18,7 @@ description: 'Aug 26, 2020'
 
 このような仕組みを応用し、消費者たちは他人同士でも共同購入し合うためた、SNS上のグループチャットで招待リンクを共有するようになった。拼多多の共同購入グループに参加するには、WeChatやWeiboで「拼多多互助群」と検索してグループのQRコードをスキャンする。実際にWeChatのグループに参加すると、共同購入への招待リンクが頻繁に投稿されていた。
 
-![](../.gitbook/assets/wechat_group.png)
+![](../.gitbook/assets/sp_wechat_group.png)
 
 ## 共同購入グループに潜む罠
 
@@ -33,5 +35,5 @@ description: 'Aug 26, 2020'
 ¹ [時価総額10兆円を突破　新興EC「拼多多」急成長の背後にあるビジネスロジックとは - 36Kr Japan](https://36kr.jp/80619/)  
 ² [Pinduoduo and the Rise of Social E-Commerce - Y Combinator](https://www.ycombinator.com/library/2z-pinduoduo-and-the-rise-of-social-e-commerce)  
 ³ [Pinduoduo Overview - Pinduoduo Inc.](https://pinduoduo.gcs-web.com/static-files/468b2c9f-9112-410d-84b3-2b22e07c7ee0)  
-⁴ [净网2019|拼多多砍价免费拿，请从我的朋友圈消失 - 甘肃镇原法院](https://mp.weixin.qq.com/s/qv6_WPzGGU5s9BF5xiVh7Q)  
+⁴ [净网2019\|拼多多砍价免费拿，请从我的朋友圈消失 - 甘肃镇原法院](https://mp.weixin.qq.com/s/qv6_WPzGGU5s9BF5xiVh7Q)
 

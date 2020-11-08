@@ -22,7 +22,7 @@ hxxps://example.com/has%20been%20changed%20by%20a%20new%20one%20hxxps://evil.com
 
 ### モナバコに表示されるプロフィール名での例
 
-モナバコのアカウントにはTwitterアカウントと同様のプロフィール名とアイコン画像が設定される。設定時のAPIリクエストを操作することで、アイコン画像では[401インジェクション](https://gist.github.com/atsunoda/cf3523fbf1f444d0572ba543ec9d7bfa)が、プロフィール名ではテキストインジェクションが可能であった。Twitterの表示名には[51文字以上を設定できない仕様](https://help.twitter.com/ja/managing-your-account/change-twitter-handle)だが、リクエスト上の `displayName` を以下のように操作すると51文字以上のプロフィール名を設定できる。
+モナバコのアカウントにはTwitterアカウントと同様のプロフィール名とアイコン画像が設定される。設定時のAPIリクエストを操作することで、アイコン画像では[401インジェクション](../2018/401i_in_monabako.md)が、プロフィール名ではテキストインジェクションが可能であった。Twitterの表示名には[51文字以上を設定できない仕様](https://help.twitter.com/ja/managing-your-account/change-twitter-handle)だが、リクエスト上の `displayName` を以下のように操作すると51文字以上のプロフィール名を設定できる。
 
 ```diff
  POST /postOauthToken HTTP/1.1

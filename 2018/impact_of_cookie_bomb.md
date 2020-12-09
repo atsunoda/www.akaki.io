@@ -131,7 +131,7 @@ Cookie
 
 概念実証で示したURLリンクほど長くては非技術者であっても不審に感じて踏むのをためらうだろう。攻撃者の所有するサイトからリダイレクトさせることで長いURLを隠蔽できる¹。
 
-[https://atsunoda.github.io/gist/impact\_of\_cookie\_bomb/example.html](https://atsunoda.github.io/gist/impact_of_cookie_bomb/example.html)
+[https://atsunoda.github.io/demo/impact\_of\_cookie\_bomb/example.html](https://atsunoda.github.io/demo/impact_of_cookie_bomb/example.html)
 
 このURLはドメインが対象サイトのものでないためアクセス率の低下が懸念される。[偽装ドメインを利用する](https://www.farsightsecurity.com/2018/01/17/mschiffm-touched_by_an_idn/)という手もあるが、対象サイトの運営会社や不特定多数のユーザーへの不利益を望むのであれば、このURLをSNSで拡散するだけでも効果があるだろう。Twitterでは[Twitterカード](https://dev.twitter.com/web/sign-inhttps://dev.twitter.com/ja/cards/overview)の仕組みを悪用し、対象サイトのタイトルや概要、画像を設置することでツイート上のリンクを偽装できる。
 
@@ -153,6 +153,6 @@ CRLFインジェクションやXSSがなくてもパラメータの入力値がC
 
 ¹ 短縮URL化も考え、[Google](https://goo.gl/)、[Bitly](https://bit.ly/)、[TinyURL](https://tinyurl.com/)、[Twitter](https://t.co/)で検証したところ、TinyURLだけで短縮できた。  
 ² Chrome、SafariはMacとiPhoneから、EdgeはWin10とiPhoneから検証した。  
-³ [Win8.1以前のIEはPublic Suffix Listを参照しない](https://blogs.msdn.microsoft.com/ie/2014/10/06/interoperable-top-level-domain-name-parsing-comes-to-ie/)ため広範囲のdomain属性を設定できる。そのため [`atsunoda.github.io`](https://atsunoda.github.io/gist/impact_of_cookie_bomb/github.html) にアクセスすると、Cookieが消えるまで `*.github.io` にアクセスできなくなる。検証前にIEでTLS 1.2を有効にしておく必要がある。  
+³ [Win8.1以前のIEはPublic Suffix Listを参照しない](https://blogs.msdn.microsoft.com/ie/2014/10/06/interoperable-top-level-domain-name-parsing-comes-to-ie/)ため広範囲のdomain属性を設定できる。そのため [`atsunoda.github.io`](https://atsunoda.github.io/demo/impact_of_cookie_bomb/github.html) にアクセスすると、Cookieが消えるまで `*.github.io` にアクセスできなくなる。検証前にIEでTLS 1.2を有効にしておく必要がある。  
 ⁴ Twitterにあったこの動作を[@filedescriptor](https://twitter.com/filedescriptor)氏はCookie Bombに応用し、そこから[レスポンス分割に発展させた](https://blog.innerht.ml/tag/cookie-bomb/)。
 

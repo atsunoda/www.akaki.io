@@ -6,6 +6,10 @@
 エントリーの更新はTwitterでお知らせします。  
 [https://twitter.com/akakitsunoda](https://twitter.com/akakitsunoda)
 
+### 2021
+
+* [SMS OTPの自動入力によるリスクとその対策](2021/sms_otp_autofill.md)
+
 ### 2020
 
 * [共同購入型ソーシャルECでのフィッシング詐欺の手口](2020/pinduoduo_phishing.md)

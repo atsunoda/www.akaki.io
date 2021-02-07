@@ -1,6 +1,8 @@
 # Table of contents
 
 * [Akaki I/O](README.md)
+* [2021](2021/README.md)
+  * [SMS OTPの自動入力によるリスクとその対策](2021/sms_otp_autofill.md)
 * [2020](2020/README.md)
   * [共同購入型ソーシャルECでのフィッシング詐欺の手口](2020/pinduoduo_phishing.md)
   * [Slackで認定されたURLリンク偽装の脆弱性](2020/url_link_spoofing.md)

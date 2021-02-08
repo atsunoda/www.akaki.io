@@ -55,7 +55,7 @@ SMS OTPとWebサイトが紐付かない状態では、正規のSMS OTPがフィ
 
 PayPalの偽サイトは前回と同様にMITMフィッシングフレームワーク「Evilginx2」で複製し、一般利用者が誤ってアクセスしないようインバウンド接続を制御した。Android 11のChrome 88から複製した偽サイトにPayPalアカウントでログインすると、2要素認証に必要なSMS OTPがPayPalから送信される。その受信通知からOTPをコピーして、キーボードの入力候補から偽サイトへ自動入力できた（図3）。なお、PayPayとPayPalのinputフォームには `autocomplete="one-time-code"` が設定されていなかったが、iOSとAndroidの自動入力は発動した。
 
-![&#x56F3;3. PayPal&#x306E;&#x507D;&#x30B5;&#x30A4;&#x30C8;&#x3067;&#x3082;&#x81EA;&#x52D5;&#x5165;&#x529B;&#x304C;&#x767A;&#x52D5;&#x3059;&#x308B;](../.gitbook/assets/20_figure3_sp_.gif)
+![&#x56F3;3. Android&#x3067;&#x3082;&#x507D;&#x30B5;&#x30A4;&#x30C8;&#x3078;&#x306E;&#x81EA;&#x52D5;&#x5165;&#x529B;&#x304C;&#x767A;&#x52D5;&#x3059;&#x308B;](../.gitbook/assets/20_figure3_sp_.gif)
 
 ### PRMitM攻撃への支援
 

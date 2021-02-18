@@ -3,7 +3,7 @@
 このサイトは角田朱生（Akaki Tsunoda）が運営し、GitBookで公開しています。  
 [https://github.com/atsunoda/www.akaki.io](https://github.com/atsunoda/www.akaki.io)
 
-エントリーの更新はTwitterでお知らせします。  
+コンテンツの更新はTwitterでお知らせします。  
 [https://twitter.com/akakitsunoda](https://twitter.com/akakitsunoda)
 
 ### 2021

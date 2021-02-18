@@ -4,7 +4,7 @@ description: 'Oct 22, 2018'
 
 # SSRFを利用したメール送信ドメインの乗っ取り
 
-[前回のエントリー](ssrf_in_cybozu.md)に続き、サイボウズの[脆弱性報奨金制度](https://cybozu.co.jp/products/bug-bounty/)で認定されたSSRFの詳細を開示する。今回はメールワイズに存在したSSRFを現実的な脅威に発展させることに成功した。その経緯をまとめている。
+[前回の記事](ssrf_in_cybozu.md)に続き、サイボウズの[脆弱性報奨金制度](https://cybozu.co.jp/products/bug-bounty/)で認定されたSSRFの詳細を開示する。今回はメールワイズに存在したSSRFを現実的な脅威に発展させることに成功した。その経緯をまとめている。
 
 ## メールワイズの概要
 

@@ -8,7 +8,7 @@ description: 'Feb 14, 2018'
 
 ## パラメータからのCRLFインジェクション
 
-私が今まで行っていた方法は、パラメータの値がレスポンスヘッダに出力される箇所で、値に改行コードを含めて確認するだけだった。値がSet-CookieヘッダやLocationヘッダに含まれるパラメータを対象に、[RFCでヘッダフィールドの終端として認められている](http://httpwg.org/specs/rfc7230.html#message.robustness) `CRLF`（%0D%0A）と `LF`（%0A）に加え、Firefoxを除く主要ブラウザ¹で終端として扱われる `CR`（%0D）も含めて確認していた。具体的には以下のような動作である。
+私が今まで行なっていた方法は、パラメータの値がレスポンスヘッダに出力される箇所で、値に改行コードを含めて確認するだけだった。値がSet-CookieヘッダやLocationヘッダに含まれるパラメータを対象に、[RFCでヘッダフィールドの終端として認められている](http://httpwg.org/specs/rfc7230.html#message.robustness) `CRLF`（%0D%0A）と `LF`（%0A）に加え、Firefoxを除く主要ブラウザ¹で終端として扱われる `CR`（%0D）も含めて確認していた。具体的には以下のような動作である。
 
 hxxp://example.jp/?l=en%0D%0ASet-Cookie:crlf=injection
 
@@ -29,7 +29,7 @@ Set-Cookie:crlf=injection
 
 ## パスからのCRLFインジェクション
 
-Bobrov氏が行っていたのは、30xリダイレクトが発生する箇所でRequest-URIのパスに改行コードを含め、Locationヘッダの出力を確認する方法だった。レポートのリダイレクト処理に注目すると以下のケースに分けられる。
+Bobrov氏が行なっていたのは、30xリダイレクトが発生する箇所でRequest-URIのパスに改行コードを含め、Locationヘッダの出力を確認する方法だった。レポートのリダイレクト処理に注目すると以下のケースに分けられる。
 
 * HTTPSへのリダイレクト
 * 異なるホストへのリダイレクト

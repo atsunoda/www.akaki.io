@@ -2,6 +2,7 @@
 
 * [Akaki I/O](README.md)
 * [2021](2021/README.md)
+  * [OAuthにおける認可コード横取り攻撃とその対策](2021/authz_code_interception.md)
   * [カスタムURLスキームの乗っ取りとその対策](2021/url_scheme_hijack.md)
   * [SMS OTPの自動入力によるリスクとその対策](2021/sms_otp_autofill.md)
 * [2020](2020/README.md)

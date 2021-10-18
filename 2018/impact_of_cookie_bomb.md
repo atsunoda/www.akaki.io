@@ -151,9 +151,7 @@ CRLFインジェクションやXSSがなくてもパラメータの入力値がC
 
 ---
 
-
-¹ 短縮URL化も考え、[Google](https://goo.gl/)、[Bitly](https://bit.ly/)、[TinyURL](https://tinyurl.com/)、[Twitter](https://t.co/)で検証したところ、TinyURLだけで短縮できた。  
-² Chrome、SafariはMacとiPhoneから、EdgeはWin10とiPhoneから検証した。  
-³ [Win8.1以前のIEはPublic Suffix Listを参照しない](https://blogs.msdn.microsoft.com/ie/2014/10/06/interoperable-top-level-domain-name-parsing-comes-to-ie/)ため広範囲のdomain属性を設定できる。そのため [`atsunoda.github.io`](https://atsunoda.github.io/demo/impact_of_cookie_bomb/github.html) にアクセスすると、Cookieが消えるまで `*.github.io` にアクセスできなくなる。検証前にIEでTLS 1.2を有効にしておく必要がある。  
-⁴ Twitterにあったこの動作を[@filedescriptor](https://twitter.com/filedescriptor)氏はCookie Bombに応用し、そこから[レスポンス分割に発展させた](https://blog.innerht.ml/tag/cookie-bomb/)。
-
+<sup id="fn1">[¹](#f1)</sup> 短縮URL化も考え、[Google](https://goo.gl/)、[Bitly](https://bit.ly/)、[TinyURL](https://tinyurl.com/)、[Twitter](https://t.co/)で検証したところ、TinyURLだけで短縮できた。  
+<sup id="fn2">[²](#f2)</sup> Chrome、SafariはMacとiPhoneから、EdgeはWin10とiPhoneから検証した。  
+<sup id="fn3">[³](#f3)</sup> [Win8.1以前のIEはPublic Suffix Listを参照しない](https://blogs.msdn.microsoft.com/ie/2014/10/06/interoperable-top-level-domain-name-parsing-comes-to-ie/)ため広範囲のdomain属性を設定できる。そのため [`atsunoda.github.io`](https://atsunoda.github.io/demo/impact_of_cookie_bomb/github.html) にアクセスすると、Cookieが消えるまで `*.github.io` にアクセスできなくなる。検証前にIEでTLS 1.2を有効にしておく必要がある。  
+<sup id="fn4">[⁴](#f4)</sup> Twitterにあったこの動作を[@filedescriptor](https://twitter.com/filedescriptor)氏はCookie Bombに応用し、そこから[レスポンス分割に発展させた](https://blog.innerht.ml/tag/cookie-bomb/)。  

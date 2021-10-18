@@ -147,7 +147,6 @@ X-OneLinkServiceType: onelink.fcgi
 
 ---
 
-¹ Chrome64、Safari11、Edge41、IE11は `CR` をヘッダフィールドの終端として扱っていた。  
 <sup id="fn1">[¹](#f1)</sup> Chrome64、Safari11、Edge41、IE11は `CR` をヘッダフィールドの終端として扱っていた。  
 <sup id="fn2">[²](#f2)</sup> 徳丸本のP.195「外部ドメインへのリダイレクト」にあるようなCGI特有の動作だと考える。  
 <sup id="fn3">[³](#f3)</sup> はせがわさんが[ポートブロッキングを使う方法](http://d.hatena.ne.jp/hasegawayosuke/20161210/p1)をまとめている。

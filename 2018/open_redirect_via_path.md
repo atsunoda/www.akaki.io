@@ -110,7 +110,6 @@ Location: //atsunoda.github.io/%2F%2E%2E/
 
 ---
 
-¹ 絶対パスで出力される場合のパスからのオープンリダイレクトは[\#309058](https://hackerone.com/reports/309058)、[\#211213](https://hackerone.com/reports/211213)、[\#190188](https://hackerone.com/reports/190188)などが参考になる。  
-² 寺田さんのブログ「[オープンリダイレクト検査：Locationヘッダ編](http://d.hatena.ne.jp/teracc/20110212)」のパターン2でも解説されている。  
-³ [Electronアプリでのオープンリダイレクト](https://blog.bentkowski.info/2018/07/vulnerability-in-hangouts-chat-aka-how.html)や[認証トークンの漏洩につながるケース](https://www.slideshare.net/linecorp/line-security-bug-bounty-program-97008237/28)には報奨金が支払われている。
-
+<sup id="fn1">[¹](#f1)</sup> 絶対パスで出力される場合のパスからのオープンリダイレクトは[#309058](https://hackerone.com/reports/309058)、[#211213](https://hackerone.com/reports/211213)、[#190188](https://hackerone.com/reports/190188)などが参考になる。  
+<sup id="fn2">[²](#f2)</sup> 寺田さんのブログ「[オープンリダイレクト検査：Locationヘッダ編](http://d.hatena.ne.jp/teracc/20110212)」のパターン2でも解説されている。  
+<sup id="fn3">[³](#f3)</sup> [Electronアプリでのオープンリダイレクト](https://blog.bentkowski.info/2018/07/vulnerability-in-hangouts-chat-aka-how.html)や[認証トークンの漏洩につながるケース](https://www.slideshare.net/linecorp/line-security-bug-bounty-program-97008237/28)には報奨金が支払われている。  

@@ -1,6 +1,6 @@
 # Akaki I/O
 
-このサイトは角田朱生（Akaki Tsunoda）が運営し、GitBookで公開しています。  
+このサイトは角田朱生（Akaki Tsunoda）がGitHubで管理しています。  
 [https://github.com/atsunoda/www.akaki.io](https://github.com/atsunoda/www.akaki.io)
 
 コンテンツの更新はTwitterでお知らせします。  

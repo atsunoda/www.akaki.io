@@ -1,8 +1,8 @@
----
-description: 'Nov 14, 2016'
----
-
 # Webアプリケーションへの入力値を操作しよう
+
+<p class="modest" align="left">Nov 14, 2016</p>
+
+---
 
 第4回目はHTTP通信の書き換えによるWebアプリケーションへの入力値操作を説明します。
 
@@ -12,7 +12,8 @@ description: 'Nov 14, 2016'
 
 そこで「[Burp Suite](https://portswigger.net/burp)」を使います。これはブラウザとWebサーバー間の通信に介入し、通信内容の参照や書き換えを行なうツールです。
 
-![&#x56F3;1. HTTP&#x901A;&#x4FE1;&#x306B;&#x4ECB;&#x5165;&#x3059;&#x308B;Burp Suite](../.gitbook/assets/e4_figure1.png)
+<p align="center"><img src="/assets/2016/intro_to_ethical_hacker_4/e4_figure1.png" alt="figure1"></p>
+<p class="modest" align="center">図1. HTTP通信に介入するBurp Suite</p>
 
 Burp Suiteには無償版と有償版があります。手動での調査であれば無償版でも充分に行なえるため、この連載では無償版を使います。また、Burp Suiteの愛好家団体である「[Burp Suite Japan User Group](https://twitter.com/burpsuitejapan)」から日本語の[スタートアップマニュアル](https://github.com/burpsuitejapan/startup/blob/master/startup_manual.pdf)が提供されています。こちらを参考にダウンロードとインストール、ブラウザでのプロキシ設定を行ないましょう。
 
@@ -28,7 +29,8 @@ hxxps://pt.bugbounty.jp/
 
 このサイトはHTTPSで提供されているため、アクセスした際にブラウザ上でセキュリティ警告画面が表示されると思います。マニュアルの4.3.3を参考に、Burp Suiteが発行したCA証明書をインポートしてください。また、起動時はインターセプトが有効になっており、Burp Suiteによって通信が止められている状態です。\[Proxy\] - \[Intercept\] の \[Intercept is on\] をクリックして \[Intercept is off\] にすることで、通信が流れて図2のようにキャプチャできます。
 
-![&#x56F3;2. BugBounty.jp&#x306B;&#x30A2;&#x30AF;&#x30BB;&#x30B9;&#x3057;&#x305F;&#x969B;&#x306E;&#x901A;&#x4FE1;](../.gitbook/assets/e4_figure2.png)
+<p align="center"><img src="/assets/2016/intro_to_ethical_hacker_4/e4_figure2.png" alt="figure2"></p>
+<p class="modest" align="center">図2. BugBounty.jpにアクセスした際の通信</p>
 
 ## HTTP通信の書き換え
 
@@ -36,7 +38,8 @@ hxxps://pt.bugbounty.jp/
 
 BugBounty.jpのプログラム一覧画面から検索を行なった際のリクエストでは、ブラウザ上から入力したフリーワード以外にもパラメータで値を送信しています。このリクエストをインターセプトして、パラメータ `prize_point` の値を図3のように書き換えて送信します。
 
-![&#x56F3;3. &#x691C;&#x7D22;&#x6642;&#x306E;&#x30EA;&#x30AF;&#x30A8;&#x30B9;&#x30C8;&#x3092;&#x66F8;&#x304D;&#x63DB;&#x3048;](../.gitbook/assets/e4_figure3.png)
+<p align="center"><img src="/assets/2016/intro_to_ethical_hacker_4/e4_figure3.png" alt="figure3"></p>
+<p class="modest" align="center">図3. 検索時のリクエストを書き換え</p>
 
 この操作により「報酬形態に不正な値が指定されています」というエラーメッセージが表示されます。予期しない値が入力された場合はエラーとしているのでしょう。
 
@@ -46,19 +49,20 @@ BugBounty.jpのプログラム一覧画面から検索を行なった際のリ�
 
 そこでRepeater機能が役立ちます。これはBurp Suiteからリクエストを再送信できる機能です。マニュアルの4.3.1を参考に、先ほどのリクエストを \[Proxy\] - \[HTTP history\] から選択して再送信してみましょう。
 
-![&#x56F3;4. &#x691C;&#x7D22;&#x6642;&#x306E;&#x30EA;&#x30AF;&#x30A8;&#x30B9;&#x30C8;&#x3092;&#x518D;&#x9001;&#x4FE1;](../.gitbook/assets/e4_figure4.png)
+<p align="center"><img src="/assets/2016/intro_to_ethical_hacker_4/e4_figure4.png" alt="figure4"></p>
+<p class="modest" align="center">図4. 検索時のリクエストを再送信</p>
 
 再送信したリクエストに対するレスポンスを見ると、先ほどのエラーメッセージは含まれておらず302 Foundが返ってきています。このサイトではエラーが発生した場合、リダイレクトを挟んでエラーメッセージを表示しているようです。リダイレクト後のレスポンスを確認したい場合は、\[Repeater\] メニュー - \[Follow redirections\] から \[On-site only\] または \[Always\] を選択します。Scope設定（マニュアル 4.3.2）を行なっている場合は \[In-scope only\] を選択しても構いません。
 
-![&#x56F3;5. Repeater&#x6A5F;&#x80FD;&#x306E; \[Follow redirections\] &#x3092;&#x8A2D;&#x5B9A;](../.gitbook/assets/e4_figure5.png)
+<p align="center"><img src="/assets/2016/intro_to_ethical_hacker_4/e4_figure5.png" alt="figure5"></p>
+<p class="modest" align="center">図5. Repeater機能の [Follow redirections] を設定</p>
 
 Repeater機能を使えばブラウザを介さずに入力値を操作できるため、調査時間を短縮できます。バグバウンティでは他のハッカーより先に脆弱性を見つけなければならないため、このような機能を活用して効率よく調査を行ないましょう。
 
-
+<br>
 
 この他にもBurp Suiteには脆弱性調査に役立つ様々な機能があります。一例として、Intruder機能（マニュアル 4.3.6）を使うことで、短時間で大量のパターンを機械的に送信できます。しかし、この機能はサーバー側の処理に負荷をかけてしまう恐れがあります。より効率的な調査が可能であったとしてもルールを無視してはいけません。
 
 Proxy機能とRepeater機能を使えば大抵の脆弱性は見つけられます。これで準備は整いました。
 
 次回からはWebアプリケーションの様々な脆弱性を取り上げ、その見つけ方を紹介していきます。
-

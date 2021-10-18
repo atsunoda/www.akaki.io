@@ -1,8 +1,8 @@
----
-description: 'May 29, 2017'
----
-
 # 脆弱性を見つけよう アクセス制御の不備編
+
+<p class="modest" align="left">May 29, 2017</p>
+
+---
 
 第8回目はアクセス制御の不備による脆弱性を取り上げます。
 
@@ -20,19 +20,23 @@ description: 'May 29, 2017'
 
 図1はユーザー「bob」がアップロードした写真の一覧ページ `/view.php` です。このページではURLに付与されたパラメータ `userid` でユーザーを識別しているようです。ユーザー「bob」のIDは `2` です。
 
-![&#x56F3;1. &#x30E6;&#x30FC;&#x30B6;&#x30FC;&#x300C;bob&#x300D;&#x306E;&#x5199;&#x771F;&#x4E00;&#x89A7;&#x30DA;&#x30FC;&#x30B8;](../.gitbook/assets/e8_figure1.png)
+<p align="center"><img src="/assets/2017/intro_to_ethical_hacker_8/e8_figure1.png" alt="figure1"></p>
+<p class="modest" align="center">図1. ユーザー「bob」の写真一覧ページ</p>
 
 WackoPickoにログインしていない状態で写真一覧ページにアクセスすると、図2のようにログインページにリダイレクトされました。このページではアクセス制御が行なわれており、ログインした状態でなければアクセスできないようです。他のユーザーがアップロードした写真を見るにはログインしなければなりません。
 
-![&#x56F3;2. &#x30ED;&#x30B0;&#x30A4;&#x30F3;&#x3057;&#x3066;&#x3044;&#x306A;&#x3044;&#x72B6;&#x614B;&#x3067;&#x30A2;&#x30AF;&#x30BB;&#x30B9;&#x3057;&#x305F;&#x969B;&#x306E;&#x6319;&#x52D5;](../.gitbook/assets/e8_figure2.png)
+<p align="center"><img src="/assets/2017/intro_to_ethical_hacker_8/e8_figure2.png" alt="figure2"></p>
+<p class="modest" align="center">図2. ログインしていない状態でアクセスした際の挙動</p>
 
 他の機能も見ていくと、トップページのリンクから写真一覧のサンプルページ `/sample.php` がありました。このページはログインしていない状態でもアクセスできます。
 
-![&#x56F3;3. &#x5199;&#x771F;&#x306E;&#x30B5;&#x30F3;&#x30D7;&#x30EB;&#x30DA;&#x30FC;&#x30B8;](../.gitbook/assets/e8_figure3.png)
+<p align="center"><img src="/assets/2017/intro_to_ethical_hacker_8/e8_figure3.png" alt="figure3"></p>
+<p class="modest" align="center">図3. 写真のサンプルページ</p>
 
 サンプルページのURLにもパラメータ `userid` が付与されています。サンプルユーザーのIDは `1` です。このIDを操作することで特定のユーザーがアップロードした写真を表示できそうです。IDを `2` に付け替えてアクセスすると、ユーザー「bob」の写真が表示されました。
 
-![&#x56F3;4. &#x30B5;&#x30F3;&#x30D7;&#x30EB;&#x30DA;&#x30FC;&#x30B8;&#x306B;&#x8868;&#x793A;&#x3055;&#x308C;&#x305F;&#x30E6;&#x30FC;&#x30B6;&#x30FC;&#x300C;bob&#x300D;&#x306E;&#x5199;&#x771F;](../.gitbook/assets/e8_figure4.png)
+<p align="center"><img src="/assets/2017/intro_to_ethical_hacker_8/e8_figure4.png" alt="figure4"></p>
+<p class="modest" align="center">図4. サンプルページに表示されたユーザー「bob」の写真</p>
 
 ログインした状態でないと見れないはずの写真をログインしていない状態で見れました。アクセス制御を回避して本来権限のない情報にアクセスできる状態です。さらに、IDは連番であると推測し `3` 、`4` 、`5` とインクリメントすることで、他のユーザーの写真も見れそうです。
 
@@ -42,9 +46,8 @@ WackoPickoでは誰でもアカウントを作成でき、ログインさえす�
 
 アクセス制御の不備を見つけるには、サイト上の機能や権限の種類をしっかり把握することが大切です。
 
-
+<br>
 
 計8回にわたる連載もこれで終わりです。これまでに取り上げた脆弱性はほんの一部にすぎません。今後もOWASP BWAを使うなどして、見つけられる脆弱性の種類を増やしてください。また、セキュリティ診断に関する勉強会やコミュニティに参加することで、多くのノウハウを学べます。積極的に参加してください。
 
 倫理的なハッカーになれるといいですね。健闘を祈ります。
-

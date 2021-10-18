@@ -1,8 +1,8 @@
----
-description: 'May 17, 2018'
----
-
 # モナバコ脆弱性報奨金制度で認定された401インジェクション
+
+<p class="modest" align="left">May 17, 2018</p>
+
+---
 
 2018年5月5日に「[モナバコ](https://web.archive.org/web/20190526035228/https://monabako.com/#/)」というQ&Aサービスが[脆弱性報奨金制度](https://web.archive.org/web/20190526035228/https://monabako.com/#/bugbounty)を導入した。国内の小規模サービスによるバグバウンティの独自開催は珍しく、モナコインという仮想通貨での報奨金支払いも異例だったため、興味をひかれ参加した。そこで認定された401インジェクションの脆弱性についてまとめる。
 
@@ -12,7 +12,7 @@ description: 'May 17, 2018'
 
 開設された質問ページにはアクセス制御が施されていないため、URLを知っていれば誰でもアクセスできる。脆弱性はこのページに存在していた。
 
-![](../.gitbook/assets/monabako_qa.png)
+![monabako](/assets/2018/401i_in_monabako/monabako.png)
 
 ## 401インジェクションの脆弱性
 
@@ -40,19 +40,18 @@ description: 'May 17, 2018'
 
 質問ページにはアイコン画像が設置されるため、一部のブラウザからアクセスすると認証ダイアログが表示される。以下はSafariからアクセスした際の様子である。
 
-![](../.gitbook/assets/401i_dialog.png)
+![401i_dialog](/assets/2018/401i_in_monabako/401i_dialog.png)
 
 imgタグのsrc属性にはBasic認証を設定したページのURLが挿入されている。
 
-![](../.gitbook/assets/401i_src.png)
+![401i_src](/assets/2018/401i_in_monabako/401i_src.png)
 
 攻撃者は不正なURLを仕込んだ質問ページをTwitterなどで拡散する。そこにアクセスした被害者が表示された認証タイアログをモナバコのログイン認証と誤認した場合、入力した認証情報が攻撃者の手に渡る恐れがあった。
 
 ## 脆弱性の修正漏れ
-
 この脆弱性への対策として、Twitter社が所有するドメイン `twimg.com` のURLしか指定できないように修正された。しかしドメイン検証の実装に不備があったため、`twimg.com.example.com` のような任意のドメインのURLを指定できた。
 
-![](../.gitbook/assets/401i_bypass.png)
+![401i_bypass](/assets/2018/401i_in_monabako/401i_bypass.png)
 
 攻撃者は所有するドメインに2階層のサブドメイン `twimg.com.*` を設定することで、そのドメイン上のリソースを挿入できる状態だった。
 
@@ -60,9 +59,9 @@ imgタグのsrc属性にはBasic認証を設定したページのURLが挿入さ
 
 401インジェクションは[Twitterで認定された事例もある](https://hackerone.com/reports/221328)が、著名なバグハンターである[@EdOverflow](https://twitter.com/edoverflow)氏が公開する[セキュリティポリシー](https://github.com/EdOverflow/hackerone-security-policy/blob/master/POLICY.md)では「通常許容されるリスク」として認定外になっている。必ずしも認定される脆弱性ではないが、imgタグが読み込んだリソースをブラウザが処理する際にセキュリティリスクが生じる可能性もあるため、外部リソースを指定できる場合は401インジェクションを挙げて報告する価値はある。
 
-今回発見した脆弱性は、制度に従いモナバコ公式Twitter（[@monabako](https://twitter.com/monabako)）へDMで報告した。軽微な脆弱性だったが変り種として認定してもらい、「Thank you」を意味すると思われる[39MONA](https://1manen.net/crypto.php?amount=39&currency=MONA)を頂いた¹。認定の連絡から1時間もたたずに入金されたのには驚き、仮想通貨での報奨金支払いのメリットを実感した。
+今回発見した脆弱性は、制度に従いモナバコ公式Twitter（[@monabako](https://twitter.com/monabako)）へDMで報告した。軽微な脆弱性だったが変り種として認定してもらい、「Thank you」を意味すると思われる[39MONA](https://1manen.net/crypto.php?amount=39&currency=MONA)を頂いた<sup id="f1">[¹](#fn1)</sup>。認定の連絡から1時間もたたずに入金されたのには驚き、仮想通貨での報奨金支払いのメリットを実感した。
 
-#### 時系列
+##### 時系列
 
 2018年5月8日 - 401iを発見  
 2018年5月8日 - 401iをモナバコへ報告  
@@ -70,9 +69,8 @@ imgタグのsrc属性にはBasic認証を設定したページのURLが挿入さ
 2018年5月9日 - モナバコから39MONAが入金  
 2018年5月15日 - 修正漏れをモナバコへ報告  
 2018年5月16日 - モナバコから修正完了の連絡  
-2018年5月16日 - 修正完了を確認
+2018年5月16日 - 修正完了を確認  
 
+---
 
-
-¹ 入金された2018年5月9日時点では、39MONAは日本円で19,110円（1MONA/490円換算）の価値があった。
-
+<sup id="fn1">[¹](#f1)</sup> 入金された2018年5月9日時点では、39MONAは日本円で19,110円（1MONA/490円換算）の価値があった。

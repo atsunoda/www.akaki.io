@@ -1,5 +1,5 @@
 {
-	"plugins": ["-sharing"],
+	"plugins": ["-search", "-lunr"],
 	"styles": {
 		"website": "book.css"
 	}

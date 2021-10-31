@@ -1,0 +1,13 @@
+diff --git a/node_modules/gitbook-plugin-chapter-fold/book/chapter-fold.js b/node_modules/gitbook-plugin-chapter-fold/book/chapter-fold.js
+index a80a921..3f9bef6 100644
+--- a/node_modules/gitbook-plugin-chapter-fold/book/chapter-fold.js
++++ b/node_modules/gitbook-plugin-chapter-fold/book/chapter-fold.js
+@@ -6,7 +6,7 @@ require(['gitbook', 'jQuery'], function(gitbook, $) {
+       LS_NAMESPACE = 'expChapters';
+   var init = function () {
+     // adding the trigger element to each ARTICLES parent and binding the event
+-    var chapterLink = $(ARTICLES).parent(CHAPTER).children('a');
++    var chapterLink = $(ARTICLES).parent(CHAPTER).children('span');
+     chapterLink.append($(TRIGGER_TEMPLATE));
+     chapterLink.on('click', function (e) {
+       e.preventDefault();

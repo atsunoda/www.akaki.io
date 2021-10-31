@@ -1,5 +1,5 @@
 {
-	"plugins": ["-search", "-lunr"],
+	"plugins": ["-search", "-lunr", "chapter-fold"],
 	"styles": {
 		"website": "book.css"
 	}

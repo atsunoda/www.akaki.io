@@ -1,0 +1,4 @@
+.bookignore
+.gitignore
+package.json
+patches

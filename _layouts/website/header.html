@@ -4,11 +4,7 @@
     <a href="{{ ('/' + glossary.path)|resolveFile }}" class="btn pull-left" aria-label="{{ "GLOSSARY_OPEN"|t }}"><i class="fa fa-sort-alpha-asc"></i></a>
     {% endif %}
 
-    <!-- Title -->
     <div class="docsearch pull-right"></div>
-    <h1>
-        <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="{{ "/"|resolveFile }}" >{{ page.title }}</a>
-    </h1>
+    <h1></h1>
 </div>
 {% endblock %}

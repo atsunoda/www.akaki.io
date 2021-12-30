@@ -31,24 +31,9 @@
         {% if page.next and page.next.path %}<link rel="next" href="{{ page.next.path|resolveFile }}" />{% endif %}
         {% if page.previous and page.previous.path %}<link rel="prev" href="{{ page.previous.path|resolveFile }}" />{% endif %}
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@alpha" />
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     </head>
     <body>
         {% block body %}{% endblock %}
         {% block javascript %}{% endblock %}
-        <script src="https://cdn.jsdelivr.net/gh/loktar00/JQuery-Snowfall@1.7.4/dist/snowfall.jquery.min.js" integrity="sha256-vAReE/QJn5mPeP9+QvOI8X6AEAAFrSBO1F9gLNb44cg=" crossorigin="anonymous"></script>
-        <script>
-            let isMobile = window.matchMedia("(max-width: 750px)").matches;
-            let count = isMobile ? 20 : 80;
-            let speed = isMobile ? 2 : 5;
-            $(document).snowfall({
-                flakeCount: count,
-                minSize: 2,
-                maxSize: 5,
-                minSpeed: 1,
-                maxSpeed: speed,
-                round: true
-            });
-        </script>
     </body>
 </html>

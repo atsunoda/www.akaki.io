@@ -1,9 +1,9 @@
 # Akaki I/O
 
-このサイトは角田朱生（Akaki Tsunoda）がGitHubで管理しています。  
+This site is maintained by Akaki Tsunoda on GitHub.  
 [https://github.com/atsunoda/www.akaki.io](https://github.com/atsunoda/www.akaki.io)
 
-コンテンツの更新はTwitterでお知らせします。  
+Content updates will be announced on Twitter.  
 [https://twitter.com/akakitsunoda](https://twitter.com/akakitsunoda)
 
 ### 2021
@@ -55,6 +55,6 @@
 
 ### Privacy Policy
 
-このサイトでは利用状況を把握するためにCloudflare Web Analyticsを使用しています。Cloudflare Web AnalyticsはJavaScriptを使用して個人を特定できない形式の情報を収集します。Cloudflareが収集している情報やその使用方法については以下をご覧ください。  
+This site uses Cloudflare Web Analytics to analyze usage. Cloudflare Web Analytics collects non-personally identifiable information using JavaScript. For more details about the information Cloudflare collects and how they use it, refer to their policy.  
 [https://www.cloudflare.com/privacypolicy/](https://www.cloudflare.com/privacypolicy/)
 

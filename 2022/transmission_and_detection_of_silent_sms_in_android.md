@@ -102,7 +102,7 @@ Android is designed to output a log message when a Short Message Type 0 is recei
 ---
 
 <sup id="fn1">[¹](#f1)</sup> [3GPP TS 23.040, Technical realization of the Short Message Service (SMS)](https://www.3gpp.org/DynaReport/23040.htm)  
-<sup id="fn2">[²](#f2)</sup> [Croft, Neil J., and Martin S. Olivier. "A Silent SMS Denial of Service (DoS) Attack"](http://mo.co.za/open/silentdos.pdf)  
+<sup id="fn2">[²](#f2)</sup> [Croft, Neil J., and Martin S. Olivier. "A Silent SMS Denial of Service (DoS) Attack"](https://mo.co.za/open/silentdos.pdf)  
 <sup id="fn3">[³](#f3)</sup> [Mobile Messaging Technologies and Services: SMS, EMS and MMS, 2nd Edition - Wiley](https://www.wiley.com/en-us/Mobile+Messaging+Technologies+and+Services%3A+SMS%2C+EMS+and+MMS%2C+2nd+Edition-p-9780470014516)  
 <sup id="fn4">[⁴](#f4)</sup> [Zoll, BKA und Verfassungsschutz verschickten 2010 über 440.000 "stille SMS" - heise online](https://www.heise.de/newsticker/meldung/Zoll-BKA-und-Verfassungsschutz-verschickten-2010-ueber-440-000-stille-SMS-1394593.html)  
 <sup id="fn5">[⁵](#f5)</sup> [Tian, Dave Jing, et al. "ATtention Spanned: Comprehensive Vulnerability Analysis of AT Commands Within the Android Ecosystem"](https://www.usenix.org/system/files/conference/usenixsecurity18/sec18-tian.pdf)  

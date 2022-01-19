@@ -1,0 +1,47 @@
+diff --git a/node_modules/honkit/lib/output/helper/fileToOutput.js b/node_modules/honkit/lib/output/helper/fileToOutput.js
+index d373b26..84589b6 100644
+--- a/node_modules/honkit/lib/output/helper/fileToOutput.js
++++ b/node_modules/honkit/lib/output/helper/fileToOutput.js
+@@ -6,7 +6,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
+ const path_1 = __importDefault(require("path"));
+ const path_2 = __importDefault(require("../../utils/path"));
+ const location_1 = __importDefault(require("../../utils/location"));
+-const OUTPUT_EXTENSION = ".html";
+ /**
+  * Convert a filePath (absolute) to a filename for output
+  *
+@@ -14,16 +13,16 @@ const OUTPUT_EXTENSION = ".html";
+  * @param {string} filePath
+  * @return {string}
+  */
+-function fileToOutput(output, filePath) {
++function fileToOutput(output, filePath, extension = '.html') {
+     const book = output.getBook();
+     const readme = book.getReadme();
+     const fileReadme = readme.getFile();
+     if (path_1.default.basename(filePath, path_1.default.extname(filePath)) == "README" ||
+         (fileReadme.exists() && filePath == fileReadme.getPath())) {
+-        filePath = path_1.default.join(path_1.default.dirname(filePath), `index${OUTPUT_EXTENSION}`);
++        filePath = path_1.default.join(path_1.default.dirname(filePath), `index${extension}`);
+     }
+     else {
+-        filePath = path_2.default.setExtension(filePath, OUTPUT_EXTENSION);
++        filePath = path_2.default.setExtension(filePath, extension);
+     }
+     return location_1.default.normalize(filePath);
+ }
+diff --git a/node_modules/honkit/lib/output/helper/fileToURL.js b/node_modules/honkit/lib/output/helper/fileToURL.js
+index e323fce..3c53ef8 100644
+--- a/node_modules/honkit/lib/output/helper/fileToURL.js
++++ b/node_modules/honkit/lib/output/helper/fileToURL.js
+@@ -21,8 +21,8 @@ const fileToOutput_1 = __importDefault(require("./fileToOutput"));
+ function fileToURL(output, filePath) {
+     const options = output.getOptions();
+     const directoryIndex = options.get("directoryIndex");
+-    filePath = (0, fileToOutput_1.default)(output, filePath);
+-    if (directoryIndex && path_1.default.basename(filePath) == "index.html") {
++    filePath = (0, fileToOutput_1.default)(output, filePath, "");
++    if (directoryIndex && path_1.default.basename(filePath) == "index") {
+         filePath = `${path_1.default.dirname(filePath)}/`;
+     }
+     return location_1.default.normalize(filePath);

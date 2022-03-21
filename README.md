@@ -8,6 +8,7 @@ Content updates will be announced on Twitter.
 
 ### 2022
 
+* [Analysis and Reproduction of Spoofed SMS-DELIVER](2022/analysis_and_reproduction_of_spoofed_sms-deliver.md)
 * [Transmission and Detection of Silent SMS in Android](2022/transmission_and_detection_of_silent_sms_in_android.md)
 
 ### 2021

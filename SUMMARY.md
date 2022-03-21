@@ -5,6 +5,7 @@
 ---
 
 * 2022
+  * [Analysis and Reproduction of Spoofed SMS-DELIVER](2022/analysis_and_reproduction_of_spoofed_sms-deliver.md)
   * [Transmission and Detection of Silent SMS in Android](2022/transmission_and_detection_of_silent_sms_in_android.md)
 * 2021
   * [OAuthにおける認可コード横取り攻撃とその対策](2021/authz_code_interception.md)

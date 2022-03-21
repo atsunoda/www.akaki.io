@@ -61,7 +61,7 @@ After sending the SMS PDUs, I observed the behavior of the mobile phone that rec
 <video controls src="/assets/2022/transmission_and_detection_of_silent_sms_in_android/23_figure5.mp4" type="video/mp4"></video>
 <p class="modest" align="center">Figure 5: Sending and receiving SMS PDUs.</p>
 
-## Detection of Silent SMS 
+## Detection of Silent SMS
 
 Upon receiving short message type 0, Android logs the messages. In the project “AIMSICD” for detecting IMSI catchers, the detection of silent SMS was also discussed<sup id="f8">[⁸](#fn8)</sup>, and a method to detect short message type 0 from the Android log output was adopted. This study reviews Android’s log output process with reference to the aforementioned discussion. If the received SMS-DELIVER is a special short message, Android delegates its handling to the internal [`GsmInboundSmsHandler.disappatchMessageRadioSpecific()`](https://android.googlesource.com/platform/frameworks/opt/telephony/+/refs/heads/android12-release/src/java/com/android/internal/telephony/gsm/GsmInboundSmsHandler.java#155). Part of the source code of this method is shown in Figure 6. According to the first comment, some carriers will send visual voicemail as short message type 0; therefore, Android 12 first delegates the received SMS PDU to the visual voicemail process. Thereafter, it outputs a message as a debug-level log, indicating that short message type 0 was received.
 

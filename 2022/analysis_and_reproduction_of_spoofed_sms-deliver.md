@@ -79,4 +79,4 @@ Because the SMPP allows short messages with a specified sender address to be sub
 <sup id="fn3">[³](#f3)</sup> [VOICE & MESSAGING TRACK | How SMS Works - Scott Maher (Twilio) - YouTube](https://www.youtube.com/watch?v=d5e3FSy3YLQ#t=37)  
 <sup id="fn4">[⁴](#f4)</sup> [Short Message Peer to Peer Protocol Specification v3.4 - SMPP.org](https://smpp.org/SMPP_v3_4_Issue1_2.pdf)  
 <sup id="fn5">[⁵](#f5)</sup> [SMPP API - Documentation to Send SMS via SMPP API Online - SMSGlobal](https://www.smsglobal.com/smpp-api/)  
-<sup id="fn6">[⁶](#f6)</sup> [RCS Verified Sender - Product Feature Implementation Guideline March 2019 - GSMA](https://www.gsma.com/futurenetworks/wp-content/uploads/2019/03/927_GSMA-RCS-Verified-Sender-report-v5.pdf)
+<sup id="fn6">[⁶](#f6)</sup> [RCS Verified Sender - Product Feature Implementation Guideline - GSMA](https://www.gsma.com/futurenetworks/wp-content/uploads/2019/03/927_GSMA-RCS-Verified-Sender-report-v5.pdf)

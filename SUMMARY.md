@@ -5,6 +5,7 @@
 ---
 
 * 2022
+  * [Risk to Japanese-speaking World posed by SMS OTP Autofill in iOS](2022/risk_to_japanese-speaking_world_posed_by_sms_otp_autofill_in_ios.md)
   * [Decision Procedure for Originating Phone Numbers in SMS](2022/decision_procedure_for_originating_phone_numbers_in_sms.md)
   * [Analysis and Reproduction of Spoofed SMS-DELIVER](2022/analysis_and_reproduction_of_spoofed_sms-deliver.md)
   * [Transmission and Detection of Silent SMS in Android](2022/transmission_and_detection_of_silent_sms_in_android.md)

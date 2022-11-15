@@ -14,6 +14,7 @@
   * [カスタムURLスキームの乗っ取りとその対策](2021/url_scheme_hijack.md)
   * [SMS OTPの自動入力によるリスクとその対策](2021/sms_otp_autofill.md)
 * 2020
+  * [MITMフィッシングによる2要素認証の回避](2020/bypass_2fa_with_evilginx2.md)
   * [共同購入型ソーシャルECでのフィッシング詐欺の手口](2020/pinduoduo_phishing.md)
   * [Slackで認定されたURLリンク偽装の脆弱性](2020/url_link_spoofing.md)
   * [Yahoo! JAPAN IDに登録された電話番号の列挙](2020/phone_number_enumeration.md)

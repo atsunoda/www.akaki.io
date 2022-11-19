@@ -17,7 +17,7 @@ OTPによる2要素認証はパスワード認証の補強手段として活用�
 
 ## Evilginx2を使用した2要素認証の回避
 
-このようなMITMフィッシングの動作を検証するため、MITMフィッシングフレームワークである「[Evilginx2](https://github.com/kgretzky/evilginx2)」を利用して検証サイトを構築した。Evilginx2は被害者のブラウザと正規サイトの間でリバースプロキシとして動作し、正規サイトになりすまして認証情報やセッショントークンをキャプチャする<sup id="f4">[⁴](#fn4)</sup>。つまり、図1に示す攻撃者サイトの役割をEvilginx2が担う。同様のツールとして「[Modlishka](https://github.com/drk1wi/Modlishka)」や「[Muraena](https://github.com/muraenateam/muraena)」も知られているが、構築の容易性や更新状況を考慮してEvilginx2を選択した。検証では国内で広く利用されるキャッシュレス決済サービス「PayPay」を正規サイトと仮定し、AWSのEC2で動作するEvilginx2に複製させた。その結果、EC2上の検証サイトはPayPayのログインページを完全に複製し（図2）、そこへ入力したPayPayアカウントの携帯電話番号とパスワードはEvilginx2にキャプチャされた（図3）。なお、EC2へのインバウンド接続は私のIPアドレスのみを許可し、一般利用者が誤って検証サイトにアクセスしないよう制御した。
+このようなMITMフィッシングの動作を検証するため、MITMフィッシングフレームワークである「[Evilginx2](https://github.com/kgretzky/evilginx2)」を使用して検証サイトを構築した。Evilginx2は被害者のブラウザと正規サイトの間でリバースプロキシとして動作し、正規サイトになりすまして認証情報やセッショントークンをキャプチャする<sup id="f4">[⁴](#fn4)</sup>。つまり、図1に示す攻撃者サイトの役割をEvilginx2が担う。同様のツールとして「[Modlishka](https://github.com/drk1wi/Modlishka)」や「[Muraena](https://github.com/muraenateam/muraena)」も知られているが、構築の容易性や更新状況を考慮してEvilginx2を選択した。検証では国内で広く利用されるキャッシュレス決済サービス「PayPay」を正規サイトと仮定し、AWSのEC2で動作するEvilginx2に複製させた。その結果、EC2上の検証サイトはPayPayのログインページを完全に複製し（図2）、そこへ入力したPayPayアカウントの携帯電話番号とパスワードはEvilginx2にキャプチャされた（図3）。なお、EC2へのインバウンド接続は私のIPアドレスのみを許可し、一般利用者が誤って検証サイトにアクセスしないよう制御した。
 
 <p align="center"><img src="/assets/2020/bypass_2fa_with_evilginx2/sp_fake_paypay.png" width="300"  alt="figure2"></p>
 <p class="modest" align="center">図2. Evilginx2に複製されたログインページ</p>

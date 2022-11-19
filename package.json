@@ -15,7 +15,7 @@
   },
   "homepage": "https://github.com/atsunoda/www.akaki.io#readme",
   "devDependencies": {
-    "honkit": "3.7.1",
+    "honkit": "4.0.4",
     "gitbook-plugin-chapter-fold": "0.0.4",
     "patch-package": "6.4.7"
   },

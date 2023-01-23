@@ -6,6 +6,10 @@ This site is maintained by Akaki Tsunoda on GitHub.
 Content updates will be announced on Twitter.  
 [https://twitter.com/akakitsunoda](https://twitter.com/akakitsunoda)
 
+### 2023
+
+* [URL Spoofing Using RTLO in Messaging Apps](2023/url_spoofing_using_rtlo_in_messaging_apps.md)
+
 ### 2022
 
 * [Risk to Japanese-speaking World posed by SMS OTP Autofill in iOS](2022/risk_to_japanese-speaking_world_posed_by_sms_otp_autofill_in_ios.md)

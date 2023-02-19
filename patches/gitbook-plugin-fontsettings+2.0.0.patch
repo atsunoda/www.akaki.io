@@ -1,5 +1,5 @@
 diff --git a/node_modules/gitbook-plugin-fontsettings/assets/fontsettings.js b/node_modules/gitbook-plugin-fontsettings/assets/fontsettings.js
-index ff7be71..a93a554 100644
+index ff7be71..0a89b98 100644
 --- a/node_modules/gitbook-plugin-fontsettings/assets/fontsettings.js
 +++ b/node_modules/gitbook-plugin-fontsettings/assets/fontsettings.js
 @@ -1,8 +1,7 @@
@@ -23,30 +23,34 @@ index ff7be71..a93a554 100644
          gitbook.storage.set('fontState', fontState);
          update();
      }
-@@ -108,12 +111,14 @@ require(['gitbook', 'jquery'], function(gitbook, $) {
+@@ -106,14 +109,24 @@ require(['gitbook', 'jquery'], function(gitbook, $) {
+         var $book = gitbook.state.$book;
+ 
          // Remove currently applied color theme
-         if (fontState.theme !== 0)
+-        if (fontState.theme !== 0)
++        if (fontState.theme !== 0) {
              $book.removeClass('color-theme-'+fontState.theme);
 +            $('body').removeClass('color-theme-'+fontState.theme);
++            $('.theme-setting i').removeClass('fa-sun-o');
++        } else {
++            $('.theme-setting i').removeClass('fa-moon-o');
++        }
  
          // Set new color theme
          var themeId = getThemeId(configName);
          fontState.theme = themeId;
-         if (fontState.theme !== 0)
+-        if (fontState.theme !== 0)
++        if (fontState.theme !== 0) {
              $book.addClass('color-theme-'+fontState.theme);
 +            $('body').addClass('color-theme-'+fontState.theme);
- 
++            $('.theme-setting i').addClass('fa-sun-o');
++        } else {
++            $('.theme-setting i').addClass('fa-moon-o');
++        }
+     
          saveFontSettings();
      }
-@@ -153,6 +158,7 @@ require(['gitbook', 'jquery'], function(gitbook, $) {
-         if(fontState.theme !== 0) {
-             $book[0].className = $book[0].className.replace(/\bcolor-theme-\S+/g, '');
-             $book.addClass('color-theme-'+fontState.theme);
-+            $('body').addClass('color-theme-'+fontState.theme);
-         }
-     }
- 
-@@ -172,44 +178,16 @@ require(['gitbook', 'jquery'], function(gitbook, $) {
+@@ -172,44 +185,16 @@ require(['gitbook', 'jquery'], function(gitbook, $) {
      }
  
      function updateButtons() {

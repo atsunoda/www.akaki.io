@@ -1,5 +1,5 @@
 diff --git a/node_modules/gitbook-plugin-fontsettings/assets/fontsettings.js b/node_modules/gitbook-plugin-fontsettings/assets/fontsettings.js
-index ff7be71..e5445ef 100644
+index ff7be71..a93a554 100644
 --- a/node_modules/gitbook-plugin-fontsettings/assets/fontsettings.js
 +++ b/node_modules/gitbook-plugin-fontsettings/assets/fontsettings.js
 @@ -1,8 +1,7 @@
@@ -38,20 +38,15 @@ index ff7be71..e5445ef 100644
  
          saveFontSettings();
      }
-@@ -153,6 +158,12 @@ require(['gitbook', 'jquery'], function(gitbook, $) {
+@@ -153,6 +158,7 @@ require(['gitbook', 'jquery'], function(gitbook, $) {
          if(fontState.theme !== 0) {
              $book[0].className = $book[0].className.replace(/\bcolor-theme-\S+/g, '');
              $book.addClass('color-theme-'+fontState.theme);
 +            $('body').addClass('color-theme-'+fontState.theme);
-+            $('.theme-setting i').removeClass('fa-moon-o');
-+            $('.theme-setting i').addClass('fa-sun-o');
-+        } else {
-+            $('.theme-setting i').removeClass('fa-sun-o');
-+            $('.theme-setting i').addClass('fa-moon-o');
          }
      }
  
-@@ -172,44 +183,16 @@ require(['gitbook', 'jquery'], function(gitbook, $) {
+@@ -172,44 +178,16 @@ require(['gitbook', 'jquery'], function(gitbook, $) {
      }
  
      function updateButtons() {
@@ -94,7 +89,7 @@ index ff7be71..e5445ef 100644
 -                })
 -            ]
 +        gitbook.toolbar.createButton({
-+            icon: fontState.theme ? 'fa fa-sun-o' : 'fa fa-moon-o',
++            icon: 'fa fa-moon-o',
 +            className: 'theme-setting',
 +            onClick: function(e) {
 +                if (fontState.theme !== 0)
@@ -105,21 +100,6 @@ index ff7be71..e5445ef 100644
          });
      }
  
-@@ -217,11 +200,11 @@ require(['gitbook', 'jquery'], function(gitbook, $) {
-     gitbook.events.bind('start', function(e, config) {
-         var opts = config.fontsettings;
- 
--        // Generate buttons at start
--        updateButtons();
--
-         // Init current settings
-         init(opts);
-+
-+        // Generate buttons at start
-+        updateButtons();
-     });
- 
-     // Expose API
 diff --git a/node_modules/gitbook-plugin-fontsettings/assets/website.css b/node_modules/gitbook-plugin-fontsettings/assets/website.css
 index 26591fe..d162711 100644
 --- a/node_modules/gitbook-plugin-fontsettings/assets/website.css

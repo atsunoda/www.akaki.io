@@ -1,5 +1,5 @@
 diff --git a/node_modules/gitbook-plugin-fontsettings/assets/fontsettings.js b/node_modules/gitbook-plugin-fontsettings/assets/fontsettings.js
-index ff7be71..02adfb7 100644
+index ff7be71..0a89b98 100644
 --- a/node_modules/gitbook-plugin-fontsettings/assets/fontsettings.js
 +++ b/node_modules/gitbook-plugin-fontsettings/assets/fontsettings.js
 @@ -1,8 +1,7 @@
@@ -31,9 +31,9 @@ index ff7be71..02adfb7 100644
 +        if (fontState.theme !== 0) {
              $book.removeClass('color-theme-'+fontState.theme);
 +            $('body').removeClass('color-theme-'+fontState.theme);
-+            $('.theme-setting i').removeClass('fa-moon-o');
-+        } else {
 +            $('.theme-setting i').removeClass('fa-sun-o');
++        } else {
++            $('.theme-setting i').removeClass('fa-moon-o');
 +        }
  
          // Set new color theme
@@ -43,9 +43,9 @@ index ff7be71..02adfb7 100644
 +        if (fontState.theme !== 0) {
              $book.addClass('color-theme-'+fontState.theme);
 +            $('body').addClass('color-theme-'+fontState.theme);
-+            $('.theme-setting i').addClass('fa-moon-o');
-+        } else {
 +            $('.theme-setting i').addClass('fa-sun-o');
++        } else {
++            $('.theme-setting i').addClass('fa-moon-o');
 +        }
      
          saveFontSettings();
@@ -93,7 +93,7 @@ index ff7be71..02adfb7 100644
 -                })
 -            ]
 +        gitbook.toolbar.createButton({
-+            icon: 'fa fa-sun-o',
++            icon: 'fa fa-moon-o',
 +            className: 'theme-setting',
 +            onClick: function(e) {
 +                if (fontState.theme !== 0)

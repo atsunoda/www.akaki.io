@@ -1,5 +1,5 @@
 diff --git a/node_modules/gitbook-plugin-fontsettings/assets/fontsettings.js b/node_modules/gitbook-plugin-fontsettings/assets/fontsettings.js
-index ff7be71..0a89b98 100644
+index ff7be71..fb65802 100644
 --- a/node_modules/gitbook-plugin-fontsettings/assets/fontsettings.js
 +++ b/node_modules/gitbook-plugin-fontsettings/assets/fontsettings.js
 @@ -1,8 +1,7 @@
@@ -50,7 +50,7 @@ index ff7be71..0a89b98 100644
      
          saveFontSettings();
      }
-@@ -172,44 +185,16 @@ require(['gitbook', 'jquery'], function(gitbook, $) {
+@@ -172,44 +185,17 @@ require(['gitbook', 'jquery'], function(gitbook, $) {
      }
  
      function updateButtons() {
@@ -94,6 +94,7 @@ index ff7be71..0a89b98 100644
 -            ]
 +        gitbook.toolbar.createButton({
 +            icon: 'fa fa-moon-o',
++            position: 'right',
 +            className: 'theme-setting',
 +            onClick: function(e) {
 +                if (fontState.theme !== 0)

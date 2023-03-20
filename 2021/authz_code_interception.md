@@ -32,7 +32,7 @@ OAuth 2.0の拡張機能であるPKCEを導入することで認可コード横�
 
 カスタムURLスキームを偽装したiOSアプリを使用して、LINEログインにおける認可コード横取り攻撃を実証した。LINEログインは、OAuth 2.0とOpenID Connectに基づいたLINEアカウントによるソーシャルログイン機能である<sup id="f4">[⁴](#fn4)</sup>。検証では、LINEログインを搭載した架空の決済アプリ「Akapay」とその偽アプリを使用して、偽アプリが横取りした認可コードを用いてアクセストークンを発行し、被害者のLINEアカウントのプロフィール情報を窃取するシナリオを再現した。事前に両方のアプリで同じカスタムURLスキーム `line3rdp.io.akaki.akapay://` を宣言し、このスキームをLINEログインのチャネルに登録している。Akapayアプリ、偽アプリの順にXcode経由でiOS 14.6の端末にインストールして検証を実施した。その結果、AkapayアプリからSafari経由でLINEログイン後、LINEアカウントのプロフィール情報へのアクセスをAkapayへ認可すると、認可コード付きのURLが偽アプリに横取りされ、アクセストークンの発行とプロフィール情報へのアクセスを許した（図3）。
 
-<p align="center"><img src="/assets/2021/authz_code_interception/22_figure3.gif" width="300" alt="figure3"></p>
+<p align="center"><video controls poster="/assets/2021/authz_code_interception/22_figure3.png" src="/assets/2021/authz_code_interception/22_figure3.mp4" type="video/mp4" width="300" alt="figure3"></video></p>
 <p class="modest" align="center">図3. iOSアプリによる認可コード横取り攻撃</p>
 
 認可コードを横取りした偽アプリは、Akapayアプリになりすましてアクセストークンを要求する。SafariからLINEログインした後、Akapayへの認可画面を表示する際のGETリクエストが認可要求である。認可要求の `redirect_uri` にはAkapayアプリのカスタムURLスキームが含まれる。このスキームはLINEログインのチャネルに登録しているため、認可サーバーは正規アプリへのリダイレクトURIとして判断する。
@@ -120,7 +120,7 @@ PKCEの導入により認可サーバーは認可コードを横取りした不�
 
 AkapayアプリにPKCEを導入することで、LINEログインにおける認可コード横取り攻撃を無効化した。LINEログインの認可サーバーはPKCEに対応しており<sup id="f6">[⁶](#fn6)</sup>、iOS Swift版のLINE SDKのログイン処理は標準でPKCEを実装している<sup id="f7">[⁷](#fn7)</sup>。この実装を参考にAkapayアプリへPKCEを導入し、同様の悪用シナリオの再現を試みた。その結果、認可コード付きのURLは偽アプリに横取りされるものの、アクセストークンの発行とプロフィール情報へのアクセスは防止できた（図5）。
 
-<p align="center"><img src="/assets/2021/authz_code_interception/22_figure5.gif" width="300" alt="figure5"></p>
+<p align="center"><video controls poster="/assets/2021/authz_code_interception/22_figure5.png" src="/assets/2021/authz_code_interception/22_figure5.mp4" type="video/mp4" width="300" alt="figure5"></video></p>
 <p class="modest" align="center">図5. PKCEによる認可コード横取り攻撃の無効化</p>
 
 PKCEの仕組みにより、Akapayアプリになりすました偽アプリからのアクセストークン要求は拒否される。PKCEを導入したAkapayアプリからの認可要求には、Akapayアプリが生成した鍵を変換したチャレンジである `code_challenge` と、その変換方式を示す `code_challenge_method` が含まれる。

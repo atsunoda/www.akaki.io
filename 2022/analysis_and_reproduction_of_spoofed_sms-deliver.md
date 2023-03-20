@@ -43,7 +43,7 @@ private fun receiveSms() {
 ```
 <p class="modest" align="center">Figure 2: The source code of the Android app.</p>
 
-<video controls src="/assets/2022/analysis_and_reproduction_of_spoofed_sms-deliver/24_figure3.mp4" type="video/mp4"></video>
+<video controls poster="/assets/2022/analysis_and_reproduction_of_spoofed_sms-deliver/24_figure3.png" src="/assets/2022/analysis_and_reproduction_of_spoofed_sms-deliver/24_figure3.mp4" type="video/mp4"></video>
 <p class="modest" align="center">Figure 3: Capturing a spoofed SMS-DELIVER.</p>
 
 From the captured SMS-DELIVER, it can be observed that the alphanumeric characters specified as the sender ID are loaded into the TP-OA. Figure 4 shows the data from the received SMS PDU minus the SCA (Service Center Address), that is, SMS-DELIVER. According to the SMS specification 3GPP TS 23.040<sup id="f2">[²](#fn2)</sup>, the Type-of-Address field in the TP-OA comprises a 1bit fixed value, 3bits Type-of-number, and 4bits Numbering-plan-identification. Section 9.1.2.5 of the specification assigns `101` as the bit pattern to indicate an alphanumeric representation in the Type-of-number. In addition, the alphanumeric characters of the sender ID are encoded in GSM 7-bit characters and included in the Address-Value field. Another question is how these alphanumeric characters are submitted to the SMSC.
@@ -65,7 +65,7 @@ Using the SMPP, short messages can be submitted with the sender ID to the SMSC. 
 
 By sending SMPP PDUs, I attempt to reproduce short messages displaying a spoofed sender ID. Unfortunately, Twilio does not provide an SMPP gateway for users; hence, this study uses SMSGlobal’s gateway<sup id="f5">[⁵](#fn5)</sup>. The SMPP requires a session to be established between the client and server before sending messages; therefore, after establishing the session using a bind_transceiver PDU, the submit_sm PDUs are sent. This test connects to the gateway via Socat’s named pipe, and sends these PDUs to the same TCP stream. Figure 7 illustrates what happens when the PDUs are sent. After sending a spoofed submit_sm, the response indicated `REJECTED` and the Android device did not receive the short message. In contrast, when resending submit_sm with the source_addr field changed to `Amazoo`, the device received the message with the specified sender ID. This behavior indicates that SMSGlobal prohibits the specification of major brands as sender ID.
 
-<video controls src="/assets/2022/analysis_and_reproduction_of_spoofed_sms-deliver/24_figure7.mp4" type="video/mp4"></video>
+<video controls poster="/assets/2022/analysis_and_reproduction_of_spoofed_sms-deliver/24_figure7.png" src="/assets/2022/analysis_and_reproduction_of_spoofed_sms-deliver/24_figure7.mp4" type="video/mp4"></video>
 <p class="modest" align="center">Figure 7: Sending a spoofed submit_sm.</p>
 
 ## Conclusion and Future Work

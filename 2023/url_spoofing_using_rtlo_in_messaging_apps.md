@@ -34,7 +34,7 @@ Thus, URLs can be visually spoofed by reversing the display order of the strings
 
 As with many messaging apps, the URL spoofing vulnerability (CVE-2022-43543) caused by RTLO was found in +Message<sup id="f13">[¹³](#fn13)</sup>. +Message is a messaging app for iOS and Android that provides SMS and RCS, which was co-developed by Japanese mobile network operators<sup id="f14">[¹⁴](#fn14)</sup>. Figure 1 shows the URL spoofing vulnerability in +Message. In the figure, the attacker uses macOS (left) and Android (center), whereas the victim uses iOS (right). The attacker copies the URL string containing the RTLO using `pbcopy` and then pastes it into the Android device via scrcpy. On tapping the link received from the attacker, the victim is directed to `evil.akaki.io`, not `google.com`.
 
-<video controls src="/assets/2023/url_spoofing_using_rtlo_in_messaging_apps/27_figure1.mp4" type="video/mp4"></video>
+<video controls poster="/assets/2023/url_spoofing_using_rtlo_in_messaging_apps/27_figure1.png" src="/assets/2023/url_spoofing_using_rtlo_in_messaging_apps/27_figure1.mp4" type="video/mp4"></video>
 <p class="modest" align="center">Figure 1: Demonstration of URL spoofing in +Message.</p>
 
 ## Mitigation Measures
@@ -43,7 +43,7 @@ Developers should consider implementing some mitigation measures against URL spo
 
 Alternatively, a process to verify a URL before accessing a resource can mitigate risk. The developers of +Message implemented a mitigation measure that warns of risk through a dialog before accessing a spoofed URL. Figure 2 illustrates the warning dialog that appears in the mitigated app. The URL in the message is reversed, whereas the URL in the dialog is not. Therefore, users can detect spoofing before they are directed to illegitimate websites.
 
-<p align="center"><video controls src="/assets/2023/url_spoofing_using_rtlo_in_messaging_apps/27_figure2.mp4" type="video/mp4" width="300px"></video></p>
+<p align="center"><video controls poster="/assets/2023/url_spoofing_using_rtlo_in_messaging_apps/27_figure2.png" src="/assets/2023/url_spoofing_using_rtlo_in_messaging_apps/27_figure2.mp4" type="video/mp4" width="300px"></video></p>
 <p class="modest" align="center">Figure 2: Warning dialog against a spoofed URL.</p>
 
 ## Conclusion and Future Work

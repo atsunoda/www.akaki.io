@@ -6,26 +6,7 @@
 
 昨年末に「[How i was able to pwned application by Bypassing Cloudflare WAF](https://medium.com/bugbountywriteup/bypass-cloudflare-waf-to-pwned-application-2c9e4f862319)」を読んで、CloudflareのWAFをバイパスする方法とそれがバグバウンティで認定された事例を知った。記事を書いた[@vis_hacker](https://twitter.com/vis_hacker)氏は調査に「[CloudFlair](https://github.com/christophetd/CloudFlair)」というツールを使用しており、このツールを開発した[@christophetd](https://twitter.com/christophetd)氏も同様の方法で報奨金を獲得していた<sup id="f1">[¹](#fn1)</sup>。
 
-Cloudflareに限らずクラウド型WAFのバイパスは2016年頃には既に話題になっており、論文も書かれていた<sup id="f2">[²](#fn2)</sup>。2013年のBlackHat USAではDDoS保護のバイパスとして発表され<sup id="f3">[³](#fn3)</sup>、DDoS保護サービスを提供するベンダーが注意喚起を行なっている<sup id="f4">[⁴](#fn4)</sup> <sup id="f5">[⁵](#fn5)</sup>。脆弱性として興味深かったので詳細を以下にまとめておく。
-
-* [クラウド型WAFの仕組み](#クラウド型wafの仕組み)
-  * [Cloudflareの導入](#cloudflareの導入)
-* [バイパスの仕組み](#バイパスの仕組み)
-  * [Cloudflareのバイパス](#cloudflareのバイパス)
-* [オリジンIPの特定方法](#オリジンipの特定方法)
-  * [1. サブドメインからの特定](#1-サブドメインからの特定)
-  * [2. DNSレコードの参照](#2-dnsレコードの参照)
-    * [2.1. 過去のDNSレコード](#21-過去のdnsレコード)
-    * [2.2. 他のDNSレコード](#22-他のdnsレコード)
-  * [3. 共通情報による紐付け](#3-共通情報による紐付け)
-    * [3.1. SSL証明書](#31-ssl証明書)
-    * [3.2. サイト固有の情報](#32-サイト固有の情報)
-  * [4. Webサイトからの取得](#4-webサイトからの取得)
-    * [4.1. アウトバウンド通信](#41-アウトバウンド通信)
-    * [4.2. コンテンツ](#42-コンテンツ)
-  * [5. その他の方法](#5-その他の方法)
-* [ツールによる検査](#ツールによる検査)
-* [バイパスへの対策](#バイパスへの対策)
+Cloudflareに限らずクラウド型WAFのバイパスは2016年頃には既に話題になっており、論文も書かれていた<sup id="f2">[²](#fn2)</sup>。2013年のBlackHat USAではDDoS保護のバイパスとして発表され<sup id="f3">[³](#fn3)</sup>、DDoS保護サービスを提供するベンダーが注意喚起を行なっている<sup id="f4">[⁴](#fn4)</sup> <sup id="f5">[⁵](#fn5)</sup>。脆弱性として興味深かったので詳細をまとめておく。
 
 ## クラウド型WAFの仕組み
 

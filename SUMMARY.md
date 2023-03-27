@@ -5,6 +5,7 @@
 ---
 
 * 2023
+  * [Decision Procedure for Originating Numbers in SMS over IMS](2023/decision_procedure_for_originating_numbers_in_sms_over_ims.md)
   * [URL Spoofing Using RTLO in Messaging Apps](2023/url_spoofing_using_rtlo_in_messaging_apps.md)
 * 2022
   * [Risk to Japanese-speaking World posed by SMS OTP Autofill in iOS](2022/risk_to_japanese-speaking_world_posed_by_sms_otp_autofill_in_ios.md)

@@ -8,6 +8,7 @@ Content updates will be announced on Twitter.
 
 ### 2023
 
+* [Decision Procedure for Originating Numbers in SMS over IMS](2023/decision_procedure_for_originating_numbers_in_sms_over_ims.md)
 * [URL Spoofing Using RTLO in Messaging Apps](2023/url_spoofing_using_rtlo_in_messaging_apps.md)
 
 ### 2022

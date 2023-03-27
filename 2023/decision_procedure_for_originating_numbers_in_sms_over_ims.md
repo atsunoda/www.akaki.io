@@ -209,5 +209,5 @@ The originating numbers in SMS over IMS are determined based on the P-Asserted-I
 <sup id="fn13">[¹³](#f13)</sup> [herlesupreeth/CoIMS_Wiki - GitHub](https://github.com/herlesupreeth/CoIMS_Wiki)  
 <sup id="fn14">[¹⁴](#f14)</sup> [docker_open5gs/kamailio_smsc.cfg#L338 - GitHub](https://github.com/herlesupreeth/docker_open5gs/blob/bd2501bc11ee344588b1079f21b119f4d3656a7d/smsc/kamailio_smsc.cfg#L338)  
 <sup id="fn15">[¹⁵](#f15)</sup> [docker_open5gs/kamailio_smsc.cfg#L166 - GitHub](https://github.com/herlesupreeth/docker_open5gs/blob/bd2501bc11ee344588b1079f21b119f4d3656a7d/smsc/kamailio_smsc.cfg#L166)  
-<sup id="fn16">[¹⁶](#f16)</sup> [Kamailio SIP Server v5.3.x (stable): Pseudo-Variables](https://www.kamailio.org/wikidocs/cookbooks/5.3.x/pseudovariables/)  
-<sup id="fn17">[¹⁷](#f17)</sup> [Kamailio SIP Server v5.3.x (stable): Transformations](https://www.kamailio.org/wikidocs/cookbooks/5.3.x/transformations/)
+<sup id="fn16">[¹⁶](#f16)</sup> [Kamailio SIP Server v5.3.x (stable): Pseudo-Variables](https://www.kamailio.org/wikidocs/cookbooks/5.3.x/pseudovariables/#ai-uri-inp-asserted-identity-header)  
+<sup id="fn17">[¹⁷](#f17)</sup> [Kamailio SIP Server v5.3.x (stable): Transformations](https://www.kamailio.org/wikidocs/cookbooks/5.3.x/transformations/#uriuser)

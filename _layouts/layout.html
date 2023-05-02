@@ -5,7 +5,7 @@
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <title>{% if file.path == "README.md" %}{{ config.title|d("Akaki I/O", true) }}{% else %}{{ page.title }} - {{ config.title|d("Akaki I/O", true) }}{% endif %}</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="description" content="{% block description %}{% endblock %}">
+        <meta name="description" content="{% if file.path == "README.md" %}{{ "Akaki I/O" }}{% endif %}{% block description %}{% endblock %}">
 
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:title" content="{{ page.title }}" />

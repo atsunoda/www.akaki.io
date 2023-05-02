@@ -28,14 +28,14 @@ https://atsunoda.github.io/demo/sms_otp_autofill/one-time-code.html
 
 AppleはWWDC 2018で自動入力の仕組みを解説した際に、SMSメッセージに含まれる `code` や `passcode` といった単語の周辺からOTPを見つけ出すと述べている<sup id="f4">[⁴](#fn4)</sup>。そこで、`Your code is 123456.` というSMSメッセージをTwilioから送信し、iOSの自動入力が発動するか検証する。iOS 14.4のSafariからサイトAを開いた状態でSMSを受信すると、OTPの値である `123456` が入力候補としてキーボード上部に表示され、その値をフォームへ自動入力できた（図1）。デフォルトブラウザに設定していないiOS版のChrome 87とFirefox 30を使用した場合も自動入力が発動した。
 
-<p align="center"><img src="/assets/2021/sms_otp_autofill/20_figure1.gif" width="300" alt="figure1"></p>
+<p align="center"><video autoplay loop muted playsinline src="/assets/2021/sms_otp_autofill/20_figure1.mp4" type="video/mp4" width="300"></video></p>
 <p class="modest" align="center">図1. iOS 14.4でのSMS OTPの自動入力</p>
 
 ### Androidの自動入力
 
 Androidではメッセージアプリの受信通知からSMS OTPをワンタップでコピーでき<sup id="f5">[⁵](#fn5)</sup>、Android 11以降ではコピーした値を入力候補としてキーボード上部に表示する<sup id="f6">[⁶](#fn6)</sup>。Android 11のChrome 88を使用して同様に検証すると、受信通知からコピーした値が入力候補として表示され、その値をフォームへ自動入力できた（図2）。iOSと比べると値をコピーする手間は増えるが、AndroidでもSMS OTPの自動入力は可能であった。デフォルトブラウザに設定していないAndroid版のFirefox 85を使用した場合も自動入力が発動した。
 
-<p align="center"><img src="/assets/2021/sms_otp_autofill/20_figure2.gif" width="300" alt="figure2"></p>
+<p align="center"><video autoplay loop muted playsinline src="/assets/2021/sms_otp_autofill/20_figure2.mp4" type="video/mp4" width="300"></video></p>
 <p class="modest" align="center">図2. Android 11でのSMS OTPの自動入力</p>
 
 ### 日本語のSMSメッセージでの挙動
@@ -61,7 +61,7 @@ SMS OTPとWebサイトが紐付かない状態では、正規のSMS OTPがフィ
 
 PayPalの偽サイトは前回と同様にMITMフィッシングフレームワーク「Evilginx2」で複製し、一般利用者が誤ってアクセスしないようインバウンド接続を制御した。Android 11のChrome 88から複製した偽サイトにPayPalアカウントでログインすると、2要素認証に必要なSMS OTPがPayPalから送信される。その受信通知からOTPをコピーして、キーボードの入力候補から偽サイトへ自動入力できた（図3）。なお、PayPayとPayPalのinputフォームには `autocomplete="one-time-code"` が設定されていなかったが、iOSとAndroidの自動入力は発動した。
 
-<p align="center"><img src="/assets/2021/sms_otp_autofill/20_figure3.gif" width="300" alt="figure3"></p>
+<p align="center"><video autoplay loop muted playsinline src="/assets/2021/sms_otp_autofill/20_figure3.mp4" type="video/mp4" width="300"></video></p>
 <p class="modest" align="center">図3. Androidでも偽サイトへの自動入力が発動する</p>
 
 ### PRMitM攻撃への支援
@@ -85,7 +85,7 @@ Domain-bound codesが定義するフォーマットは、最初の行にヒュ�
 @akaki.io #123456
 ```
 
-<p align="center"><img src="/assets/2021/sms_otp_autofill/20_figure5.gif" width="300" alt="figure5"></p>
+<p align="center"><video autoplay loop muted playsinline src="/assets/2021/sms_otp_autofill/20_figure5.mp4" type="video/mp4" width="300"></video></p>
 <p class="modest" align="center">図5. ドメインが不一致のため自動入力が発動しない</p>
 
 ### 自動入力するためのAPI仕様
@@ -111,7 +111,7 @@ if ('OTPCredential' in window) {
 
 Web OTP APIはAndroid上のChrome 84以降で利用できる<sup id="f12">[¹²](#fn12)</sup>。検証では、Android 11のChrome 88からサイトBを開いた状態で、ドメインが不一致の `@akaki.io` と、一致する `@atsunoda.github.io` を記載したSMSメッセージを受信した場合の挙動を確認する。どちらの場合もSMSメッセージを受信すると、Chromeがメッセージを読んでOTPを入力することへの許可を求められるが、自動入力されるのはドメインが一致する場合だけだった（図6）。Androidでは日本語のメッセージだとヒューリスティックによる自動入力が発動しなかったが、Web OTP APIによる自動入力は発動した。なお、サイトBではOTPをinputフォームに入力するだけだが、実装によっては入力後にsubmitボタンを自動押下したり、OTPを直接サーバーへ送信したりすることも可能である。SMS OTPのフォーム実装のベストプラクティスをGoogleが示している<sup id="f13">[¹³](#fn13)</sup>。
 
-<p align="center"><img src="/assets/2021/sms_otp_autofill/20_figure6.gif" width="300" alt="figure6"></p>
+<p align="center"><video autoplay loop muted playsinline src="/assets/2021/sms_otp_autofill/20_figure6.mp4" type="video/mp4" width="300"></video></p>
 <p class="modest" align="center">図6. ドメインが一致すると自動入力が発動する</p>
 
 ### 仕様の導入事例
@@ -124,7 +124,7 @@ Web OTP APIはAndroid上のChrome 84以降で利用できる<sup id="f12">[¹²]
 @github.com #541968
 ```
 
-<p align="center"><img src="/assets/2021/sms_otp_autofill/20_figure7.gif" width="300" alt="figure7"></p>
+<p align="center"><video autoplay loop muted playsinline src="/assets/2021/sms_otp_autofill/20_figure7.mp4" type="video/mp4" width="300"></video></p>
 <p class="modest" align="center">図7. GitHubの偽サイトでは自動入力が発動しない</p>
 
 ## 所感

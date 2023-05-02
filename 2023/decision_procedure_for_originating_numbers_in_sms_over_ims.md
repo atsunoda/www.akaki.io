@@ -99,7 +99,7 @@ Short message transfer over the IMS was reproduced between UE1 and UE2. In the t
 
 Figure 7 shows a demonstration of a short message transfer in a shielded room. In the figure, UE1 (right) sends a short message to UE2 (left). On the screen of UE1, the phone number `819001234567` of UE2 is displayed as the destination number of the message. On the screen of UE2, which received the message, the phone number `818001234567` of UE1 is displayed as the originating number. By analyzing the packets captured in the test, the decision procedure for the originating number can be clarified.
 
-<video controls poster="/assets/2023/decision_procedure_for_originating_numbers_in_sms_over_ims/28_figure7.png" src="https://raw.githubusercontent.com/atsunoda/www.akaki.io/master/assets/2023/decision_procedure_for_originating_numbers_in_sms_over_ims/28_figure7.mp4" type="video/mp4"></video>
+<video controls muted playsinline poster="/assets/2023/decision_procedure_for_originating_numbers_in_sms_over_ims/28_figure7.png" src="https://raw.githubusercontent.com/atsunoda/www.akaki.io/master/assets/2023/decision_procedure_for_originating_numbers_in_sms_over_ims/28_figure7.mp4" type="video/mp4"></video>
 <p class="modest" align="center">Figure 7: Demonstration of short message transfer in SMS over IMS.</p>
 
 ## Clarification of the Decision Procedure

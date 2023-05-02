@@ -53,7 +53,7 @@ Androidでは起動するアプリとして不正アプリが選択された場�
 
 なお、インストールする際に不明なアプリのインストールを許可し、Google Play プロテクトの警告を無視する必要がある。LINEアプリがインストール済みの端末では、偽アプリのインストール後に `line://` スキームのリンクをタップすると選択ダイアログが表示される。ダイアログ上の偽アプリを選択すると偽アプリが起動する（図1）。不正アプリが表示名やアイコンも偽装していた場合、正規アプリと誤認した被害者が不正アプリを選択することが想定される。
 
-<p align="center"><video controls poster="/assets/2021/url_scheme_hijack/21_figure1.png" src="/assets/2021/url_scheme_hijack/21_figure1.mp4" type="video/mp4" width="300" alt="figure1"></video></p>
+<p align="center"><video controls muted playsinline poster="/assets/2021/url_scheme_hijack/21_figure1.png" src="/assets/2021/url_scheme_hijack/21_figure1.mp4" type="video/mp4" width="300"></video></p>
 <p class="modest" align="center">図1. Android版LINEアプリへのリンクを偽アプリが乗っ取る</p>
 
 ### iOSでのディープリンクの乗っ取り
@@ -84,7 +84,7 @@ iOSの偽アプリではXcodeからLINEアプリと同じカスタムURLスキ�
 
 端末上でのLINEアプリとの重複を避けるため、偽アプリのBundle IDを `jp.naver.line.fake` と設定する。その後、Ad Hoc配信で偽アプリのIPAを生成し、Webサイト経由でiOS 14.5.1の端末にインストールする。なお、インストールする端末のDevice ID（UDID）を事前にProvisioning profileに登録する必要がある。偽アプリのインストール後に `line://` スキームのリンクをタップすると確認ダイアログが表示される。ダイアログ上でアプリの起動に同意すると偽アプリが起動する（図3）。偽アプリの表示名を `LINE` と設定することでダイアログ上のメッセージも偽装できる。
 
-<p align="center"><video controls poster="/assets/2021/url_scheme_hijack/21_figure3.png" src="/assets/2021/url_scheme_hijack/21_figure3.mp4" type="video/mp4" width="300" alt="figure3"></video></p>
+<p align="center"><video controls muted playsinline poster="/assets/2021/url_scheme_hijack/21_figure3.png" src="/assets/2021/url_scheme_hijack/21_figure3.mp4" type="video/mp4" width="300"></video></p>
 <p class="modest" align="center">図3. iOS版LINEアプリへのリンクを偽アプリが乗っ取る</p>
 
 iOSの不正アプリをAd Hocで配信するには、攻撃者は事前に被害者の端末のUDIDを入手する必要がある。特定の被害者を標的とする攻撃者は、端末への物理アクセスや被害者へのソーシャルエンジニアリングによりUDIDを入手する。無差別な攻撃には過去に漏洩したUDIDのリストを使用するなどが想定される。なお、UDIDを必要としないEnterprise配信はより有効な攻撃ベクトルになり得るが<sup id="f10">[¹⁰](#fn10)</sup>、個人ではApple Developer Enterprise Programに登録できないため検証していない。
@@ -161,7 +161,7 @@ $ keytool -list -v -keystore my-release-key.jks | grep "SHA256: " | cut -d " " -
     </intent-filter>
 ```
 
-<p align="center"><video controls poster="/assets/2021/url_scheme_hijack/21_figure4.png" src="/assets/2021/url_scheme_hijack/21_figure4.mp4" type="video/mp4" width="300" alt="figure4"></video></p>
+<p align="center"><video controls muted playsinline poster="/assets/2021/url_scheme_hijack/21_figure4.png" src="/assets/2021/url_scheme_hijack/21_figure4.mp4" type="video/mp4" width="300"></video></p>
 <p class="modest" align="center">図4. Android アプリリンクは偽アプリに乗っ取られない</p>
 
 ### ユニバーサルリンクによる乗っ取りの防止
@@ -210,7 +210,7 @@ $ codesign -d --entitlements :- Payload/LINE.app | grep -A 1 "application-identi
 <p align="center"><img src="/assets/2021/url_scheme_hijack/21_figure5.png" alt="figure5"></p>
 <p class="modest" align="center">図5. LINEアプリと同じドメインを偽アプリに指定する</p>
 
-<p align="center"><video controls poster="/assets/2021/url_scheme_hijack/21_figure6.png" src="/assets/2021/url_scheme_hijack/21_figure6.mp4" type="video/mp4" width="300" alt="figure6"></video></p>
+<p align="center"><video controls muted playsinline poster="/assets/2021/url_scheme_hijack/21_figure6.png" src="/assets/2021/url_scheme_hijack/21_figure6.mp4" type="video/mp4" width="300"></video></p>
 <p class="modest" align="center">図6. ユニバーサルリンクは偽アプリに乗っ取られない</p>
 
 ## 所感

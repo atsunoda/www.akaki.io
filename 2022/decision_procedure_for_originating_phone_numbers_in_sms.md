@@ -70,7 +70,7 @@ OsmoHLR# subscriber id 2 update aud2g comp128v1 ki fffffffffffffffffffffffffffff
 ```
 <p class="modest" align="center">Figure 4: Subscriber information registered in OsmoHLR.</p>
 
-<video controls poster="/assets/2022/decision_procedure_for_originating_phone_numbers_in_sms/25_figure5.png" src="/assets/2022/decision_procedure_for_originating_phone_numbers_in_sms/25_figure5.mp4" type="video/mp4"></video>
+<video controls muted playsinline poster="/assets/2022/decision_procedure_for_originating_phone_numbers_in_sms/25_figure5.png" src="/assets/2022/decision_procedure_for_originating_phone_numbers_in_sms/25_figure5.mp4" type="video/mp4"></video>
 <p class="modest" align="center">Figure 5: Sending and receiving a short message using OsmocomBB.</p>
 
 ## Clarification of the Decision Procedure

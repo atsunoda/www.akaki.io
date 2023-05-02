@@ -44,7 +44,7 @@ Evilginx2は正規サイトとのセッションを維持することから、�
 
 詐欺師はメールやSMSで被害者にリンクを送りつけ、正当な理由をかたってフィッシングサイトへ誘導する。例えば、詐欺師はPayPayの運営になりすまして「あなたのアカウントが不正利用されている」という主旨のSMSを送りつけ、被害者にパスワードを変更するようリンクからのログインを促す（図7）。被害者がフィッシングサイトに認証情報を入力するとPayPayからSMS OTPが送られてくる。iOSではSMSパスコード自動入力がフィッシングサイトでも機能することから、被害者はOTPを容易に入力できてしまう。PayPayから送られてくるSMSメッセージの送信元が `PayPay` と表記される場合、詐欺師は送信者IDを偽装することで正規メッセージと同じスレッドにフィッシングメッセージを混入できる<sup id="f5">[⁵](#fn5)</sup>。検証ではPayPayを正規サイトと仮定したが、詐欺師はあらゆるサービスになりすましてフィッシングを仕掛けてくる。
 
-<p align="center"><video controls poster="/assets/2020/bypass_2fa_with_evilginx2/sp_fake_paypay_poster.png" src="/assets/2020/bypass_2fa_with_evilginx2/sp_fake_paypay.mp4" type="video/mp4" width="300" alt="figure7"></video></p>
+<p align="center"><video controls muted playsinline poster="/assets/2020/bypass_2fa_with_evilginx2/sp_fake_paypay_poster.png" src="/assets/2020/bypass_2fa_with_evilginx2/sp_fake_paypay.mp4" type="video/mp4" width="300"></video></p>
 <p class="modest" align="center">図7. PayPayをかたるフィッシング詐欺シナリオ</p>
 
 このようなフィッシング詐欺に対して利用者ができる対策のひとつは、身に覚えのないメールやSMSで送られてきたリンクにアクセスしないことである。メールやSMSの内容が不正利用疑いのような不安に感じる警告であったり、キャッシュバックのような魅力的な告知であっても、反射的にリンクにアクセスしない。アカウントの状態を確認する場合は、リンクからではなく公式アプリからのログインを徹底する。また、フィッシング詐欺の手口はログインを求めるだけでなく、個人情報やクレジットカード情報の入力や、添付ファイルの開封やアプリのインストールを求める手口も確認されている。身に覚えがなければ無視したり、判断に迷うようであれば公式サポートに問い合わせたりすることも被害の防止につながる。

@@ -62,7 +62,7 @@ To compare the reception of a normal text message with that of a silent SMS, I s
 
 After sending the SMS PDUs, I observed the behavior of the mobile phone that received a PDU of short message type 0. Figure 5 illustrates what happens when SMS PDUs are sent and received. The SMS PDUs were sent from Galaxy S10, connected through the terminal on the left, to the non-rooted Google Pixel 4a (Android 12) on the right. First, I connected to the USB modem interface through the `screen` command and executed `AT` to confirm that AT commands were available. Next, I executed `AT+CMGF=0` to switch the input and output formats to the PDU mode. Thereafter, I executed `AT+CMGS=18` to send the SMS PDUs. The value `18` is the number of octets of the SMS PDU to be sent, excluding SCA. In the case of a normal text message, after the SMS PDU is submitted, `OK` was returned to indicate a successful transmission, and Pixel 4a displayed a notification. In the case of short message type 0, the transmission was successful; however, Pixel 4a did not display a notification. This behavior corresponds to the specifications of a silent SMS.
 
-<video controls poster="/assets/2022/transmission_and_detection_of_silent_sms_in_android/23_figure5.png" src="/assets/2022/transmission_and_detection_of_silent_sms_in_android/23_figure5.mp4" type="video/mp4"></video>
+<video controls muted playsinline poster="/assets/2022/transmission_and_detection_of_silent_sms_in_android/23_figure5.png" src="/assets/2022/transmission_and_detection_of_silent_sms_in_android/23_figure5.mp4" type="video/mp4"></video>
 <p class="modest" align="center">Figure 5: Sending and receiving SMS PDUs.</p>
 
 ## Detection of Silent SMS
@@ -96,7 +96,7 @@ protected int dispatchMessageRadioSpecific(SmsMessageBase smsb, @SmsSource int s
 
 While displaying the Android log, I observe the output log message when short message type 0 is received, as shown in Figure 7. The top of the terminal connects to Galaxy S10 (the sender) and the bottom connects to Pixel 4a (the receiver). When displaying Pixel 4a logs, I set the `logcat` command with the option `-b radio`, to request logs related to radio and telephony. Moreover, two filters `GsmInboundSmsHandler:D *:S` were set to display only the target logs. After sending short message type 0 from Galaxy S10, although Pixel 4a did not display a receipt notification, it outputted a log message indicating that it had received short message type 0. This is highlighted in red text in Figure 7. Therefore, it is known that short message type 0 is received.
 
-<video controls poster="/assets/2022/transmission_and_detection_of_silent_sms_in_android/23_figure7.png" src="/assets/2022/transmission_and_detection_of_silent_sms_in_android/23_figure7.mp4" type="video/mp4"></video>
+<video controls muted playsinline poster="/assets/2022/transmission_and_detection_of_silent_sms_in_android/23_figure7.png" src="/assets/2022/transmission_and_detection_of_silent_sms_in_android/23_figure7.mp4" type="video/mp4"></video>
 <p class="modest" align="center">Figure 7: Outputting a log message.</p>
 
 ## Conclusion and Future Work

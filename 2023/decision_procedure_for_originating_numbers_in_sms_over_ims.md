@@ -20,14 +20,14 @@ An IMS can provide Internet Protocol (IP)-based multimedia services via mobile n
 
 Although traditional SMS is provided over circuit-switched networks, IMS can provide it over packet-switched networks. The technical specifications for SMS over IMS are defined in 3GPP TS 24.341<sup id="f2">[²](#fn2)</sup> for the protocol details and 3GPP TS 23.204<sup id="f3">[³](#fn3)</sup> for the required capabilities and enhancements. Figure 1 shows the architecture for providing an SMS based on Section 5.1 of 3GPP TS 23.204. The Call Session Control Function (CSCF) is the IMS node that controls the SIP packets. SIP plays the role of a session control protocol for the IMS. Therefore, in the SMS over IMS, SMS PDUs are encapsulated and forwarded by the SIP. Furthermore, the IP-Short-Message-Gateway (IP-SM-GW) intermediates between the Serving-CSCF (S-CSCF) and SMSC.
 
-<img src="/assets/2023/decision_procedure_for_originating_numbers_in_sms_over_ims/28_figure1.png" />
+<img src="/assets/2023/decision_procedure_for_originating_numbers_in_sms_over_ims/28_figure1.webp" width="770" height="241" decoding="async" alt="">
 <p class="modest" align="center">Figure 1: SMS over IMS architecture.</p>
 
 ## Identification of the Sender
 
 The IP-SM-GW is an application server (AS) that supports interworking with traditional SMS and identifies the sender of short messages. Figure 2 shows the sequence of short message submission in SMS over IMS, based on the 3GPP TS 23.204 clause 6.3 and TS 24.341 clause B.5. The SMS-SUBMIT encapsulated in a SIP MESSAGE request sent by the UE is received by the S-CSCF via the Proxy-CSCF (P-CSCF) and then forwarded to the IP-SM-GW according to the initial filter criteria (iFC), which is the trigger set for service provision. The IP-SM-GW authorizes service usage based on subscriber information obtained from the Home Subscriber Server (HSS). Specifically, the IP-SM-GW verifies that the sender of the SMS-SUBMIT is authorized to use the SMS and then forwards it to the SMSC.
 
-<img src="/assets/2023/decision_procedure_for_originating_numbers_in_sms_over_ims/28_figure2.png" />
+<img src="/assets/2023/decision_procedure_for_originating_numbers_in_sms_over_ims/28_figure2.webp" width="770" height="365" decoding="async" alt="">
 <p class="modest" align="center">Figure 2: Sequence diagram of short message submission in SMS over IMS.</p>
 
 IP-SM-GW identifies the sender based on the public user identity contained in the MESSAGE request. To identify subscribers to an IMS, mobile network operators assign a private user identity and one or more public user identities to each subscriber. Public user identities are primarily used as contact information, whereas private user identities are used for subscriber identification and authentication. Therefore, a private user identity performs a similar function in the IMS as an IMSI (International Mobile Subscriber Identifier), and a public user identity performs a similar function in the IMS as an MSISDN (Mobile Subscriber ISDN Number)<sup id="f4">[⁴](#fn4)</sup>. Private user identities are in the form of a Network Access Identifier (NAI), whereas public user identities are in the form of a SIP URI or TEL URI. IP-SM-GW can identify the sender based on these values stored in the UE’s Subscriber Identity Module (SIM) and the operator’s HSS.
@@ -68,7 +68,7 @@ To clarify the decision procedure for originating numbers in SMS over IMS, a pri
 
 In this test, SMS over IMS was deployed using a 4G core network. Figure 4 shows the deployed mobile network. For the test, the open5gs_hss_cx branch of docker_open5gs was checked out and deployed as a non-standalone. Therefore, a short message sent by the UE is first received by the eNodeB (eNB). It is then forwarded through the Evolved Packet Core (EPC) network to the IMS. Because docker_open5gs does not include IP-SM-GW, the short message is directly forwarded from an S-CSCF to an SMSC.
 
-<img src="/assets/2023/decision_procedure_for_originating_numbers_in_sms_over_ims/28_figure4.png" />
+<img src="/assets/2023/decision_procedure_for_originating_numbers_in_sms_over_ims/28_figure4.webp" width="770" height="361" decoding="async" alt="">
 <p class="modest" align="center">Figure 4: Short message transfer in the private mobile network.</p>
 
 To connect the UEs to the network, subscriber information must be registered in both SIM cards and the HSS. Subscriber information was written on the sysmoISIM<sup id="f10">[¹⁰](#fn10)</sup> programmable SIM card using pySim<sup id="f11">[¹¹](#fn11)</sup> and registered to the HSS using the Open5GS WebUI. Figure 5 shows the subscriber information for UE1 written on the SIM card and Figure 6 shows the subscriber information registered to the HSS. SysmoISIM is an IP multimedia Service Identity Module (ISIM) that can store IMS-specific parameters. However, in this test, the private user identity, public user identity, and home network domain URI were not written on it. The MSISDN was registered only in the HSS. The MSISDN `818001234567` in Figure 6 is the phone number for UE1. UE2’s subscriber information is registered in the same way, and `819001234567` is set as the phone number.
@@ -90,7 +90,7 @@ Generated card parameters :
 ```
 <p class="modest" align="center">Figure 5: Subscriber information written on sysmoISIM.</p>
 
-<img src="/assets/2023/decision_procedure_for_originating_numbers_in_sms_over_ims/28_figure6.png" />
+<img src="/assets/2023/decision_procedure_for_originating_numbers_in_sms_over_ims/28_figure6.webp" width="770" height="398" decoding="async" alt="">
 <p class="modest" align="center">Figure 6: Subscriber information registered to Open5GS HSS.</p>
 
 ### Demonstration of Short Message Transfer
@@ -99,7 +99,7 @@ Short message transfer over the IMS was reproduced between UE1 and UE2. In the t
 
 Figure 7 shows a demonstration of a short message transfer in a shielded room. In the figure, UE1 (right) sends a short message to UE2 (left). On the screen of UE1, the phone number `819001234567` of UE2 is displayed as the destination number of the message. On the screen of UE2, which received the message, the phone number `818001234567` of UE1 is displayed as the originating number. By analyzing the packets captured in the test, the decision procedure for the originating number can be clarified.
 
-<video controls muted playsinline poster="/assets/2023/decision_procedure_for_originating_numbers_in_sms_over_ims/28_figure7.png" src="https://raw.githubusercontent.com/atsunoda/www.akaki.io/master/assets/2023/decision_procedure_for_originating_numbers_in_sms_over_ims/28_figure7.mp4" type="video/mp4"></video>
+<video controls muted playsinline poster="/assets/2023/decision_procedure_for_originating_numbers_in_sms_over_ims/28_figure7.webp" src="https://raw.githubusercontent.com/atsunoda/www.akaki.io/master/assets/2023/decision_procedure_for_originating_numbers_in_sms_over_ims/28_figure7.mp4" type="video/mp4"></video>
 <p class="modest" align="center">Figure 7: Demonstration of short message transfer in SMS over IMS.</p>
 
 ## Clarification of the Decision Procedure
@@ -110,75 +110,75 @@ Before using SMS over IMS, the UE must complete two processes: registration and 
 
 The original purpose of the registration process is to bind public user identities and contact addresses. Simultaneously, the UE is authenticated by the IMS and is authorized to use the IMS services and assigned identities. Generally, the registration process is completed in two phases: obtaining the challenge required for authentication, and authenticating the UE using this challenge. This article focuses on the authentication phase. Figure 8 shows the SIP and Diameter packets as UE1 completes the authentication phase of the registration process, and Figure 9 shows the sequences.
 
-<img src="/assets/2023/decision_procedure_for_originating_numbers_in_sms_over_ims/28_figure8.png" />
+<img src="/assets/2023/decision_procedure_for_originating_numbers_in_sms_over_ims/28_figure8.webp" width="770" height="184" decoding="async" alt="">
 <p class="modest" align="center">Figure 8: Packets captured in the authentication phase of the registration process.</p>
 
-<img src="/assets/2023/decision_procedure_for_originating_numbers_in_sms_over_ims/28_figure9.png" />
+<img src="/assets/2023/decision_procedure_for_originating_numbers_in_sms_over_ims/28_figure9.webp" width="770" height="392" decoding="async" alt="">
 <p class="modest" align="center">Figure 9: Sequence diagram of the authentication phase of the registration process.</p>
 
 The UE submits credentials based on the challenge phase to the S-CSCF for authentication. Figure 10 shows the REGISTER request in Step 1 of Figure 9. The credentials used for authentication are included in the Authorization header. At this time, UE1 has not been assigned a public user identity; thus, the From header is set to a temporary identity based on the IMSI. The Contact header is set to a SIP URI containing the IP address of UE1, plus a `+g.3gpp.smsip` parameter requesting SMS over IMS service. This REGISTER request is forwarded to S-CSCF via P-CSCF and Interrogating-CSCF (I-CSCF).
 
-<img src="/assets/2023/decision_procedure_for_originating_numbers_in_sms_over_ims/28_figure10.png" />
+<img src="/assets/2023/decision_procedure_for_originating_numbers_in_sms_over_ims/28_figure10.webp" width="770" height="467" decoding="async" alt="">
 <p class="modest" align="center">Figure 10: Packet details of the REGISTER request sent from UE1.</p>
 
 Upon receiving the REGISTER request, the S-CSCF verifies the credentials of the UE based on the authentication vectors obtained from the HSS during the challenge phase. If the authentication is successful, the S-CSCF sends a Diameter Server-Assignment-Request (SAR) to the HSS and receives a Server-Assignment Answer (SAA) with the user profile of the newly registered UE. Figure 11 shows the user profile obtained in Step 7 of Figure 9. The user profile in the XML format contains two public user identities `sip:818001234567@ims.mnc001.mcc001.3gppnetwork.org` and `tel:818001234567` newly assigned to UE1. The user profile also contains an iFC. This instructs the S-CSCF to forward it to the SMSC if the Content-Type header of the received MESSAGE request is `application/vnd.3gpp.sms`. The two public user identities assigned to UE1 are notified to UE1 via the P-Associated-URI header of the 200 OK response (Figure 12 and Step 10 of Figure 9).
 
-<img src="/assets/2023/decision_procedure_for_originating_numbers_in_sms_over_ims/28_figure11.png" />
+<img src="/assets/2023/decision_procedure_for_originating_numbers_in_sms_over_ims/28_figure11.webp" width="770" height="719" decoding="async" alt="">
 <p class="modest" align="center">Figure 11: Details of the user profile on the Diameter SAA packet.</p>
 
-<img src="/assets/2023/decision_procedure_for_originating_numbers_in_sms_over_ims/28_figure12.png" />
+<img src="/assets/2023/decision_procedure_for_originating_numbers_in_sms_over_ims/28_figure12.webp" width="770" height="309" decoding="async" alt="">
 <p class="modest" align="center">Figure 12: Packet detail of the 200 OK response notifying public user identities.</p>
 
 After completing the registration process for the IMS, the UE performs the subscription process to be notified of its own registration status, as maintained by the S-CSCF. This process allows the UE to be notified of whether its own public user identities are active and what contact addresses are bound to public user identities. Figure 13 shows the SIP packets as UE1 performed the subscription process, and Figure 14 shows the sequences. The UE submits its own public user identity to the S-CSCF at the beginning of the subscription process. Figure 15 shows the SUBSCRIBE request in Step 1 of Figure 14. In the request, it can be seen that UE1’s public user identity is set in the Request-URI and P-Preferred-Identity headers. This request is forwarded to S-CSCF via P-CSCF.
 
-<img src="/assets/2023/decision_procedure_for_originating_numbers_in_sms_over_ims/28_figure13.png" />
+<img src="/assets/2023/decision_procedure_for_originating_numbers_in_sms_over_ims/28_figure13.webp" width="770" height="154" decoding="async" alt="">
 <p class="modest" align="center">Figure 13: Packets captured in the subscription process.</p>
 
-<img src="/assets/2023/decision_procedure_for_originating_numbers_in_sms_over_ims/28_figure14.png" />
+<img src="/assets/2023/decision_procedure_for_originating_numbers_in_sms_over_ims/28_figure14.webp" width="770" height="301" decoding="async" alt="">
 <p class="modest" align="center">Figure 14: Sequence diagram of the subscription process.</p>
 
-<img src="/assets/2023/decision_procedure_for_originating_numbers_in_sms_over_ims/28_figure15.png" />
+<img src="/assets/2023/decision_procedure_for_originating_numbers_in_sms_over_ims/28_figure15.webp" width="770" height="436" decoding="async" alt="">
 <p class="modest" align="center">Figure 15: Packet details of the SUBSCRIBE request sent from UE1.</p>
 
 Upon receiving the SUBSCRIBE request, the S-CSCF notifies the UE of its registration status through a NOTIFY request. Figure 16 shows the NOTIFY request in Step 6 of Figure 14. The `aor` attribute of the `registration` element loaded in the message body in XML format is set to the UE1’s public user identity, and the `state` attribute is set to `active`. In addition, the `uri` element in the `contact` element is set to the contact address bound to its public user identity, and the `unknown-param` element is set to `+g.3gpp.smsip`. Through this request, UE1 recognizes that its public user identity is active and that it can use the SMS over IMS service.
 
-<img src="/assets/2023/decision_procedure_for_originating_numbers_in_sms_over_ims/28_figure16.png" />
+<img src="/assets/2023/decision_procedure_for_originating_numbers_in_sms_over_ims/28_figure16.webp" width="770" height="561" decoding="async" alt="">
 <p class="modest" align="center">Figure 16: Details of the registration information on the NOTIFY request.</p>
 
 ### Transfer of a Short Message
 
 Once the UE recognizes that the SMS over IMS service is available, it sends short messages using the SIP. Figure 17 shows the SIP packets when UE1 sends a short message to UE2, and Figure 18 shows the sequences. Furthermore, Figure 19 shows the MESSAGE request in Step 1 of Figure 18. In SMS over IMS, SMS PDUs are encapsulated in the SIP and transferred. Therefore, as shown in Figure 19, SMS-SUBMIT is loaded into the message body of the request. In addition, the Accept-Contact header is set to `+g.3gpp.smsip`, indicating the use of the SMS over IMS service. This MESSAGE request is forwarded to S-CSCF via P-CSCF.
 
-<img src="/assets/2023/decision_procedure_for_originating_numbers_in_sms_over_ims/28_figure17.png" />
+<img src="/assets/2023/decision_procedure_for_originating_numbers_in_sms_over_ims/28_figure17.webp" width="770" height="124" decoding="async" alt="">
 <p class="modest" align="center">Figure 17: Packets captured when UE1 sends the short message.</p>
 
-<img src="/assets/2023/decision_procedure_for_originating_numbers_in_sms_over_ims/28_figure18.png" />
+<img src="/assets/2023/decision_procedure_for_originating_numbers_in_sms_over_ims/28_figure18.webp" width="770" height="240" decoding="async" alt="">
 <p class="modest" align="center">Figure 18: Sequence diagram of short message submission.</p>
 
-<img src="/assets/2023/decision_procedure_for_originating_numbers_in_sms_over_ims/28_figure19.png" />
+<img src="/assets/2023/decision_procedure_for_originating_numbers_in_sms_over_ims/28_figure19.webp" width="770" height="686" decoding="async" alt="">
 <p class="modest" align="center">Figure 19: Packet details of the MESSAGE request submitted from UE1.</p>
 
 Upon receiving the MESSAGE request, the S-CSCF forwards it to the SMSC with headers including the originating number. Because the Content-Type header of the received request (Figure 19) is set to `application/vnd.3gpp.sms`, the S-CSCF forwards it to the SMSC according to the iFC in Figure 11. Figure 20 shows the MESSAGE request in Step 3 of Figure 18. In the request, the P-Served-User header, From header, and P-Asserted-Identity header specify a public user identity that includes UE1’s phone number `818001234567`. It is inferred that the SMSC receiving this request determines the originating number of the short message based on the headers.
 
-<img src="/assets/2023/decision_procedure_for_originating_numbers_in_sms_over_ims/28_figure20.png" />
+<img src="/assets/2023/decision_procedure_for_originating_numbers_in_sms_over_ims/28_figure20.webp" width="770" height="497" decoding="async" alt="">
 <p class="modest" align="center">Figure 20: Packet details of the MESSAGE request submitted to the SMSC.</p>
 
 The SMSC determines the originating number of the short message through a process and loads it into the SMS-DERIVER. Figure 21 shows the SIP packets when the SMSC delivered a short message from UE1 to UE2, and Figure 22 shows the sequences. In addition, Figure 23 shows the MESSAGE request in Step 1 of Figure 22. At request, the SMS-DERIVER is loaded into the message body. The TP-Originating-Address (TP-OA) field of the SMS-DERIVER is loaded with UE1’s phone number `818001234567`, the originating number. To clarify how the value of the TP-OA field is determined, the SMSC process is to be reviewed.
 
-<img src="/assets/2023/decision_procedure_for_originating_numbers_in_sms_over_ims/28_figure21.png" />
+<img src="/assets/2023/decision_procedure_for_originating_numbers_in_sms_over_ims/28_figure21.webp" width="770" height="154" decoding="async" alt="">
 <p class="modest" align="center">Figure 21: Packets captured when the SMSC delivers the short message.</p>
 
-<img src="/assets/2023/decision_procedure_for_originating_numbers_in_sms_over_ims/28_figure22.png" />
+<img src="/assets/2023/decision_procedure_for_originating_numbers_in_sms_over_ims/28_figure22.webp" width="770" height="300" decoding="async" alt="">
 <p class="modest" align="center">Figure 22: Sequence diagram of short message delivery.</p>
 
-<img src="/assets/2023/decision_procedure_for_originating_numbers_in_sms_over_ims/28_figure23.png" />
+<img src="/assets/2023/decision_procedure_for_originating_numbers_in_sms_over_ims/28_figure23.webp" width="770" height="559" decoding="async" alt="">
 <p class="modest" align="center">Figure 23: Packet details of the MESSAGE request delivered from SMSC.</p>
 
 ### Decision Process at SMSC
 
 The SMSC temporarily stores the submitted short message in its database and constructs the delivered message based on this data. Figure 24 shows the message temporarily stored in the SMSC database upon receiving SMS-SUBMIT from UE1. It can be seen that UE1’s phone number `818001234567`, the originator, is stored in the `caller` column and UE2’s phone number `819001234567`, the destination, is stored in the `callee`. The SMSC loads the value in the `caller` column into the TP-OA field in the SMS-DERIVER.
 
-<p align="center"><img src="/assets/2023/decision_procedure_for_originating_numbers_in_sms_over_ims/28_figure24.png" width="600px" /></p>
+<p align="center"><img src="/assets/2023/decision_procedure_for_originating_numbers_in_sms_over_ims/28_figure24.webp" width="600" height="122" decoding="async" alt=""></p>
 <p class="modest" align="center">Figure 24: Short message stored in the SMSC database.</p>
 
 Kamailio’s SMSC inserts the submitted short message into its database using native scripts in its configuration file. Figure 25 shows the insert script used in this test. The insert statement in the script inserts the value of the `$(avp(from){s.escape.common})` variable into the `caller` column<sup id="f14">[¹⁴](#fn14)</sup>. This variable is defined by the `$avp(from) = $(ai{uri.user});` script in the same file<sup id="f15">[¹⁵](#fn15)</sup>. In Kamailio’s native scripts, the `$ai` pseudo-variable allows retrieving a URI specified in a P-Asserted-Identity header of a SIP request<sup id="f16">[¹⁶](#fn16)</sup>. Furthermore, the `uri.user` function allows retrieving the userinfo part of a SIP URI<sup id="f17">[¹⁷](#fn17)</sup>. This means that if the value of the header is `sip:818001234567@ims.mnc001.mcc001.3gppnetwork.org`, `818001234567` will be extracted. Thus, the phone number contained in the public user identity specified in the P-Asserted-Identity header of the MESSAGE request is determined to be the originator. This decision process is consistent with the note in section 5.3.1.2 of 3GPP TS 24.341 mentioned earlier.

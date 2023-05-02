@@ -14,7 +14,7 @@ Webサービスのアカウントに登録されている携帯電話番号を�
 
 入力値の違いにより生じるエラーメッセージや応答時間などの差異を手がかりに、アカウントの識別情報を収集する行為を「ユーザー列挙（User Enumeration）」という。例えばアカウントを登録する際に以下のようなエラーが発生した場合、入力した値は既に他の利用者がユーザー名として使用していることが分かる。
 
-<p align="center"><img src="/assets/2020/phone_number_enumeration/google_signup.png" width="500" alt="google_signup"><p>
+<p align="center"><img src="/assets/2020/phone_number_enumeration/google_signup.webp" width="500" height="142" decoding="async" alt="google_signup"><p>
 
 認証情報となるユーザー名を大量に収集できれば、攻撃者は逆総当たり攻撃によるアカウントの乗っ取りを試みる。メールアドレスなどの連絡先情報を収集できればフィッシング詐欺にも悪用する。脆弱性となり得る挙動を[OWASP Web Security Testing Guide](https://github.com/OWASP/wstg/blob/master/document/4_Web_Application_Security_Testing/4.4_Identity_Management_Testing/4.4.4_Testing_for_Account_Enumeration_and_Guessable_User_Account_OTG-IDENT-004.md)が解説している。
 
@@ -26,11 +26,11 @@ Yahoo! JAPANのアカウントリカバリー機能は、Yahoo! JAPAN IDやそ�
 
 アカウントリカバリー機能には機械的な試行を防止するCAPTCHA認証が搭載されている。私のYahoo! JAPAN IDに紐づけた電話番号 `080██████03` と正しいCAPTCHA文字を以下のように入力すると、次の本人確認フェーズに進める。
 
-![yj_ar](/assets/2020/phone_number_enumeration/yj_ar.png)
+<img src="/assets/2020/phone_number_enumeration/yj_ar.webp" width="770" height="578" decoding="async" alt="yj_ar">
 
 しかし、私の電話番号の下1桁を変更した `080██████04` と正しいCAPTCHA文字を入力すると、以下のようなエラーが発生する。
 
-![yj_ar_err](/assets/2020/phone_number_enumeration/yj_ar_err.png)
+<img src="/assets/2020/phone_number_enumeration/yj_ar_err.webp" width="770" height="600" decoding="async" alt="yj_ar_err">
 
 エラーメッセージの内容から、電話番号 `080██████04` に紐づくIDは存在しないことが分かる。IDに紐づく電話番号とそうでない番号を入力した場合に生じる挙動の差異をもとに、他人のIDに紐づく電話番号を特定できる。
 
@@ -40,29 +40,29 @@ Yahoo! JAPANのアカウントリカバリー機能は、Yahoo! JAPAN IDやそ�
 
 例えば、私の電話番号と誤ったCAPTCHA文字 `あ` を入力すると、再認証を求める旨のエラーが発生する。
 
-![yj_captcha](/assets/2020/phone_number_enumeration/yj_captcha.png)
+<img src="/assets/2020/phone_number_enumeration/yj_captcha.webp" width="770" height="584" decoding="async" alt="yj_captcha">
 
 しかし、IDに紐づかない電話番号と誤ったCAPTCHA文字を入力すると、再認証を求める旨のエラーだけでなく、電話番号に紐づくIDが存在しない旨のエラーも発生する。
 
-![yj_captcha_err](/assets/2020/phone_number_enumeration/yj_captcha_err.png)
+<img src="/assets/2020/phone_number_enumeration/yj_captcha_err.webp" width="770" height="620" decoding="async" alt="yj_captcha_err">
 
 CAPTCHA認証に失敗しても電話番号とIDの紐づきを確認できる。そこで私の電話番号の下1桁をBurp SuiteのIntruderで総当たりすると、他人のIDに紐づく5つの電話番号を列挙できた。電話番号がIDに紐づく場合のレスポンスサイズは約16500バイトであるのに対して、紐づかない場合はエラーメッセージ分が増加して約17000バイトになっている。
 
-![burp_enum](/assets/2020/phone_number_enumeration/burp_enum.png)
+<img src="/assets/2020/phone_number_enumeration/burp_enum.webp" width="770" height="513" decoding="async" alt="burp_enum">
 
 列挙できた電話番号の1つである `080██████09` を用いてアカウントリカバリー機能を実行すると、私の所有ではないメールアドレスの一部が表示されることから、他人のIDに紐づく電話番号であると判断した。
 
-![yj_ar_email](/assets/2020/phone_number_enumeration/yj_ar_email.png)
+<img src="/assets/2020/phone_number_enumeration/yj_ar_email.webp" width="770" height="435" decoding="async" alt="yj_ar_email">
 
 ## フィッシング詐欺への発展
 
 他人のIDに紐づく電話番号 `080██████09` は、Yahoo! JAPANの利用者が所有する携帯電話番号でもある。そのためYahoo! JAPANをかたるスミッシングの標的になり得る。巧妙な攻撃者は被害者を動揺させ、判断力を鈍らせてから詐欺をしかけてくる。一案として、攻撃者はフィッシングメッセージを送り付ける前に、Yahoo! JAPANのSMS認証設定などを利用して正規のSMSを被害者へ何通か送り付ける。
 
-<p align="center"><img src="/assets/2020/phone_number_enumeration/yj_sms.jpg" width="300" alt="yj_sms"><p>
+<p align="center"><img src="/assets/2020/phone_number_enumeration/yj_sms.webp" width="300" height="307" decoding="async" alt="yj_sms"><p>
 
 被害者は身に覚えのないSMS認証の試行に気づき、自分のアカウントが被害にあっているのではないかと不安になる。そこへ攻撃者はYahoo! JAPANをかたり、被害者の動揺を誘う以下のようなSMSを送り付ける。正規のSMSとは異なるスレッドに着信するが、送信者IDは `Yahoo JAPAN` であり、文面にはYahoo! JAPAN IDに登録したメールアドレスの一部も含まれるため、動揺した被害者はフィッシングメッセージの内容を信じてしまう。
 
-<p align="center"><img src="/assets/2020/phone_number_enumeration/yj_sms_spoof.jpg" width="300" alt="yj_sms_spoof"><p>
+<p align="center"><img src="/assets/2020/phone_number_enumeration/yj_sms_spoof.webp" width="300" height="326" decoding="async" alt="yj_sms_spoof"><p>
 
 ## 所感
 

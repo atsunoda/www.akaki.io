@@ -18,11 +18,11 @@ description: 2017年11月に開催された「サイボウズ バグハンター
 
 cybozu.com共通管理では、各サービスから送信されるシステムメールも管理できる。標準設定のシステムメールは `no-reply@cybozu.com` から送信される。自社のメールアドレスからシステムメールを送信したい場合は、以下のページからSMTPサーバーを設定する。
 
-![setting_smtp](/assets/2018/ssrf_in_cybozu/setting_smtp.png)
+<img src="/assets/2018/ssrf_in_cybozu/setting_smtp.webp" width="770" height="735" decoding="async" alt="setting_smtp">
 
 SMTPサーバーの設定を保存する際、任意のメールアドレス宛にテストメールを送信できる。不適切な設定によりテストメールの送信が失敗すると、以下のページにエラーが残る。脆弱性はSMTPサーバーの設定処理に存在しており、テストメールのエラーを手がかりに発見した。
 
-![error_smtp](/assets/2018/ssrf_in_cybozu/error_smtp.png)
+<img src="/assets/2018/ssrf_in_cybozu/error_smtp.webp" width="770" height="336" decoding="async" alt="error_smtp">
 
 ## SSRFの脆弱性
 
@@ -34,11 +34,11 @@ SMTPサーバーの設定を保存する際、任意のメールアドレス宛�
 
 内部ホストへリクエストを偽装するため、サーバー名にループバックを設定してサーバー自身への接続を試みる。サーバー名に `localhost` を入力すると以下のエラーにより設定を保存できない。
 
-![localhost:25](/assets/2018/ssrf_in_cybozu/localhost_25.png)
+<img src="/assets/2018/ssrf_in_cybozu/localhost_25.webp" width="770" height="81" decoding="async" alt="localhost_25">
 
 ループバックアドレスである `127.0.0.1` に変更してもエラーは発生する。
 
-![127.0.0.1:25](/assets/2018/ssrf_in_cybozu/127.0.0.1_25.png)
+<img src="/assets/2018/ssrf_in_cybozu/127.0.0.1_25.webp" width="770" height="83" decoding="async" alt="127.0.0.1_25">
 
 これらのエラーはHTML5やJavaScriptによるブラウザ側での入力値検証ではない。サーバー側でループバックの設定を禁止する入力値検証が実装されている。
 
@@ -46,15 +46,15 @@ SMTPサーバーの設定を保存する際、任意のメールアドレス宛�
 
 特殊用途のIPアドレスをまとめた[RFC6890](https://tools.ietf.org/html/rfc6890)ではループバックアドレスを `127.0.0.0/8` と定義している。そのため `127.0.0.1` だけでなく `127.0.0.2` から `127.255.255.254` までのIPアドレスはループバックとして動作する。サーバー名に `127.0.0.2` を入力するとエラーは発生せず、SMTPサーバーの設定を保存できる。しかしテストメールの送信には失敗し、以下のエラーが履歴に残る。
 
-![127.0.0.2:25](/assets/2018/ssrf_in_cybozu/127.0.0.2_25.png)
+<img src="/assets/2018/ssrf_in_cybozu/127.0.0.2_25.webp" width="770" height="80" decoding="async" alt="127.0.0.2_25">
 
 「Connection refused」とのエラーから、`127.0.0.2:25` との接続は確立できていないが、接続リクエストは送信できていることが読み取れる。ポート番号を変更して `127.0.0.2:22` への接続を試みるとエラーの内容が変化する。
 
-![127.0.0.2:22](/assets/2018/ssrf_in_cybozu/127.0.0.2_22.png)
+<img src="/assets/2018/ssrf_in_cybozu/127.0.0.2_22.webp" width="770" height="80" decoding="async" alt="127.0.0.2_22">
 
 22番ポートはSSHの標準ポートであるため開いている確率が高い。SSHが動作するポートへSMTPの接続リクエストが送信されたため、適切なレスポンスを受信できず「Read timed out」になったと推測される。HTTPが動作する確率が高い8080番ポートへの接続でも同様のエラーが発生する。
 
-![127.0.0.2:8080](/assets/2018/ssrf_in_cybozu/127.0.0.2_8080.png)
+<img src="/assets/2018/ssrf_in_cybozu/127.0.0.2_8080.webp" width="770" height="80" decoding="async" alt="127.0.0.2_8080">
 
 これらの挙動から「Connection refused」となるポートは閉じており、「Read timed out」となるポートは開いていると特定できる。本来はアクセスできないはずの内部ホスト（サーバー自身）へリクエストを偽装し、ポート開閉を調査できる状態だった。この挙動は「メールサーバ設定に関する不適切な入力の脆弱性（[CyVDB-1687](https://kb.cybozu.support/article/33103/)）」として認定された。
 
@@ -62,8 +62,8 @@ SMTPサーバーの設定を保存する際、任意のメールアドレス宛�
 
 IPv4アドレスは10進数での表記が一般的だが、8進数や16進数でも表記できる。また `0` のオクテットは省略しても動作に影響はない。そのため `0177.0.0.1` や `0177.00001` のような一般的でない形式のIPアドレスも、`127.0.0.1` と同じくループバックアドレスとして解釈される<sup id="f2">[²](#fn2)</sup>。システムメールの設定ではSMTPサーバーとして `127.0.0.1` の設定を禁止しているが、一般的でない形式に変換することで設定できる状態だった。
 
-![0177.0.0.1:25](/assets/2018/ssrf_in_cybozu/0177.0.0.1_25.png)
-![0177.00001:25](/assets/2018/ssrf_in_cybozu/0177.00001_25.png)
+<img src="/assets/2018/ssrf_in_cybozu/0177.0.0.1_25.webp" width="770" height="80" decoding="async" alt="0177.0.0.1_25">
+<img src="/assets/2018/ssrf_in_cybozu/0177.00001_25.webp" width="770" height="80" decoding="async" alt="0177.00001_25">
 
 この挙動はIPアドレスの「形式」の検証不備であり、CyVDB-1687の原因となったIPアドレスの「用途」の検証不備とは異なる問題だと考える。なぜなら用途の検証不備を修正し `127.0.0.2` を禁止したとしても、形式の検証不備が残れば `0177.0.0.2` を設定できるからである。このような理由から形式の検証不備を別の脆弱性として報告したが、評価は同一要因（重複）であった。評価理由についてサイボウズは「どちらも入力されたIPアドレスを適切に検証していないことが問題である」と述べている。
 

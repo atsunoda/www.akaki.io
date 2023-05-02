@@ -18,7 +18,7 @@ The sender ID is submitted to the SMSC by the protocol for the transfer of short
 
 Before proceeding, let us remind ourselves of SMS spoofing. SMS spoofing is the act of deceiving recipients by spoofing the sender of a short message, and is a technique used in phishing attacks via SMS. Generally, SMS clients display messages from the same sender on the same thread. This specification allows an attacker to insert a phishing message spoofed as a legitimate brand sender ID in a legitimate thread. For example, Figure 1 shows a phishing message spoofed as Amazon, as observed in Japan. The message in the green box is real and that in the red box is fake<sup id="f1">[¹](#fn1)</sup>; thus, SMS spoofing can be a factor in the success of phishing attacks.
 
-<p align="center"><img src="/assets/2022/analysis_and_reproduction_of_spoofed_sms-deliver/24_figure1.png" width="300px" /></p>
+<p align="center"><img src="/assets/2022/analysis_and_reproduction_of_spoofed_sms-deliver/24_figure1.webp" width="300" height="296" decoding="async" alt=""></p>
 <p class="modest" align="center">Figure 1: Phishing message spoofed as Amazon.</p>
 
 ## Analysis of SMS-DELIVER
@@ -47,29 +47,29 @@ private fun receiveSms() {
 ```
 <p class="modest" align="center">Figure 2: The source code of the Android app.</p>
 
-<video controls muted playsinline poster="/assets/2022/analysis_and_reproduction_of_spoofed_sms-deliver/24_figure3.png" src="/assets/2022/analysis_and_reproduction_of_spoofed_sms-deliver/24_figure3.mp4" type="video/mp4"></video>
+<video controls muted playsinline poster="/assets/2022/analysis_and_reproduction_of_spoofed_sms-deliver/24_figure3.webp" src="/assets/2022/analysis_and_reproduction_of_spoofed_sms-deliver/24_figure3.mp4" type="video/mp4"></video>
 <p class="modest" align="center">Figure 3: Capturing a spoofed SMS-DELIVER.</p>
 
 From the captured SMS-DELIVER, it can be observed that the alphanumeric characters specified as the sender ID are loaded into the TP-OA. Figure 4 shows the data from the received SMS PDU minus the SCA (Service Center Address), that is, SMS-DELIVER. According to the SMS specification 3GPP TS 23.040<sup id="f2">[²](#fn2)</sup>, the Type-of-Address field in the TP-OA comprises a 1bit fixed value, 3bits Type-of-number, and 4bits Numbering-plan-identification. Section 9.1.2.5 of the specification assigns `101` as the bit pattern to indicate an alphanumeric representation in the Type-of-number. In addition, the alphanumeric characters of the sender ID are encoded in GSM 7-bit characters and included in the Address-Value field. Another question is how these alphanumeric characters are submitted to the SMSC.
 
-<img src="/assets/2022/analysis_and_reproduction_of_spoofed_sms-deliver/24_figure4.png" />
+<img src="/assets/2022/analysis_and_reproduction_of_spoofed_sms-deliver/24_figure4.webp" width="770" height="199" decoding="async" alt="">
 <p class="modest" align="center">Figure 4: Spoofed SMS-DELIVER.</p>
 
 ## Reproduction by SMPP
 
 The SMS-SUBMIT specification defined by 3GPP TS 23.040 does not provide a way to declare TP-OA; however, there are other ways to submit short messages to the SMSC apart from SMS-SUBMIT. For example, there are methods to use SMPP, UCP/EMI, or CIMD, which are protocols for transferring short messages. Among them, SMPP is widely used, even in Twilio<sup id="f3">[³](#fn3)</sup>. The SMPP specification defines “submit_sm” as the PDU by which a message is submitted to the SMSC<sup id="f4">[⁴](#fn4)</sup>. Figure 5 illustrates the process of short message transfer via an SMPP gateway on the Internet.
 
-<img src="/assets/2022/analysis_and_reproduction_of_spoofed_sms-deliver/24_figure5.png" />
+<img src="/assets/2022/analysis_and_reproduction_of_spoofed_sms-deliver/24_figure5.webp" width="770" height="355" decoding="async" alt="">
 <p class="modest" align="center">Figure 5: Short message transfer by SMPP.</p>
 
 Using the SMPP, short messages can be submitted with the sender ID to the SMSC. According to the SMPP specification, submit_sm specifies the source address. Figure 6 shows an example of submit_sm with the sender ID spoofed as `Amazon`. To declare the sender ID, specify `05` (bit pattern: `00000101`) in the source_addr_ton field. In addition, specify the alphanumeric characters in the source_addr field in hexadecimal and include the null terminator `00` at the end. The details of submit_sm are described in Section 4.4.1 of the specification.
 
-<img src="/assets/2022/analysis_and_reproduction_of_spoofed_sms-deliver/24_figure6.png" />
+<img src="/assets/2022/analysis_and_reproduction_of_spoofed_sms-deliver/24_figure6.webp" width="770" height="303" decoding="async" alt="">
 <p class="modest" align="center">Figure 6: Spoofed submit_sm.</p>
 
 By sending SMPP PDUs, I attempt to reproduce short messages displaying a spoofed sender ID. Unfortunately, Twilio does not provide an SMPP gateway for users; hence, this study uses SMSGlobal’s gateway<sup id="f5">[⁵](#fn5)</sup>. The SMPP requires a session to be established between the client and server before sending messages; therefore, after establishing the session using a bind_transceiver PDU, the submit_sm PDUs are sent. This test connects to the gateway via Socat’s named pipe, and sends these PDUs to the same TCP stream. Figure 7 illustrates what happens when the PDUs are sent. After sending a spoofed submit_sm, the response indicated `REJECTED` and the Android device did not receive the short message. In contrast, when resending submit_sm with the source_addr field changed to `Amazoo`, the device received the message with the specified sender ID. This behavior indicates that SMSGlobal prohibits the specification of major brands as sender ID.
 
-<video controls muted playsinline poster="/assets/2022/analysis_and_reproduction_of_spoofed_sms-deliver/24_figure7.png" src="/assets/2022/analysis_and_reproduction_of_spoofed_sms-deliver/24_figure7.mp4" type="video/mp4"></video>
+<video controls muted playsinline poster="/assets/2022/analysis_and_reproduction_of_spoofed_sms-deliver/24_figure7.webp" src="/assets/2022/analysis_and_reproduction_of_spoofed_sms-deliver/24_figure7.mp4" type="video/mp4"></video>
 <p class="modest" align="center">Figure 7: Sending a spoofed submit_sm.</p>
 
 ## Conclusion and Future Work

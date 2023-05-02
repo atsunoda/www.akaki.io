@@ -20,12 +20,12 @@ Webアプリケーションセキュリティの普及・啓発活動を行な�
 
 OWASP BWAのセットアップは簡単です。[OWASP Broken Web Applications Project](https://web.archive.org/web/20161010022044/https://www.owasp.org/index.php/OWASP_Broken_Web_Applications_Project)のリンクからovaファイルをダウンロードして、VMwareやVirtualBoxなどの仮想マシンから開くだけです。図1ではVMwareから仮想環境を起動しています。起動後に表示されるURLをブラウザから開くことでOWASP BWAにアクセスできます。
 
-<p align="center"><img src="/assets/2016/intro_to_ethical_hacker_5/e5_figure1.png" alt="figure1"></p>
+<img src="/assets/2016/intro_to_ethical_hacker_5/e5_figure1.webp" width="770" height="383" decoding="async" alt="">
 <p class="modest" align="center">図1. OWASP BWAを起動してブラウザからアクセス</p>
 
 今回はOWASP BWAの中から「BodgeIt」というサイトを対象に調査を行ないます。このサイトでは課題が用意されていて、脆弱性を用いて課題をクリアするとスコアを獲得できます。
 
-<p align="center"><img src="/assets/2016/intro_to_ethical_hacker_5/e5_figure2.png" alt="figure2"></p>
+<img src="/assets/2016/intro_to_ethical_hacker_5/e5_figure2.webp" width="770" height="383" decoding="async" alt="">
 <p class="modest" align="center">図2. 課題をクリアするとスコアが緑に変わる</p>
 
 ## 検出方法
@@ -42,12 +42,12 @@ Reflected XSSを見つけるには以下の手順でサイトの挙動を確認�
 
 BodgeItのページや機能を見ていくと、検索ページで検索したワードが画面に表示されています。レスポンスを見るとHTMLタグの間に出力されることが分かります。
 
-<p align="center"><img src="/assets/2016/intro_to_ethical_hacker_5/e5_figure3.png" alt="figure3"></p>
+<img src="/assets/2016/intro_to_ethical_hacker_5/e5_figure3.webp" width="770" height="381" decoding="async" alt="">
 <p class="modest" align="center">図3.「test」と検索した際の挙動</p>
 
 入力値が出力される箇所を見つけたら、記号がエスケープされるか確かめます。HTMLタグの間に出力されるような場合は、適当なHTMLタグを入力して表示のされ方を確認しましょう。`<s>test</s>` と入力して検索すると、画面には「~~test~~」のように線が引かれて表示されました。
 
-<p align="center"><img src="/assets/2016/intro_to_ethical_hacker_5/e5_figure4.png" alt="figure4"></p>
+<img src="/assets/2016/intro_to_ethical_hacker_5/e5_figure4.webp" width="770" height="382" decoding="async" alt="">
 <p class="modest" align="center">図4.「&lt;s&gt;test&lt;/s&gt;」と検索した際の挙動</p>
 
 この線は `<s>` タグによる効果です。検索ワードに含まれた記号はエスケープされず、HTMLタグとして有効な状態で出力されています。`<script>` タグを使ってスクリプトも実行できそうです。BodgeItでは `<script>alert("XSS")</script>` というパターンでスクリプトを実行することで、XSSの脆弱性を見つけたことになります。このパターンを入力すると `alert()` メソッドが動作して、画面にポップアップが表示されると思います。課題はクリアとなりスコアも変わるはずです。
@@ -56,7 +56,7 @@ BodgeItのページや機能を見ていくと、検索ページで検索した�
 
 検索ページの他に、お問い合わせページでも入力した内容が画面に表示されています。`<s>` タグも有効に出力されたので、`<script>alert("XSS")</script>` を入力したところ図5のように出力されました。
 
-<p align="center"><img src="/assets/2016/intro_to_ethical_hacker_5/e5_figure5.png" alt="figure5"></p>
+<img src="/assets/2016/intro_to_ethical_hacker_5/e5_figure5.webp" width="770" height="383" decoding="async" alt="">
 <p class="modest" align="center">図5.「&lt;script&gt;alert("XSS")&lt;/script&gt;」と入力した際の挙動</p>
 
 これではスクリプトを実行できません。`<script>` や `"` など、特定の文字列や記号を出力しないことでXSS対策を講じているようです。しかし、このようなブラックリスト方式のXSS対策は実装が不十分になりやすく、回避できる可能性が高いです。このような対策の回避方法は、OWASPの「[XSS Filter Evasion Cheat Sheet](https://web.archive.org/web/20161020134045/https://www.owasp.org/index.php/XSS_Filter_Evasion_Cheat_Sheet)」にまとめられています。また、JPCERT/CC（一般社団法人 JPCERTコーディネーションセンター）から[日本語訳](https://jpcertcc.github.io/OWASPdocuments/CheatSheets/XSSFilterEvasion.html)も公開されています。

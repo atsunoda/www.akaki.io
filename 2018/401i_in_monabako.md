@@ -16,7 +16,7 @@ description: 2018年5月5日に「モナバコ」というQ&Aサービスが脆�
 
 開設された質問ページにはアクセス制御が施されていないため、URLを知っていれば誰でもアクセスできる。脆弱性はこのページに存在していた。
 
-![monabako](/assets/2018/401i_in_monabako/monabako.png)
+<img src="/assets/2018/401i_in_monabako/monabako.webp" width="770" height="493" decoding="async" alt="monabako">
 
 ## 401インジェクションの脆弱性
 
@@ -44,18 +44,18 @@ description: 2018年5月5日に「モナバコ」というQ&Aサービスが脆�
 
 質問ページにはアイコン画像が設置されるため、一部のブラウザからアクセスすると認証ダイアログが表示される。以下はSafariからアクセスした際の様子である。
 
-![401i_dialog](/assets/2018/401i_in_monabako/401i_dialog.png)
+<img src="/assets/2018/401i_in_monabako/401i_dialog.webp" width="770" height="495" decoding="async" alt="401i_dialog">
 
 imgタグのsrc属性にはBasic認証を設定したページのURLが挿入されている。
 
-![401i_src](/assets/2018/401i_in_monabako/401i_src.png)
+<img src="/assets/2018/401i_in_monabako/401i_src.webp" width="770" height="493" decoding="async" alt="401i_src">
 
 攻撃者は不正なURLを仕込んだ質問ページをTwitterなどで拡散する。そこにアクセスした被害者が表示された認証タイアログをモナバコのログイン認証と誤認した場合、入力した認証情報が攻撃者の手に渡る恐れがあった。
 
 ## 脆弱性の修正漏れ
 この脆弱性への対策として、Twitter社が所有するドメイン `twimg.com` のURLしか指定できないように修正された。しかしドメイン検証の実装に不備があったため、`twimg.com.example.com` のような任意のドメインのURLを指定できた。
 
-![401i_bypass](/assets/2018/401i_in_monabako/401i_bypass.png)
+<img src="/assets/2018/401i_in_monabako/401i_bypass.webp" width="770" height="493" decoding="async" alt="401i_bypass">
 
 攻撃者は所有するドメインに2階層のサブドメイン `twimg.com.*` を設定することで、そのドメイン上のリソースを挿入できる状態だった。
 

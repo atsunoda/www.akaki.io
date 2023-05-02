@@ -24,22 +24,22 @@ description: 第8回目はアクセス制御の不備による脆弱性を取り
 
 図1はユーザー「bob」がアップロードした写真の一覧ページ `/view.php` です。このページではURLに付与されたパラメータ `userid` でユーザーを識別しているようです。ユーザー「bob」のIDは `2` です。
 
-<p align="center"><img src="/assets/2017/intro_to_ethical_hacker_8/e8_figure1.png" alt="figure1"></p>
+<img src="/assets/2017/intro_to_ethical_hacker_8/e8_figure1.webp" width="770" height="362" decoding="async" alt="">
 <p class="modest" align="center">図1. ユーザー「bob」の写真一覧ページ</p>
 
 WackoPickoにログインしていない状態で写真一覧ページにアクセスすると、図2のようにログインページにリダイレクトされました。このページではアクセス制御が行なわれており、ログインした状態でなければアクセスできないようです。他のユーザーがアップロードした写真を見るにはログインしなければなりません。
 
-<p align="center"><img src="/assets/2017/intro_to_ethical_hacker_8/e8_figure2.png" alt="figure2"></p>
+<img src="/assets/2017/intro_to_ethical_hacker_8/e8_figure2.webp" width="770" height="267" decoding="async" alt="">
 <p class="modest" align="center">図2. ログインしていない状態でアクセスした際の挙動</p>
 
 他の機能も見ていくと、トップページのリンクから写真一覧のサンプルページ `/sample.php` がありました。このページはログインしていない状態でもアクセスできます。
 
-<p align="center"><img src="/assets/2017/intro_to_ethical_hacker_8/e8_figure3.png" alt="figure3"></p>
+<img src="/assets/2017/intro_to_ethical_hacker_8/e8_figure3.webp" width="770" height="362" decoding="async" alt="">
 <p class="modest" align="center">図3. 写真のサンプルページ</p>
 
 サンプルページのURLにもパラメータ `userid` が付与されています。サンプルユーザーのIDは `1` です。このIDを操作することで特定のユーザーがアップロードした写真を表示できそうです。IDを `2` に付け替えてアクセスすると、ユーザー「bob」の写真が表示されました。
 
-<p align="center"><img src="/assets/2017/intro_to_ethical_hacker_8/e8_figure4.png" alt="figure4"></p>
+<img src="/assets/2017/intro_to_ethical_hacker_8/e8_figure4.webp" width="770" height="362" decoding="async" alt="">
 <p class="modest" align="center">図4. サンプルページに表示されたユーザー「bob」の写真</p>
 
 ログインした状態でないと見れないはずの写真をログインしていない状態で見れました。アクセス制御を回避して本来権限のない情報にアクセスできる状態です。さらに、IDは連番であると推測し `3` 、`4` 、`5` とインクリメントすることで、他のユーザーの写真も見れそうです。

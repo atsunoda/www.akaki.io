@@ -14,12 +14,12 @@ iOS, which is a mobile operating system developed by Apple, includes a feature t
 
 iOS has a feature that autofills OTPs sent via SMS into website forms<sup id="f1">[¹](#fn1)</sup>. If an OTP is included in the SMS message received by iOS, this feature extracts the value and displays it as an input suggestion at the top of the keyboard. According to Apple’s explanation, the autofill feature in iOS heuristically extracts OTPs from near words like `code` or `passcode` in SMS messages<sup id="f2">[²](#fn2)</sup>. For example, in the SMS message `Your code is 123456.` shown in Figure 1, the numeric value `123456`, which is indicated by the term `code` is extracted as an OTP and displayed as an input suggestion. This feature reduces the time and effort required by iOS users to read the OTP from the received SMS message and type it into the form during SMS authentication.
 
-<p align="center"><img src="/assets/2022/risk_to_japanese-speaking_world_posed_by_sms_otp_autofill_in_ios/26_figure1.png" width="300px" /></p>
+<p align="center"><img src="/assets/2022/risk_to_japanese-speaking_world_posed_by_sms_otp_autofill_in_ios/26_figure1.webp" width="300" height="421" decoding="async" alt=""></p>
 <p class="modest" align="center">Figure 1: SMS OTP autofill in iOS.</p>
 
 However, the autofill feature has proven to be a potential success factor in phishing attacks. Gutmann et al. (2019) raised the risk of facilitating misinput to phishing sites because iOS autofills SMS OTPs to non-legitimate sites<sup id="f3">[³](#fn3)</sup>. Furthermore, their study demonstrated the risk that SMS OTPs sent during two-factor authentication at login in English-language web services can be automatically entered into phishing sites. This risk means that in the man-in-the-middle phishing procedure shown in Figure 2, the process of entering the SMS OTP received by the victim from the legitimate site in Step 4 to the phishing site in Step 5 is automatic.
 
-<p align="center"><img src="/assets/2022/risk_to_japanese-speaking_world_posed_by_sms_otp_autofill_in_ios/26_figure2.png" /></p>
+<img src="/assets/2022/risk_to_japanese-speaking_world_posed_by_sms_otp_autofill_in_ios/26_figure2.webp" width="770" height="344" decoding="async" alt="">
 <p class="modest" align="center">Figure 2: Procedure to bypass SMS authentication by man-in-the-middle phishing.</p>
 
 If the autofill feature in iOS also extracts OTPs from non-English SMS messages, web services in that language would also be at risk. In my previous study, I demonstrated that the autofill feature in iOS also extracts OTPs from a message involving a Japanese word meaning `code`. Precisely, the autofill feature in iOS extracts OTPs from words containing `認証番号` or `コード` in Japanese SMS messages. Consequently, I hypothesized that the same risk extends to Japanese-language web services that use these words to represent the SMS OTP. In this study, I verified this hypothesis by using web services that provide SMS authentication via Japanese SMS messages.
@@ -47,14 +47,14 @@ As a result of the verification, the autofill feature was triggered in SMS messa
 
 The results indicate that the risk raised by Gutmann et al. (2019) extends to the Japanese-speaking world. Their study demonstrated the risk of SMS OTPs sent from English-language web services being automatically entered into phishing sites by iOS. Similarly, I herein demonstrated that SMS OTPs sent from Japanese-language web services are automatically entered into non-legitimate sites. Figure 3 shows an OTP in an Apple SMS message that is automatically entered into the verification website. Thus, the risk posed by the autofill feature in iOS was demonstrated for Japanese-language web services.
 
-<p align="center"><img src="/assets/2022/risk_to_japanese-speaking_world_posed_by_sms_otp_autofill_in_ios/26_figure3.png" width="300px" /></p>
+<p align="center"><img src="/assets/2022/risk_to_japanese-speaking_world_posed_by_sms_otp_autofill_in_ios/26_figure3.webp" width="300" height="421" decoding="async" alt=""></p>
 <p class="modest" align="center">Figure 3: Autofill with an Apple SMS message.</p>
 
 ## Mitigation Measure
 
 As a mitigation measure against the risk posed by SMS OTP autofill, a specification is proposed for the SMS sender to indicate to the mobile OS as to on which websites should the OTP be entered<sup id="f4">[⁴](#fn4)</sup>. This specification defines an SMS message format that binds the OTP to a website. Specifically, binding these is possible by specifying the domain of the website after the `@` and the value of the OTP after the `#` in the last line of the SMS message. Based on this format, the mobile OS that receives the SMS message mechanically determines the OTP and website to enter it. For this mechanism to work, both the mobile OS provider and SMS sender, the web service provider, must comply with the specification. As the autofill feature based on the specification has been implemented since iOS 14<sup id="f5">[⁵](#fn5)</sup>, I suggested the implementation of the specification to seven web service providers with demonstrated risk. As of November 2022, the specification was implemented in Apple SMS messages, and, as shown in Figure 4, the autofill feature is no longer triggered on websites that differ from the specified domain.
 
-<p align="center"><img src="/assets/2022/risk_to_japanese-speaking_world_posed_by_sms_otp_autofill_in_ios/26_figure4.png" width="300px" /></p>
+<p align="center"><img src="/assets/2022/risk_to_japanese-speaking_world_posed_by_sms_otp_autofill_in_ios/26_figure4.webp" width="300" height="463" decoding="async" alt=""></p>
 <p class="modest" align="center">Figure 4: Apple SMS message with the mitigation measure.</p>
 
 ## Conclusion and Future Work

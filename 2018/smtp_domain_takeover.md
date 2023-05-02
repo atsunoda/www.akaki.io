@@ -16,7 +16,7 @@ description: 前回の記事に続き、サイボウズの脆弱性報奨金制�
 
 クラウド版のメールワイズはサイボウズが所有するサーバー上で動作する。企業がメールワイズを利用する場合、まず自社のメールサーバーをメールワイズに登録する必要がある。メールサーバーを登録するには以下のページからサーバー名とポート番号を入力する。脆弱性はメールサーバーの登録処理に存在していた。
 
-![mw_server](/assets/2018/smtp_domain_takeover/mw_server.png)
+<img src="/assets/2018/smtp_domain_takeover/mw_server.webp" width="770" height="600" decoding="async" alt="mw_server">
 
 ## SSRFの脆弱性
 
@@ -26,19 +26,19 @@ description: 前回の記事に続き、サイボウズの脆弱性報奨金制�
 
 SSRFの調査では、まずループバックを入力してサーバー自身への接続を試みる。サーバー名に `localhost` や `127.0.0.1` を、ポート番号に `25` を入力すると、以下のエラーにより登録を拒否される。
 
-![127.0.0.1:25](/assets/2018/smtp_domain_takeover/127.0.0.1_25.png)
+<img src="/assets/2018/smtp_domain_takeover/127.0.0.1_25.webp" width="770" height="83" decoding="async" alt="127.0.0.1_25">
 
 サーバー名を一般的でないループバックアドレスである `127.0.0.2` に変更するとエラーの内容も変化する。
 
-![127.0.0.2:25](/assets/2018/smtp_domain_takeover/127.0.0.2_25.png)
+<img src="/assets/2018/smtp_domain_takeover/127.0.0.2_25.webp" width="770" height="83" decoding="async" alt="127.0.0.2_25">
 
 `127.0.0.2:25` ではSMTPサーバーは動作していないが、接続リクエストは送信できていることがエラーの内容から読み取れる。ポート番号を変更して `127.0.0.2:22` に接続リクエストを送信すると、エラーの内容にサーバーからのレスポンスが含まれる。
 
-![127.0.0.2:22](/assets/2018/smtp_domain_takeover/127.0.0.2_22.png)
+<img src="/assets/2018/smtp_domain_takeover/127.0.0.2_22.webp" width="770" height="113" decoding="async" alt="127.0.0.2_22">
 
 `127.0.0.2:22` ではSSHサーバーが動作していることがわかり、バージョン情報も取得できる。また `127.0.0.2:8080` ではWebサーバーも動作している。
 
-![127.0.0.2:8080](/assets/2018/smtp_domain_takeover/127.0.0.2_8080.png)
+<img src="/assets/2018/smtp_domain_takeover/127.0.0.2_8080.webp" width="770" height="113" decoding="async" alt="127.0.0.2_8080">
 
 内部ホスト（サーバー自身）へのリクエストを偽装できることからSSRFの脆弱性といえる。ここまでの挙動を一旦サイボウズへ報告した。
 
@@ -46,11 +46,11 @@ SSRFの調査では、まずループバックを入力してサーバー自身�
 
 内部ネットワークに存在する他のホストに接続するには内部IPアドレスを特定する必要がある。内部IPアドレスの範囲を総当りすることで特定も可能だが、検証環境への高負荷が懸念される。総当たりは実施せず、サーバーの設定不備により漏洩した内部IPアドレスを探すと、検証環境から送信されるシステムメールのヘッダ情報にそれらしき値が見つかる。
 
-![recived_header](/assets/2018/smtp_domain_takeover/recived_header.png)
+<img src="/assets/2018/smtp_domain_takeover/recived_header.webp" width="770" height="158" decoding="async" alt="recived_header">
 
 Receivedヘッダには送信元サーバーの内部IPアドレスである `10.176.64.171` が含まれている<sup id="f1">[¹](#fn1)</sup>。さっそく `10.176.64.171:25` をメールワイズのSMTPサーバーとして登録を試みるが、以下のエラーにより失敗に終わる。
 
-![10.176.64.171:25](/assets/2018/smtp_domain_takeover/10.176.64.171_25.png)
+<img src="/assets/2018/smtp_domain_takeover/10.176.64.171_25.webp" width="770" height="83" decoding="async" alt="10.176.64.171_25">
 
 ### 特殊なIPアドレスへの接続
 
@@ -58,7 +58,7 @@ Receivedヘッダには送信元サーバーの内部IPアドレスである `10
 
 Linux上では `0.0.0.0` にpingを打つと `127.0.0.1` にエコーリクエストが送信される。メールワイズはUbuntu上で動作していることがSSHサーバーのバージョン情報から判明している。そのため `0.0.0.0` は `127.0.0.1` として扱われると想定し、`0.0.0.0:25` をSMTPサーバーとして入力すると登録に成功する。
 
-![0.0.0.0:25](/assets/2018/smtp_domain_takeover/0.0.0.0_25.png)
+<img src="/assets/2018/smtp_domain_takeover/0.0.0.0_25.webp" width="770" height="401" decoding="async" alt="0.0.0.0_25">
 
 なぜ `127.0.0.2:25` ではSMTPサーバーに接続できず、`0.0.0.0:25` では接続できたのか。ブラックボックスであるため原因は不明だが、サイボウズの内部ネットワークに存在するSMTPサーバーをメールワイズに登録できた。
 
@@ -66,21 +66,21 @@ Linux上では `0.0.0.0` にpingを打つと `127.0.0.1` にエコーリクエ�
 
 メールサーバーの登録後にメールアカウントを作成することで、メールワイズ上からメールを送信できるようになる。メールアカウントにはメール送信時のFromヘッダの値（メールアドレスと表記名）を設定できる。メールアドレスには検証環境のドメインを含めた `security@cybozu-dev.com` を、表記名には `セキュリティ事務局` を入力してメールアカウントを作成する。
 
-![mw_account](/assets/2018/smtp_domain_takeover/mw_account.png)
+<img src="/assets/2018/smtp_domain_takeover/mw_account.webp" width="770" height="352" decoding="async" alt="mw_account">
 
 これにより `"セキュリティ事務局" <security@cybozu-dev.com>` から任意の宛先にメールを送信できるようになる。試しに私が所有するGmail宛にメールを送信する。
 
-![mw_send](/assets/2018/smtp_domain_takeover/mw_send.png)
+<img src="/assets/2018/smtp_domain_takeover/mw_send.webp" width="770" height="500" decoding="async" alt="mw_send">
 
 Gmailには `セキュリティ事務局` から差し出されたメールが届く。メールの送信元IPアドレスは `103.79.13.22` であり、このIPアドレスは `cybozu-dev.com` のSPFレコードに含まれているため送信ドメイン認証に成功する。受信したメーラーで不正なメールと判定されない本物のメールを偽装できる状態だった。
 
-![mw_spf](/assets/2018/smtp_domain_takeover/mw_spf.png)
+<img src="/assets/2018/smtp_domain_takeover/mw_spf.webp" width="770" height="389" decoding="async" alt="mw_spf">
 
 ### 標的型攻撃への応用
 
 サイボウズの管理者やセキュリティ部門が使いそうなメールアドレスから送られたメールであれば、サイボウズ製品の利用者は何の疑いもなく開くだろう。メールワイズではファイルを添付したメールも送信できるため、以下のようなメールを利用者に送りつけることで高い添付ファイル開封率が期待できる。
 
-![targeted_mail](/assets/2018/smtp_domain_takeover/targeted_mail.png)
+<img src="/assets/2018/smtp_domain_takeover/targeted_mail.webp" width="770" height="395" decoding="async" alt="targeted_mail">
 
 サイボウズに所属する特定の人物になりすますことで、サイボウズ自体や関連企業への標的型攻撃の成功率も高くなる。本番環境の送信ドメインは `cybozu.com` であるため `"青野 久慶" <haono@cybozu.com>` にもなりすませる状態だった。
 

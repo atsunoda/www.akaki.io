@@ -88,7 +88,7 @@ Locationヘッダに `//` から始まるスキームを省略した形式の絶
 
 hxxps://www[.]example.com///xxx//evil.com
 
-![open_redirect](/assets/2018/practical_open_redirect_via_path/open_redirect.png)
+<img src="/assets/2018/practical_open_redirect_via_path/open_redirect.webp" width="770" height="204" decoding="async" alt="open_redirect">
 
 上記のURLには攻撃者の所有するドメインが含まれているため、警戒心の強い被害者は不信感を抱く可能性が高い。固定IPアドレスが振られたドメインであれば整数変換により難読化できる。例えば `evil.com` のIPアドレス `66.96.146.129` は `1113625217` に変換できる<sup id="f1">[¹](#fn1)</sup> <sup id="f2">[²](#fn2)</sup>。パスに含まれる階層 `xxx` は任意の文字列に置き換えられるため、攻撃者は対象サイトの特性に合わせて以下のようなURLに偽装することで被害者を誘導できるだろう。
 

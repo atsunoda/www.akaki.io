@@ -18,12 +18,12 @@ According to SMS specifications, a mobile device receiving a special short messa
 
 Before discussing the details of silent SMS, let us review the technical specifications of SMS. The short messages sent from a mobile device are first stored in the SMSC (Short Message Service Center), which then delivers them to the destination device. The SMS specification 3GPP TS 23.040 (originally GSM 03.40)<sup id="f1">[¹](#fn1)</sup> defines the message type transferred from the sender’s device to the SMSC as “SMS-SUBMIT” and that to be transferred from the SMSC to the receiver’s device as “SMS-DELIVER.” Figure 1 illustrates the process of short message transfer.
 
-<img src="/assets/2022/transmission_and_detection_of_silent_sms_in_android/23_figure1.png">
+<img src="/assets/2022/transmission_and_detection_of_silent_sms_in_android/23_figure1.webp" width="770" height="170" decoding="async" alt="">
 <p class="modest" align="center">Figure 1: Short message transfer.</p>
 
 The structure of the PDU (Protocol Data Unit) for short message transfer is also defined in 3GPP TS 23.040. This specification defines the PDUs for the six message types in the transfer layer. This article describes the PDU structures of SMS-SUBMIT and SMS-DELIVER (shown in Figure 2), which are related to silent SMS. TP-MTI (TP-Message-Type-Indicator) indicates the message type of the PDU, while TP-PID (TP-Protocol-Identifier) indicates the protocol to the upper layer. In the case of a normal text message, TP-DA (TP-Destination-Address) contains the destination phone number, TP-OA (TP-Originating-Address) contains the originating phone number, and TP-UD (TP-User-Data) contains the message text. Other elements are described in Sections 9.2.2.1 and 9.2.2.2 of the specification.
 
-<img src="/assets/2022/transmission_and_detection_of_silent_sms_in_android/23_figure2.png">
+<img src="/assets/2022/transmission_and_detection_of_silent_sms_in_android/23_figure2.webp" width="770" height="387" decoding="async" alt="">
 <p class="modest" align="center">Figure 2: PDU structures of SMS-SUBMIT and SMS-DELIVER.</p>
 
 ## What is Silent SMS
@@ -52,17 +52,17 @@ An SMS PDU must be sent as a sample to test the detection of silent SMS. Unfortu
 
 SMS PDUs can be sent using AT commands by utilizing an Android device as a USB modem. Whether the Android device exposes the USB modem interface depends on the model. Tian et al. (2018) showed that non-rooted Android devices manufactured by Samsung and LG exposed a USB modem interface<sup id="f5">[⁵](#fn5)</sup>. This study provides an example of connecting a non-rooted Samsung Galaxy S10 (Android 11) to a MacBook via USB in MTP mode and then executing AT commands on the exposed USB modem interface `/dev/tty.usbmodemRF8M6███████`. AT commands are used to control modems, and extended commands for controlling SMS have been standardized in 3GPP TS 27.005<sup id="f6">[⁶](#fn6)</sup>. To use AT commands on the Galaxy S10, enabling Developer options > 3GPP AT commands is necessary, as shown in Figure 3.
 
-<p align="center"><img src="/assets/2022/transmission_and_detection_of_silent_sms_in_android/23_figure3.png" width="300"></p>
+<p align="center"><img src="/assets/2022/transmission_and_detection_of_silent_sms_in_android/23_figure3.webp" width="300" height="633" decoding="async" alt=""></p>
 <p class="modest" align="center">Figure 3: Enabling 3GPP AT commands.</p>
 
 To compare the reception of a normal text message with that of a silent SMS, I sent two types of SMS PDUs, as shown in Figure 4. In this figure, the PDU of a normal text message is shown at the top and that of short message type 0 is shown at the bottom. At the beginning of both PDUs, `00` is added as the SCA (Service Center Address) to indicate the default SMSC, and `01` is set in the TP-MTI to indicate SMS-SUBMIT. The TP-PID is set to `00` for a normal text message, and `40` (bit pattern: `01000000`) for short message type 0. The phone number `+819001234567` set as the TP-DA in the figure is a dummy. The TP-UD is set to `hello` encoded in GSM 7-bit characters, as defined by 3GPP TS 23.038 (originally GSM 03.38)<sup id="f7">[⁷](#fn7)</sup>.
 
-<img src="/assets/2022/transmission_and_detection_of_silent_sms_in_android/23_figure4.png">
+<img src="/assets/2022/transmission_and_detection_of_silent_sms_in_android/23_figure4.webp" width="770" height="311" decoding="async" alt="">
 <p class="modest" align="center">Figure 4: SMS PDUs of a normal text message and short message type 0.</p>
 
 After sending the SMS PDUs, I observed the behavior of the mobile phone that received a PDU of short message type 0. Figure 5 illustrates what happens when SMS PDUs are sent and received. The SMS PDUs were sent from Galaxy S10, connected through the terminal on the left, to the non-rooted Google Pixel 4a (Android 12) on the right. First, I connected to the USB modem interface through the `screen` command and executed `AT` to confirm that AT commands were available. Next, I executed `AT+CMGF=0` to switch the input and output formats to the PDU mode. Thereafter, I executed `AT+CMGS=18` to send the SMS PDUs. The value `18` is the number of octets of the SMS PDU to be sent, excluding SCA. In the case of a normal text message, after the SMS PDU is submitted, `OK` was returned to indicate a successful transmission, and Pixel 4a displayed a notification. In the case of short message type 0, the transmission was successful; however, Pixel 4a did not display a notification. This behavior corresponds to the specifications of a silent SMS.
 
-<video controls muted playsinline poster="/assets/2022/transmission_and_detection_of_silent_sms_in_android/23_figure5.png" src="/assets/2022/transmission_and_detection_of_silent_sms_in_android/23_figure5.mp4" type="video/mp4"></video>
+<video controls muted playsinline poster="/assets/2022/transmission_and_detection_of_silent_sms_in_android/23_figure5.webp" src="/assets/2022/transmission_and_detection_of_silent_sms_in_android/23_figure5.mp4" type="video/mp4"></video>
 <p class="modest" align="center">Figure 5: Sending and receiving SMS PDUs.</p>
 
 ## Detection of Silent SMS
@@ -96,7 +96,7 @@ protected int dispatchMessageRadioSpecific(SmsMessageBase smsb, @SmsSource int s
 
 While displaying the Android log, I observe the output log message when short message type 0 is received, as shown in Figure 7. The top of the terminal connects to Galaxy S10 (the sender) and the bottom connects to Pixel 4a (the receiver). When displaying Pixel 4a logs, I set the `logcat` command with the option `-b radio`, to request logs related to radio and telephony. Moreover, two filters `GsmInboundSmsHandler:D *:S` were set to display only the target logs. After sending short message type 0 from Galaxy S10, although Pixel 4a did not display a receipt notification, it outputted a log message indicating that it had received short message type 0. This is highlighted in red text in Figure 7. Therefore, it is known that short message type 0 is received.
 
-<video controls muted playsinline poster="/assets/2022/transmission_and_detection_of_silent_sms_in_android/23_figure7.png" src="/assets/2022/transmission_and_detection_of_silent_sms_in_android/23_figure7.mp4" type="video/mp4"></video>
+<video controls muted playsinline poster="/assets/2022/transmission_and_detection_of_silent_sms_in_android/23_figure7.webp" src="/assets/2022/transmission_and_detection_of_silent_sms_in_android/23_figure7.mp4" type="video/mp4"></video>
 <p class="modest" align="center">Figure 7: Outputting a log message.</p>
 
 ## Conclusion and Future Work

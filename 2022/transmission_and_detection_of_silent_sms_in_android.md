@@ -1,3 +1,7 @@
+---
+description: SMS technology is used for exchanging text messages and for purposes that include SIM management and IoT communication. The technical specifications of SMS technology allow for short messages that do not appear as notifications on the receiving device. These messages, known as “silent SMS,” have the potential to be exploited for covert attacks. How can we determine whether we are under a silent SMS attack? In this article, I first review the specifications of SMS technology and then send and detect silent SMS messages on an Android device.
+---
+
 # Transmission and Detection of Silent SMS in Android
 
 <p class="modest" align="left">Jan 17, 2022</p>

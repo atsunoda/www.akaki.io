@@ -1,3 +1,7 @@
+---
+description: 第4回目はHTTP通信の書き換えによるWebアプリケーションへの入力値操作を説明します。
+---
+
 # Webアプリケーションへの入力値を操作しよう
 
 <p class="modest" align="left">Nov 14, 2016</p>

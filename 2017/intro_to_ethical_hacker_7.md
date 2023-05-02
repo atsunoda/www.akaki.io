@@ -1,3 +1,7 @@
+---
+description: 第7回目はSQLインジェクションの脆弱性を取り上げます。
+---
+
 # 脆弱性を見つけよう SQLインジェクション編
 
 <p class="modest" align="left">Mar 27, 2017</p>

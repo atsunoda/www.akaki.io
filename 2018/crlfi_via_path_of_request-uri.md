@@ -1,3 +1,7 @@
+---
+description: ロシアのバグハンターであるSergey Bobrov氏（@Black2Fan）がHackerOneで公開しているレポートを読んでいると、私が今まで認識しなかった方法でCRLFインジェクションを検出していた。後学のためにまとめておく。
+---
+
 # Request-URIのパスからのCRLFインジェクション
 
 <p class="modest" align="left">Feb 14, 2018</p>

@@ -1,3 +1,7 @@
+---
+description: A previous article indicated a URL spoofing vulnerability in Slack using link syntax. Subsequently, a URL spoofing vulnerability using a right-to-left override (RTLO or RLO) character was found in many popular messaging apps. This article explains how URL spoofing operates using RTLO. Moreover, it indicates the vulnerability found in a Japanese messaging app and corresponding mitigation measures.
+---
+
 # URL Spoofing Using RTLO in Messaging Apps
 
 <p class="modest" align="left">Jan 23, 2023</p>

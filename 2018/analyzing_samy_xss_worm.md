@@ -1,3 +1,7 @@
+---
+description: この記事はセキュリティ・キャンプWS「The Anatomy of Malware 完全版」の応募課題として提出したものである。公開にあたり一部文章の修正と図式の差し替えを行なった。
+---
+
 # XSSワーム「Samy」の動作を解析する
 
 <p class="modest" align="left">Mar 1, 2018</p>

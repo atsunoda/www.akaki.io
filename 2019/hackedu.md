@@ -1,11 +1,14 @@
+---
+description: サイバーセキュリティに関する体験型学習サービスを提供する「HackEDU」がHackerOneと提携し、過去に報告された脆弱性を再現できるサンドボックス環境をリリースした。HackEDUの無料アカウントを作成するだけで、HackerOneに報告された5つの脆弱性のサンドボックス環境を利用できる。
+---
+
 # HackerOneに報告された脆弱性をHackEDUで再現する
 
 <p class="modest" align="left">Mar 8, 2019</p>
 
 ---
 
-サイバーセキュリティに関する体験型学習サービスを提供する「[HackEDU](https://hackedu.io/)」が[HackerOneと提携し、過去に報告された脆弱性を再現できるサンドボックス環境をリリースした](https://www.hackerone.com/blog/Test-your-hacking-skills-real-world-simulated-bugs)。
-HackEDUの無料アカウントを作成するだけで、HackerOneに報告された5つの脆弱性のサンドボックス環境を利用できる。
+サイバーセキュリティに関する体験型学習サービスを提供する「[HackEDU](https://hackedu.io/)」が[HackerOneと提携し、過去に報告された脆弱性を再現できるサンドボックス環境をリリースした](https://www.hackerone.com/blog/Test-your-hacking-skills-real-world-simulated-bugs)。HackEDUの無料アカウントを作成するだけで、HackerOneに報告された5つの脆弱性のサンドボックス環境を利用できる。
 
 今回はバグハンターのneex氏が2017年に報告したImgurという画像共有サイトでのRCE（[#212696](https://hackerone.com/reports/212696)）を取り上げる。neex氏が脆弱性を発見した際の手順を再現しながら詳細を学んでいく。
 

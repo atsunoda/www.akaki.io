@@ -1,3 +1,7 @@
+---
+description: iOS 12以降にはSMSで送られるワンタイムパスワード（以下、SMS OTP）を自動入力する機能が搭載されている。前回の記事でMITMフィッシングを検証した際に、この機能によって正規のSMS OTPが偽サイトへ自動入力された。この挙動に違和感を覚えたため、自動入力の仕組みを理解したいと考えた。Androidの自動入力も含めて検証し、SMS OTPとWebサイトが紐付かない状態での自動入力によるリスクとその対策を調査した。
+---
+
 # SMS OTPの自動入力によるリスクとその対策
 
 <p class="modest" align="left">Feb 8, 2021</p>
@@ -14,7 +18,7 @@ SMS OTPとWebサイトを紐付けるための提案仕様を導入すること�
 
 iOSとAndroidに標準で搭載されているSMS OTPの自動入力は、SMSメッセージに含まれるOTPをヒューリスティックに（推測に基づいて）抽出して入力する。Appleの開発者ドキュメントでは、SMS OTPを自動入力させたいWebサイトのinputフォームに `autocomplete="one-time-code"` を設定するよう指示している<sup id="f2">[²](#fn2)</sup>。この設定値はOTPの自動入力を示唆するものであり、Web標準であることから主要なブラウザでサポートされている<sup id="f3">[³](#fn3)</sup>。そこで、以下のHTMLを含むサイトAを構築し、iOSとAndroidでのSMS OTPの自動入力を検証する。
 
-[https://atsunoda.github.io/demo/sms\_otp\_autofill/one-time-code.html](https://atsunoda.github.io/demo/sms_otp_autofill/one-time-code.html)
+https://atsunoda.github.io/demo/sms_otp_autofill/one-time-code.html
 
 ```html
 <input type="text" inputmode="numeric" autocomplete="one-time-code" />
@@ -88,7 +92,7 @@ Domain-bound codesが定義するフォーマットは、最初の行にヒュ�
 
 Web OTP APIは、受信したSMS OTPをブラウザが取得するためのJavaScript APIである<sup id="f11">[¹¹](#fn11)</sup>。Web OTP APIを搭載したブラウザはDomain-bound codesに準拠したSMSメッセージにアクセスし、`#` 以降に記載されたOTPの値を抽出する。抽出した値は `OTPCredential` オブジェクトに格納し、`@` 以降のドメインと一致するWebサイトからのみ `navigator.credentials.get()` メソッドでの取得を許可する。このメソッドを使用したサイトBを以下に構築し、Web OTP APIによるSMS OTPの自動入力を検証する。
 
-[https://atsunoda.github.io/demo/sms\_otp\_autofill/web-otp-api.html](https://atsunoda.github.io/demo/sms_otp_autofill/web-otp-api.html)
+https://atsunoda.github.io/demo/sms_otp_autofill/web-otp-api.html
 
 ```html
 <input type="text" inputmode="numeric" autocomplete="one-time-code" />

@@ -183,7 +183,7 @@ The SMSC temporarily stores the submitted short message in its database and cons
 
 Kamailio’s SMSC inserts the submitted short message into its database using native scripts in its configuration file. Figure 25 shows the insert script used in this test. The insert statement in the script inserts the value of the `$(avp(from){s.escape.common})` variable into the `caller` column<sup id="f14">[¹⁴](#fn14)</sup>. This variable is defined by the `$avp(from) = $(ai{uri.user});` script in the same file<sup id="f15">[¹⁵](#fn15)</sup>. In Kamailio’s native scripts, the `$ai` pseudo-variable allows retrieving a URI specified in a P-Asserted-Identity header of a SIP request<sup id="f16">[¹⁶](#fn16)</sup>. Furthermore, the `uri.user` function allows retrieving the userinfo part of a SIP URI<sup id="f17">[¹⁷](#fn17)</sup>. This means that if the value of the header is `sip:818001234567@ims.mnc001.mcc001.3gppnetwork.org`, `818001234567` will be extracted. Thus, the phone number contained in the public user identity specified in the P-Asserted-Identity header of the MESSAGE request is determined to be the originator. This decision process is consistent with the note in section 5.3.1.2 of 3GPP TS 24.341 mentioned earlier.
 
-```mysql
+```
 sql_query("sms", "
     insert into messages (caller, callee, text, valid) 
     values (

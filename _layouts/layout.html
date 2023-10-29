@@ -4,7 +4,6 @@
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <title>{% if file.path == "README.md" %}{{ config.title|d("Akaki I/O", true) }}{% else %}{{ page.title }} - {{ config.title|d("Akaki I/O", true) }}{% endif %}</title>
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="{{ page.description }}">
 
         <meta property="og:title" content="{{ page.title }}" />
@@ -22,10 +21,9 @@
                 {% endif %}
             {% endfor %}
         {% endblock %}
-        <meta name="HandheldFriendly" content="true"/>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="apple-mobile-web-app-capable" content="yes">
-        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
         <link rel="apple-touch-icon" sizes="180x180" href="/icons/icon.png">
         <link rel="icon" type="image/png" href="/icons/favicon.png">
         {% if page.next and page.next.path %}<link rel="next" href="{{ page.next.path|resolveFile }}" />{% endif %}

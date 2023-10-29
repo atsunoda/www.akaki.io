@@ -1,3 +1,7 @@
+---
+description: This site is maintained by Akaki Tsunoda on GitHub.
+---
+
 # Akaki I/O
 
 This site is maintained by Akaki Tsunoda on GitHub.  

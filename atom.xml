@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+<title>Akaki I/O</title>
+<link rel="alternate" href="https://akaki.io" />
+<link rel="self" type="application/atom+xml" href="https://akaki.io/atom.xml" />
+<author><name>Akaki Tsunoda</name></author>
+<id>tag:akaki.io,2023:feed</id>
+<updated>2023-11-01T00:00:00Z</updated>
+
+<entry>
+<title>Investigating Threats Posed by SMS Origin Spoofing to IoT Devices - arXiv</title>
+<link href="https://arxiv.org/abs/2310.11052" rel="alternate" />
+<id>tag:akaki.io,2023:entry://2023-10-18</id>
+<updated>2023-10-18T09:00:00Z</updated>
+<summary>The short message service (SMS) is a service for exchanging texts via mobile networks that has been developed not only as a means of text communication between subscribers but also as a means to remotely manage Internet of Things (IoT) devices. However, the originating number of an SMS can be spoofed. If IoT devices authenticate administrators based on the originating number of an SMS, the authentication is bypassed via SMS origin spoofing. Consequently, IoT devices are at risk of accepting commands from attackers and performing unauthorized actions. Accordingly, in this study, the specifications of major cellular IoT gateways were evaluated by focusing on remote management via SMS, and the authentication bypass hypothesis was verified. The results showed that 25 of the 32 targeted products supported SMS-based remote management, and 20 implemented authentication based on the originating number of the SMS. Furthermore, by spoofing the originating number of the SMS, one product was demonstrated to be remotely exploitable through authentication bypassing. Thus, this study revealed the threats posed by SMS origin spoofing to IoT devices and proved that SMS origin spoofing not only threatens text communication between people but also puts machine communication at risk.</summary>
+</entry>
+
+<entry>
+<title>Demonstrating Spoofability of an Originating Number when Sending an SMS using SMPP - ACM</title>
+<link href="https://dl.acm.org/doi/10.1145/3615667" rel="alternate" />
+<id>tag:akaki.io,2023:entry://2023-10-16</id>
+<updated>2023-10-16T23:00:00Z</updated>
+<summary>The short message service (SMS), a service for exchanging texts via mobile networks, has become a universal means of communication. SMS is a mechanism for sending a text message to a specific mobile phone number. Its protocol enables the sender to specify the destination phone number but not the originating number. However, the short message peer-to-peer (SMPP) protocol, which forwards SMS messages, enables the sender to specify the originating number. If the SMPP protocol allows the sender to specify another person’s phone number as the originator, an attacker can use it to send a short message impersonating another person. In this study, short messages were sent from an SMPP gateway service with any phone number specified as the originator, and their delivery to the Japanese mobile network was verified. All the verified mobile network operators (MNOs) were able to spoof the origin to any international phone number, and one MNO was able to spoof it to any national phone number. The results of this study reveal that SMPP can potentially be exploited to spoof the originating number of an SMS. Furthermore, a threat scenario was devised using spoofing and mitigation measures.</summary>
+</entry>
+
+<entry>
+<title>Decision Procedure for Originating Numbers in SMS over IMS</title>
+<link href="https://akaki.io/2023/decision_procedure_for_originating_numbers_in_sms_over_ims" rel="alternate" />
+<id>tag:akaki.io,2023:entry://2023-03-27</id>
+<updated>2023-03-27T09:00:00Z</updated>
+<summary>A previous article clarified the decision procedure for originating numbers in SMS via a Mobile Switching Center (MSC). An MSC is a 2G circuit-switched network node, whereas modern 4G and 5G networks can provide SMS over IP Multimedia Subsystem (IMS) connected to a packet-switched network. By reviewing the technical specifications and analyzing packets captured in a private mobile network, this article clarifies the answer to how Short Message Service Centers (SMSCs) determine the originating number in SMS over IMS.</summary>
+</entry>
+
+<entry>
+<title>URL Spoofing Using RTLO in Messaging Apps</title>
+<link href="https://akaki.io/2023/url_spoofing_using_rtlo_in_messaging_apps" rel="alternate" />
+<id>tag:akaki.io,2023:entry://2023-01-23</id>
+<updated>2023-01-23T09:00:00Z</updated>
+<summary>A previous article indicated a URL spoofing vulnerability in Slack using link syntax. Subsequently, a URL spoofing vulnerability using a right-to-left override (RTLO or RLO) character was found in many popular messaging apps. This article explains how URL spoofing operates using RTLO. Moreover, it indicates the vulnerability found in a Japanese messaging app and corresponding mitigation measures.</summary>
+</entry>
+
+<entry>
+<title>Risk to Japanese-speaking World posed by SMS OTP Autofill in iOS</title>
+<link href="https://akaki.io/2022/risk_to_japanese-speaking_world_posed_by_sms_otp_autofill_in_ios" rel="alternate" />
+<id>tag:akaki.io,2023:entry://2022-11-14</id>
+<updated>2022-11-14T09:00:00Z</updated>
+<summary>iOS, which is a mobile operating system developed by Apple, includes a feature that allows users to autofill website forms with a one-time password (OTP) sent during short message service (SMS) authentication. This feature carries the risk of automatically entering OTPs, sent by legitimate services, to phishing websites, a risk that has already been proven for English-language web services. As indicated in my previous study, the risk may also extend to Japanese-language web services. In this study, the risk to major web services that send OTPs with Japanese-language SMS messages was studied. Consequently, the risk was demonstrated in 7 of the 10 websites studied. Furthermore, a mitigation measure was proposed for service providers.</summary>
+</entry>
+
+<entry>
+<title>Decision Procedure for Originating Phone Numbers in SMS</title>
+<link href="https://akaki.io/2022/decision_procedure_for_originating_phone_numbers_in_sms" rel="alternate" />
+<id>tag:akaki.io,2023:entry://2022-07-18</id>
+<updated>2022-07-18T09:00:00Z</updated>
+<summary>As indicated in a previous article, submit_sm, a SMPP protocol, has a field for loading the originating phone number. However, another previous article indicated that SMS-SUBMIT, a protocol defined by 3GPP, has no such field. How does a SMSC determine originating phone numbers when transferring a short message within the mobile network? This article reveals the answer to this question by observing the SMS transfer flow in a virtual private mobile network.</summary>
+</entry>
+
+<entry>
+<title>Analysis and Reproduction of Spoofed SMS-DELIVER</title>
+<link href="https://akaki.io/2022/decision_procedure_for_originating_phone_numbers_in_sms" rel="alternate" />
+<id>tag:akaki.io,2023:entry://2022-03-21</id>
+<updated>2022-03-21T09:00:00Z</updated>
+<summary>As past articles 1 (in Japanese) and 2 (in Japanese) have indicated, the originating display name (called the “sender ID”) of the SMS can be spoofed. However, when I reviewed the SMS technical specifications in a previous article, SMS-SUBMIT did not have a field to load the sender ID. How are the alphanumeric characters of the sender ID transferred? This study reveals the answer to this question by analyzing the spoofed SMS-DELIVER.</summary>
+</entry>
+
+<entry>
+<title>Transmission and Detection of Silent SMS in Android</title>
+<link href="https://akaki.io/2022/transmission_and_detection_of_silent_sms_in_android" rel="alternate" />
+<id>tag:akaki.io,2023:entry://2022-01-17</id>
+<updated>2022-01-17T09:00:00Z</updated>
+<summary>SMS technology is used for exchanging text messages and for purposes that include SIM management and IoT communication. The technical specifications of SMS technology allow for short messages that do not appear as notifications on the receiving device. These messages, known as “silent SMS,” have the potential to be exploited for covert attacks. How can we determine whether we are under a silent SMS attack? In this article, I first review the specifications of SMS technology and then send and detect silent SMS messages on an Android device.</summary>
+</entry>
+
+</feed>

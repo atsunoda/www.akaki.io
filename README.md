@@ -7,9 +7,6 @@ description: This site is maintained by Akaki Tsunoda on GitHub.
 This site is maintained by Akaki Tsunoda on GitHub.  
 [https://github.com/atsunoda/www.akaki.io](https://github.com/atsunoda/www.akaki.io)
 
-Content updates will be announced on Twitter.  
-[https://twitter.com/akakitsunoda](https://twitter.com/akakitsunoda)
-
 ### 2023
 
 * [Investigating Threats Posed by SMS Origin Spoofing to IoT Devices - arXiv](https://arxiv.org/abs/2310.11052)

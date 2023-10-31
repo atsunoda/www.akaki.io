@@ -29,6 +29,7 @@
         {% if page.next and page.next.path %}<link rel="next" href="{{ page.next.path|resolveFile }}" />{% endif %}
         {% if page.previous and page.previous.path %}<link rel="prev" href="{{ page.previous.path|resolveFile }}" />{% endif %}
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3" />
+        <link rel="alternate" type="application/atom+xml" title="Akaki I/O" href="/atom.xml" />
     </head>
     <body>
         {% block body %}{% endblock %}

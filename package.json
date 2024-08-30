@@ -17,6 +17,8 @@
   "devDependencies": {
     "honkit": "5.1.1",
     "gitbook-plugin-chapter-fold": "0.0.4",
+    "gitbook-plugin-fontsettings": "2.0.0",
+    "@honkit/honkit-plugin-theme-default": "5.1.1",
     "patch-package": "6.4.7"
   },
   "scripts": {

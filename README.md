@@ -10,7 +10,7 @@ This site is maintained by Akaki Tsunoda on GitHub.
 ### 2023
 
 * [Investigating Threats Posed by SMS Origin Spoofing to IoT Devices - arXiv](https://arxiv.org/abs/2310.11052)
-* [Demonstrating Spoofability of an Originating Number when sending an SMS using SMPP - ACM](https://dl.acm.org/doi/10.1145/3615667)
+* [Demonstrating Spoofability of an Originating Number when Sending an SMS using SMPP - ACM](https://dl.acm.org/doi/10.1145/3615667)
 * [Decision Procedure for Originating Numbers in SMS over IMS](2023/decision_procedure_for_originating_numbers_in_sms_over_ims.md)
 * [URL Spoofing Using RTLO in Messaging Apps](2023/url_spoofing_using_rtlo_in_messaging_apps.md)
 

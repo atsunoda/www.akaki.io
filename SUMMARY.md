@@ -4,6 +4,8 @@
 
 ---
 
+* 2024
+  * [Investigating Threats Posed by SMS Origin Spoofing to IoT Devices - ACM](https://dl.acm.org/doi/10.1145/3696011)
 * 2023
   * [Investigating Threats Posed by SMS Origin Spoofing to IoT Devices - arXiv](https://arxiv.org/abs/2310.11052)
   * [Demonstrating Spoofability of an Originating Number when Sending an SMS using SMPP - ACM](https://dl.acm.org/doi/10.1145/3615667)

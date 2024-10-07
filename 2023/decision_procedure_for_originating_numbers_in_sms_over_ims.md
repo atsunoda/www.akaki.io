@@ -1,5 +1,5 @@
 ---
-description: A previous article clarified the decision procedure for originating numbers in SMS via a Mobile Switching Center (MSC). An MSC is a 2G circuit-switched network node, whereas modern 4G and 5G networks can provide SMS over IP Multimedia Subsystem (IMS) connected to a packet-switched network. By reviewing the technical specifications and analyzing packets captured in a private mobile network, this article clarifies the answer to how Short Message Service Centers (SMSCs) determine the originating number in SMS over IMS.
+description: A previous article clarified the decision procedure for originating numbers in SMS via a Mobile Switching Centre (MSC). An MSC is a 2G circuit-switched network node, whereas modern 4G and 5G networks can provide SMS over IP Multimedia Subsystem (IMS) connected to a packet-switched network. By reviewing the technical specifications and analyzing packets captured in a private mobile network, this article clarifies the answer to how Short Message Service Centers (SMSCs) determine the originating number in SMS over IMS.
 ---
 
 # Decision Procedure for Originating Numbers in SMS over IMS
@@ -8,7 +8,7 @@ description: A previous article clarified the decision procedure for originating
 
 ---
 
-A previous [article](/2022/decision_procedure_for_originating_phone_numbers_in_sms.md) clarified the decision procedure for originating numbers in SMS via a Mobile Switching Center (MSC). An MSC is a 2G circuit-switched network node, whereas modern 4G and 5G networks can provide SMS over IP Multimedia Subsystem (IMS) connected to a packet-switched network. By reviewing the technical specifications and analyzing packets captured in a private mobile network, this article clarifies the answer to how Short Message Service Centers (SMSCs) determine the originating number in SMS over IMS.
+A previous [article](/2022/decision_procedure_for_originating_phone_numbers_in_sms.md) clarified the decision procedure for originating numbers in SMS via a Mobile Switching Centre (MSC). An MSC is a 2G circuit-switched network node, whereas modern 4G and 5G networks can provide SMS over IP Multimedia Subsystem (IMS) connected to a packet-switched network. By reviewing the technical specifications and analyzing packets captured in a private mobile network, this article clarifies the answer to how Short Message Service Centers (SMSCs) determine the originating number in SMS over IMS.
 
 ## Summary
 
@@ -30,7 +30,7 @@ The IP-SM-GW is an application server (AS) that supports interworking with tradi
 <img src="/assets/2023/decision_procedure_for_originating_numbers_in_sms_over_ims/28_figure2.webp" width="770" height="365" decoding="async" alt="">
 <p class="modest" align="center">Figure 2: Sequence diagram of short message submission in SMS over IMS.</p>
 
-IP-SM-GW identifies the sender based on the public user identity contained in the MESSAGE request. To identify subscribers to an IMS, mobile network operators assign a private user identity and one or more public user identities to each subscriber. Public user identities are primarily used as contact information, whereas private user identities are used for subscriber identification and authentication. Therefore, a private user identity performs a similar function in the IMS as an IMSI (International Mobile Subscriber Identifier), and a public user identity performs a similar function in the IMS as an MSISDN (Mobile Subscriber ISDN Number)<sup id="f4">[⁴](#fn4)</sup>. Private user identities are in the form of a Network Access Identifier (NAI), whereas public user identities are in the form of a SIP URI or TEL URI. IP-SM-GW can identify the sender based on these values stored in the UE’s Subscriber Identity Module (SIM) and the operator’s HSS.
+IP-SM-GW identifies the sender based on the public user identity contained in the MESSAGE request. To identify subscribers to an IMS, mobile network operators assign a private user identity and one or more public user identities to each subscriber. Public user identities are primarily used as contact information, whereas private user identities are used for subscriber identification and authentication. Therefore, a private user identity performs a similar function in the IMS as an IMSI (International Mobile Subscriber Identity), and a public user identity performs a similar function in the IMS as an MSISDN (Mobile Subscriber ISDN Number)<sup id="f4">[⁴](#fn4)</sup>. Private user identities are in the form of a Network Access Identifier (NAI), whereas public user identities are in the form of a SIP URI or TEL URI. IP-SM-GW can identify the sender based on these values stored in the UE’s Subscriber Identity Module (SIM) and the operator’s HSS.
 
 The originating number of short messages is submitted by the header fields of the MESSAGE request. Section 5.3.1.2 of 3GPP TS 24.341 specifies that the sender shall send a MESSAGE request with the following information:
 
@@ -163,7 +163,7 @@ Upon receiving the MESSAGE request, the S-CSCF forwards it to the SMSC with head
 <img src="/assets/2023/decision_procedure_for_originating_numbers_in_sms_over_ims/28_figure20.webp" width="770" height="497" decoding="async" alt="">
 <p class="modest" align="center">Figure 20: Packet details of the MESSAGE request submitted to the SMSC.</p>
 
-The SMSC determines the originating number of the short message through a process and loads it into the SMS-DERIVER. Figure 21 shows the SIP packets when the SMSC delivered a short message from UE1 to UE2, and Figure 22 shows the sequences. In addition, Figure 23 shows the MESSAGE request in Step 1 of Figure 22. At request, the SMS-DERIVER is loaded into the message body. The TP-Originating-Address (TP-OA) field of the SMS-DERIVER is loaded with UE1’s phone number `818001234567`, the originating number. To clarify how the value of the TP-OA field is determined, the SMSC process is to be reviewed.
+The SMSC determines the originating number of the short message through a process and loads it into the SMS-DELIVER. Figure 21 shows the SIP packets when the SMSC delivered a short message from UE1 to UE2, and Figure 22 shows the sequences. In addition, Figure 23 shows the MESSAGE request in Step 1 of Figure 22. At request, the SMS-DELIVER is loaded into the message body. The TP-Originating-Address (TP-OA) field of the SMS-DELIVER is loaded with UE1’s phone number `818001234567`, the originating number. To clarify how the value of the TP-OA field is determined, the SMSC process is to be reviewed.
 
 <img src="/assets/2023/decision_procedure_for_originating_numbers_in_sms_over_ims/28_figure21.webp" width="770" height="154" decoding="async" alt="">
 <p class="modest" align="center">Figure 21: Packets captured when the SMSC delivers the short message.</p>
@@ -176,7 +176,7 @@ The SMSC determines the originating number of the short message through a proces
 
 ### Decision Process at SMSC
 
-The SMSC temporarily stores the submitted short message in its database and constructs the delivered message based on this data. Figure 24 shows the message temporarily stored in the SMSC database upon receiving SMS-SUBMIT from UE1. It can be seen that UE1’s phone number `818001234567`, the originator, is stored in the `caller` column and UE2’s phone number `819001234567`, the destination, is stored in the `callee`. The SMSC loads the value in the `caller` column into the TP-OA field in the SMS-DERIVER.
+The SMSC temporarily stores the submitted short message in its database and constructs the delivered message based on this data. Figure 24 shows the message temporarily stored in the SMSC database upon receiving SMS-SUBMIT from UE1. It can be seen that UE1’s phone number `818001234567`, the originator, is stored in the `caller` column and UE2’s phone number `819001234567`, the destination, is stored in the `callee`. The SMSC loads the value in the `caller` column into the TP-OA field in the SMS-DELIVER.
 
 <p align="center"><img src="/assets/2023/decision_procedure_for_originating_numbers_in_sms_over_ims/28_figure24.webp" width="600" height="122" decoding="async" alt=""></p>
 <p class="modest" align="center">Figure 24: Short message stored in the SMSC database.</p>
@@ -196,7 +196,7 @@ sql_query("sms", "
 
 ## Conclusion and Future Work
 
-The originating numbers in SMS over IMS are determined based on the P-Asserted-Identity header of the SIP MESSAGE request encapsulating SMS-SUBMIT. By extracting the originating number from the public user identity specified in this header, SMSCs can load it into the TP-OA field of the SMS-DERIVER. However, the answer in this article is derived from testing Kamailio’s SMSC on a private mobile network. The 3GPP technical specifications do not strictly define the decision process for the originating numbers in SMSCs. Therefore, this ultimate decision is left to SMSC implementation. Future work is expected to test other SMSC software and mobile networks. Moreover, the decision procedure for originating numbers in Rich Communication Services (RCS), which also uses IMS, needs to be clarified.
+The originating numbers in SMS over IMS are determined based on the P-Asserted-Identity header of the SIP MESSAGE request encapsulating SMS-SUBMIT. By extracting the originating number from the public user identity specified in this header, SMSCs can load it into the TP-OA field of the SMS-DELIVER. However, the answer in this article is derived from testing Kamailio’s SMSC on a private mobile network. The 3GPP technical specifications do not strictly define the decision process for the originating numbers in SMSCs. Therefore, this ultimate decision is left to SMSC implementation. Future work is expected to test other SMSC software and mobile networks. Moreover, the decision procedure for originating numbers in Rich Communication Services (RCS), which also uses IMS, needs to be clarified.
 
 ---
 

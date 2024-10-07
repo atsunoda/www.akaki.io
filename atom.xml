@@ -36,7 +36,7 @@
 <link href="https://akaki.io/2023/decision_procedure_for_originating_numbers_in_sms_over_ims" rel="alternate" />
 <id>tag:akaki.io:entry://2023-03-27</id>
 <updated>2023-03-27T09:00:00Z</updated>
-<summary>A previous article clarified the decision procedure for originating numbers in SMS via a Mobile Switching Center (MSC). An MSC is a 2G circuit-switched network node, whereas modern 4G and 5G networks can provide SMS over IP Multimedia Subsystem (IMS) connected to a packet-switched network. By reviewing the technical specifications and analyzing packets captured in a private mobile network, this article clarifies the answer to how Short Message Service Centers (SMSCs) determine the originating number in SMS over IMS.</summary>
+<summary>A previous article clarified the decision procedure for originating numbers in SMS via a Mobile Switching Centre (MSC). An MSC is a 2G circuit-switched network node, whereas modern 4G and 5G networks can provide SMS over IP Multimedia Subsystem (IMS) connected to a packet-switched network. By reviewing the technical specifications and analyzing packets captured in a private mobile network, this article clarifies the answer to how Short Message Service Centers (SMSCs) determine the originating number in SMS over IMS.</summary>
 </entry>
 
 <entry>

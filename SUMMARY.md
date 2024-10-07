@@ -5,6 +5,7 @@
 ---
 
 * 2024
+  * [Decision Procedure for Originating Numbers in SMS over NAS](2024/decision_procedure_for_originating_numbers_in_sms_over_nas.md)
   * [Investigating Threats Posed by SMS Origin Spoofing to IoT Devices - ACM](https://dl.acm.org/doi/10.1145/3696011)
 * 2023
   * [Investigating Threats Posed by SMS Origin Spoofing to IoT Devices - arXiv](https://arxiv.org/abs/2310.11052)

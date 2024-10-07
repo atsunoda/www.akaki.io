@@ -8,6 +8,14 @@
 <updated>2023-11-01T00:00:00Z</updated>
 
 <entry>
+<title>Decision Procedure for Originating Numbers in SMS over NAS</title>
+<link href="https://akaki.io/2024/decision_procedure_for_originating_numbers_in_sms_over_nas" rel="alternate" />
+<id>tag:akaki.io:entry://2024-10-07</id>
+<updated>2024-10-07T09:00:00Z</updated>
+<summary>Previous articles 1 and 2 clarified the decision procedure for originating numbers in short message service (SMS) via the Mobile Switching Centre (MSC) and over the IP Multimedia Subsystem (IMS). However, SMS in 5G mobile networks may also be provided over the Non-Access Stratum (NAS) protocol. By analyzing packets and logs generated when sending and receiving a short message in a private 5G mobile network, this article clarifies how originating numbers are determined in SMS over NAS.</summary>
+</entry>
+
+<entry>
 <title>Investigating Threats Posed by SMS Origin Spoofing to IoT Devices - ACM</title>
 <link href="https://dl.acm.org/doi/10.1145/3696011" rel="alternate" />
 <id>tag:akaki.io:entry://2024-09-13</id>

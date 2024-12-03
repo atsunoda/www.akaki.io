@@ -9,6 +9,7 @@ This site is maintained by Akaki Tsunoda on GitHub.
 
 ### 2024
 
+* [Availability of SMS over NAS on Commercial Mobile Networks in Japan](2024/availability_of_sms_over_nas_on_commercial_mobile_networks_in_japan.md)
 * [Decision Procedure for Originating Numbers in SMS over NAS](2024/decision_procedure_for_originating_numbers_in_sms_over_nas.md)
 * [Investigating Threats Posed by SMS Origin Spoofing to IoT Devices - ACM](https://dl.acm.org/doi/10.1145/3696011)
 

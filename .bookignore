@@ -1,6 +1,5 @@
 .bookignore
 .gitignore
 package.json
-package-lock.json
 patches
 assets/2023/decision_procedure_for_originating_numbers_in_sms_over_ims/28_figure7.mp4

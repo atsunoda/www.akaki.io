@@ -21,6 +21,9 @@
     "@honkit/honkit-plugin-theme-default": "5.1.1",
     "patch-package": "6.4.7"
   },
+  "overrides": {
+    "cheerio": "1.0.0-rc.12"
+  },
   "scripts": {
     "prebuild": "patch-package",
     "build": "honkit build"

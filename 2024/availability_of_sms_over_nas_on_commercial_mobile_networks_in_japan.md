@@ -59,10 +59,16 @@ When sending short messages from the modem embedded in the Android device using 
 <img src="/assets/2024/availability_of_sms_over_nas_on_commercial_mobile_networks_in_japan/30_figure6.webp" width="770" height="648" decoding="async" alt="" />
 <p class="modest" align="center">Figure 6: SMS PDU sent using AT commands.</p>
 
-However, when attempting to send short messages using AT commands on the KDDI network, the attempt failed. Figure 7 shows the results of running AT commands. Although the attempt was made to send a short message using the `AT+CMGS` command, a `+CMS ERROR: 500` was returned. Since the packets captured at this time do not contain an SMS PDU, it is clear that no message was sent from the modem. The `AT+CREG?` command, which retrieves the registration status of a Circuit Switched (CS) network, returned `+CREG: 0,3`, indicating that registration is denied<sup id="f3">[³](#fn3)</sup>. SMS over NAS in 5G NSA uses a CS network, and the inability to register with it was likely the cause of the error. Based on these results, the use of SMS over NAS on the KDDI network could not be confirmed.
+However, when attempting to send short messages using AT commands on the KDDI network, a `+CMS ERROR: 500` was returned. Since the packets captured at this time do not contain an SMS PDU, it is clear that no message was sent from the modem. According to 3GPP TS 24.301, which defines the NAS specification for the Evolved Packet System (EPS), the use of SMS in the EPS requires the user equipment to set `SMS only` in the `Additional update type` element of the Attach request, and the core network to set `SMS only` in the `Additional update result` element of the Attach accept<sup id="f3">[³](#fn3)</sup>. As shown in Figure 7, `SMS only` was set in the Attach request when connecting to all MNO networks. Furthermore, `SMS only` was also set in the Attach accept from the NTT Docomo, SoftBank, and Rakuten networks, as shown in Figure 8. In contrast, the Attach accept from the KDDI network did not have the `Additional update result` element as shown in Figure 9. Therefore, it can be concluded that the error occurred because KDDI’s EPS does not provide SMS. Based on these results, the use of SMS over NAS on the KDDI network could not be confirmed.
 
-<img src="/assets/2024/availability_of_sms_over_nas_on_commercial_mobile_networks_in_japan/30_figure7.webp" width="770" height="159" decoding="async" alt="" />
-<p class="modest" align="center">Figure 7: Error when attempting to send using AT commands.</p>
+<img src="/assets/2024/availability_of_sms_over_nas_on_commercial_mobile_networks_in_japan/30_figure7.webp" width="770" height="504" decoding="async" alt="" />
+<p class="modest" align="center">Figure 7: Attach request to the NTT Docomo network.</p>
+
+<img src="/assets/2024/availability_of_sms_over_nas_on_commercial_mobile_networks_in_japan/30_figure8.webp" width="770" height="431" decoding="async" alt="" />
+<p class="modest" align="center">Figure 8: Attach accept from the NTT Docomo network.</p>
+
+<img src="/assets/2024/availability_of_sms_over_nas_on_commercial_mobile_networks_in_japan/30_figure9.webp" width="770" height="358" decoding="async" alt="" />
+<p class="modest" align="center">Figure 9: Attach accept from the KDDI network.</p>
 
 ## Conclusion and Future Work
 
@@ -72,4 +78,4 @@ Test results show that the availability of SMS over NAS depends on the MNO’s n
 
 <sup id="fn1">[¹](#f1)</sup> [fgsect/scat: SCAT: Signaling Collection and Analysis Tool - GitHub](https://github.com/fgsect/scat)  
 <sup id="fn2">[²](#f2)</sup> [11.4.2. User Specified Decodes - Wireshark User’s Guide](https://www.wireshark.org/docs/wsug_html_chunked/ChCustProtocolDissectionSection.html#ChAdvDecodeAs)  
-<sup id="fn3">[³](#f3)</sup> [AT+CGREG – AT command for GPRS Registration Status - Onomondo](https://onomondo.com/blog/at-command-cgreg/#creg-vs-cgreg-vs-cereg)
+<sup id="fn3">[³](#f3)</sup> [3GPP TS 24.301, Non-Access-Stratum (NAS) protocol for Evolved Packet System (EPS); Stage 3](https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=1072)

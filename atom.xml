@@ -8,6 +8,14 @@
 <updated>2023-11-01T00:00:00Z</updated>
 
 <entry>
+<title>Sending Arbitrary SMS over NAS Messages with an Extended srsUE</title>
+<link href="https://akaki.io/2025/sending_arbitrary_sms_over_nas_messages_with_an_extended_srsue" rel="alternate" />
+<id>tag:akaki.io:entry://2025-01-28</id>
+<updated>2025-01-28T09:00:00Z</updated>
+<summary>Previous articles 1 and 2 demonstrated short message service (SMS) over Non-Access Stratum (NAS) in private and commercial mobile networks. In these demonstrations, messages were sent according to the specifications of the operating system (OS) and modem of mobile devices. To investigate the actual behavior of SMS over NAS in more detail, it is necessary to have the capability to send messages that are not constrained by device vendors’ specifications. Therefore, this article extends the capability of srsUE to send arbitrary SMS over NAS messages.</summary>
+</entry>
+
+<entry>
 <title>Availability of SMS over NAS on Commercial Mobile Networks in Japan</title>
 <link href="https://akaki.io/2024/availability_of_sms_over_nas_on_commercial_mobile_networks_in_japan" rel="alternate" />
 <id>tag:akaki.io:entry://2024-12-03</id>

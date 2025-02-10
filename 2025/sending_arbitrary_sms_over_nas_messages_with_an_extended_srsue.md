@@ -12,7 +12,7 @@ Previous articles [1](/2024/decision_procedure_for_originating_numbers_in_sms_ov
 
 ## Summary
 
-By extending the open-source implementation of srsUE, SMS over NAS messages can be sent on 5G mobile networks. As srsUE supports connections to both 4G and 5G networks, it can transfer data at the NAS layer. To send SMS over NAS messages, part of the connection process to the core network (CN) in srsUE has been modified and a function for sending messages has been added after the registration procedure. A message sent from this function was successfully received by an SMS client app on an Android device, as demonstrated in a private 5G mobile network. The extended srsUE can be checked out from GitHub: https://github.com/atsunoda/srsRAN_4G/tree/send-sms
+By extending the open-source implementation of srsUE, SMS over NAS messages can be sent on 5G mobile networks. As srsUE supports connections to both 4G and 5G networks, it can transfer data at the NAS layer. To send SMS over NAS messages, part of the connection process to the core network (CN) in srsUE has been modified and a function for sending messages has been added after the registration procedure. A message sent from this function was successfully received by an SMS client app on an Android device, as demonstrated in a private 5G mobile network. The extended srsUE can be checked out from GitHub: https://github.com/atsunoda/srsRAN_4G/tree/smsue
 
 ## Necessity and Limitation of SMS Sending Capability
 

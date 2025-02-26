@@ -10,9 +10,14 @@ description: Previous articles 1 and 2 demonstrated short message service (SMS) 
 
 Previous articles [1](/2024/decision_procedure_for_originating_numbers_in_sms_over_nas.md) and [2](/2024/availability_of_sms_over_nas_on_commercial_mobile_networks_in_japan.md) demonstrated short message service (SMS) over Non-Access Stratum (NAS) in private and commercial mobile networks. In these demonstrations, messages were sent according to the specifications of the operating system (OS) and modem of mobile devices. To investigate the actual behavior of SMS over NAS in more detail, it is necessary to have the capability to send messages that are not constrained by device vendors’ specifications. Therefore, this article extends the capability of srsUE to send arbitrary SMS over NAS messages.
 
+<blockquote style="border-left-color: #1f6feb; color: inherit;">
+<p style="color: #1f6feb;"><i class="fa fa-info-circle" style="margin-right: 10px;"></i><b>Note</b></p>
+The extended srsUE, which supports SMS sending as well as receiving and various sending options, can be checked out from GitHub as “smsUE”: <a href="https://github.com/atsunoda/smsUE" target="_blank">https://github.com/atsunoda/smsUE</a>
+</blockquote>
+
 ## Summary
 
-By extending the open-source implementation of srsUE, SMS over NAS messages can be sent on 5G mobile networks. As srsUE supports connections to both 4G and 5G networks, it can transfer data at the NAS layer. To send SMS over NAS messages, part of the connection process to the core network (CN) in srsUE has been modified and a function for sending messages has been added after the registration procedure. A message sent from this function was successfully received by an SMS client app on an Android device, as demonstrated in a private 5G mobile network. The extended srsUE can be checked out from GitHub: https://github.com/atsunoda/smsUE
+By extending the open-source implementation of srsUE, SMS over NAS messages can be sent on 5G mobile networks. As srsUE supports connections to both 4G and 5G networks, it can transfer data at the NAS layer. To send SMS over NAS messages, part of the connection process to the core network (CN) in srsUE has been modified and a function for sending messages has been added after the registration procedure. A message sent from this function was successfully received by an SMS client app on an Android device, as demonstrated in a private 5G mobile network.
 
 ## Necessity and Limitation of SMS Sending Capability
 
@@ -32,7 +37,7 @@ The srsUE has been extended to send SMS over NAS messages after completing the r
 <img src="/assets/2025/sending_arbitrary_sms_over_nas_messages_with_an_extended_srsue/31_figure2.webp" width="770" height="410" decoding="async" alt="">
 <p class="modest" align="center">Figure 2: Sequence of the extended srsUE connection process.</p>
 
-Before sending SMS, the UE must request and be allowed to use SMS from the CN in the registration procedure. According to 3GPP TS 24.501<sup id="f5">[⁵](#fn5)</sup>, which defines the NAS specification for the 5G System (5GS), in order to use SMS in the 5GS, the UE must set `SMS over NAS supported` in the `5GS update type` element of the Registration Request message, and the AMF must set `SMS over NAS allowed` in the `5GS registration result` element of the Registration Accept message. Since the srsUE sets `SMS over NAS not supported` in the `5GS update type` element within the `send_security_mode_complete()` function in `nas_5g.cc`, it has been changed to `SMS over NAS supported` as shown in Figure 3.
+Before sending SMS, the UE must request and be allowed to use SMS from the CN in the registration procedure. According to 3GPP TS 24.501<sup id="f5">[⁵](#fn5)</sup>, which defines the NAS specification for the 5G System (5GS), in order to use SMS in the 5GS, the UE must set `SMS over NAS supported` in the `5GS update type` element of the Registration Request message, and the AMF must set `SMS over NAS allowed` in the `5GS registration result` element of the Registration Accept message. Since the srsUE sets `SMS over NAS not supported` in the `5GS update type` element within the `send_security_mode_complete()` function in [`nas_5g.cc`](https://github.com/atsunoda/smsUE/blob/748a71ad77f38bef7d53f7f3e4e66fabcc2f589a/srsue/src/stack/upper/nas_5g.cc#L496), it has been changed to `SMS over NAS supported` as shown in Figure 3.
 
 ```diff
 modified_registration_request.update_type_5gs.sms_requested.value =
@@ -41,7 +46,7 @@ modified_registration_request.update_type_5gs.sms_requested.value =
 ```
 <p class="modest" align="center">Figure 3: 5G update type changed to support SMS over NAS.</p>
 
-The SMS sending process has been added to run after the registration procedure is complete. When the srsUE receives the Registration Accept message from the AMF, it executes the `handle_registration_accept()` function in `nas_5g.cc`. At the end of this function, it calls the `send_registration_complete()` function to send the Registration Complete message, and then calls the `trigger_pdu_session_est()` function to initiate the establishment of the PDU session. The `send_sms_over_nas_message()` function, which executes the SMS sending process, has been added to be called after the `send_registration_complete()` function is executed, as shown in Figure 4.
+The SMS sending process has been added to run after the registration procedure is complete. When the srsUE receives the Registration Accept message from the AMF, it executes the `handle_registration_accept()` function in [`nas_5g.cc`](https://github.com/atsunoda/smsUE/blob/748a71ad77f38bef7d53f7f3e4e66fabcc2f589a/srsue/src/stack/upper/nas_5g.cc#L869). At the end of this function, it calls the `send_registration_complete()` function to send the Registration Complete message, and then calls the `trigger_pdu_session_est()` function to initiate the establishment of the PDU session. The `send_sms_over_nas_message()` function, which executes the SMS sending process, has been added to be called after the `send_registration_complete()` function is executed, as shown in Figure 4.
 
 ```diff
 int nas_5g::handle_registration_accept(registration_accept_t& registration_accept)
@@ -58,7 +63,7 @@ int nas_5g::handle_registration_accept(registration_accept_t& registration_accep
 ```
 <p class="modest" align="center">Figure 4: Added SMS sending function call.</p>
 
-The `send_sms_over_nas_message()` function, which executes the SMS sending process, has been added to `nas_5g.cc`. Figure 5 shows the code for this function. In the case of SMS over NAS, since an SMS PDU is encapsulated in the payload of an Uplink NAS transport message, the `payload_container_type` is set to `sms`. The SMS PDU to be sent is loaded into the `payload_container_contents`. The byte sequence in Figure 5 corresponds to the SMS PDU shown in Figure 13 of the previous [article](/2024/decision_procedure_for_originating_numbers_in_sms_over_nas.md). The constructed Uplink NAS transport message is finally passed to the RRC layer as a Service Data Unit (SDU) and transmitted over the air.
+The `send_sms_over_nas_message()` function, which executes the SMS sending process, has been added to [`nas_5g.cc`](https://github.com/atsunoda/smsUE/blob/748a71ad77f38bef7d53f7f3e4e66fabcc2f589a/srsue/src/stack/upper/nas_5g.cc#L356-L400). Figure 5 shows the code for this function. In the case of SMS over NAS, since an SMS PDU is encapsulated in the payload of an Uplink NAS transport message, the `payload_container_type` is set to `sms`. The SMS PDU to be sent is loaded into the `payload_container_contents`. The byte sequence in Figure 5 corresponds to the SMS PDU shown in Figure 13 of the previous [article](/2024/decision_procedure_for_originating_numbers_in_sms_over_nas.md). The constructed Uplink NAS transport message is finally passed to the RRC layer as a Service Data Unit (SDU) and transmitted over the air.
 
 ```cpp
 int nas_5g::send_sms_over_nas_message()
@@ -145,7 +150,7 @@ By extending the open-source implementation of srsUE, the SMS sending capability
 
 <sup id="fn1">[¹](#f1)</sup> [3GPP TS 38.300, NR; NR and NG-RAN Overall description; Stage-2](https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=3191)  
 <sup id="fn2">[²](#f2)</sup> [Tobias Kröll. 2021. ARIstoteles: iOS Baseband Interface Protocol Analysis](https://doi.org/10.26083/tuprints-00019397)  
-<sup id="fn3">[³](#f3)</sup> [Bruns, Carsten. 2021. Modification of LTE Firmwares on Smartphones](https://doi.org/10.26083/tuprints-00017397)  
+<sup id="fn3">[³](#f3)</sup> [Carsten Bruns. 2021. Modification of LTE Firmwares on Smartphones](https://doi.org/10.26083/tuprints-00017397)  
 <sup id="fn4">[⁴](#f4)</sup> [UE User Manual - srsRAN 4G 23.11 documentation](https://docs.srsran.com/projects/4g/en/latest/usermanuals/source/srsue/source/index.html)  
 <sup id="fn5">[⁵](#f5)</sup> [3GPP TS 24.501, Non-Access-Stratum (NAS) protocol for 5G System (5GS); Stage 3](https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=3370)  
 <sup id="fn6">[⁶](#f6)</sup> [USRP B205mini-i - Ettus Research, a National Instruments Brand](https://www.ettus.com/all-products/usrp-b205mini-i/)

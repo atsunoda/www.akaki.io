@@ -8,6 +8,14 @@
 <updated>2023-11-01T00:00:00Z</updated>
 
 <entry>
+<title>Reproducing SMS over NAS Spoofing in a Private 5G Mobile Network</title>
+<link href="https://akaki.io/2025/reproducing_sms_over_nas_spoofing_in_a_private_5g_mobile_network" rel="alternate" />
+<id>tag:akaki.io:entry://2025-02-27</id>
+<updated>2025-02-27T09:00:00Z</updated>
+<summary>I recently wrote articles 1, 2, and 3, which focused on short message service (SMS) over Non-Access Stratum (NAS). A previous study has shown that SMS over NAS can be exploited for origin spoofing in Long Term Evolution (LTE) networks. Does the same spoofability exist in 5G mobile networks? In this article, I experimentally reproduce SMS over NAS spoofing in a private 5G mobile network based on the methods presented in the previous study.</summary>
+</entry>
+
+<entry>
 <title>Sending Arbitrary SMS over NAS Messages with an Extended srsUE</title>
 <link href="https://akaki.io/2025/sending_arbitrary_sms_over_nas_messages_with_an_extended_srsue" rel="alternate" />
 <id>tag:akaki.io:entry://2025-01-28</id>

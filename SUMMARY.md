@@ -5,6 +5,7 @@
 ---
 
 * 2025
+  * [Reproducing SMS over NAS Spoofing in a Private 5G Mobile Network](2025/reproducing_sms_over_nas_spoofing_in_a_private_5g_mobile_network.md)
   * [Sending Arbitrary SMS over NAS Messages with an Extended srsUE](2025/sending_arbitrary_sms_over_nas_messages_with_an_extended_srsue.md)
 * 2024
   * [Availability of SMS over NAS on Commercial Mobile Networks in Japan](2024/availability_of_sms_over_nas_on_commercial_mobile_networks_in_japan.md)

@@ -98,7 +98,7 @@ However, the Uplink NAS transport with an invalid MAC was rejected by the AMF du
 
 ## Demonstration of SMS over NAS Spoofing
 
-To reproduce SMS over NAS spoofing, MAC verification was removed from the AMF. In Open5GS, the AMF checks the validity of the MAC in received NAS messages using the `nas_5gs_security_decode()` function in [`/src/amf/nas-security.c`](https://github.com/open5gs/open5gs/blob/6a2225bb680cd36cee8ea65ee8d4483c7988982a/src/amf/nas-security.c#L118). To prevent the AMF from verifying the MAC of received NAS messages, the MAC verification code was removed, as shown in Figure 13. As a result of this code modification, the `mac_failed` flag shown in Figure 12 is no longer set, allowing NAS messages with an invalid MAC to be accepted by the AMF. This condition reproduces the vulnerable MME demonstrated in the previous study when SMS spoofing was successful.
+To reproduce SMS over NAS spoofing, MAC verification was removed from the AMF. In Open5GS, the AMF checks the validity of the MAC in received NAS messages using the `nas_5gs_security_decode()` function in [`/src/amf/nas-security.c`](https://github.com/open5gs/open5gs/blob/6a2225bb680cd36cee8ea65ee8d4483c7988982a/src/amf/nas-security.c#L169-L173). To prevent the AMF from verifying the MAC of received NAS messages, the MAC verification code was removed, as shown in Figure 13. As a result of this code modification, the `mac_failed` flag shown in Figure 12 is no longer set, allowing NAS messages with an invalid MAC to be accepted by the AMF. This condition reproduces the vulnerable MME demonstrated in the previous study when SMS spoofing was successful.
 
 ```diff
         if (security_header_type.integrity_protected) {

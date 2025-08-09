@@ -63,7 +63,7 @@ imgタグのsrc属性にはBasic認証を設定したページのURLが挿入さ
 
 401インジェクションは[Twitterで認定された事例もある](https://hackerone.com/reports/221328)が、著名なバグハンターである[@EdOverflow](https://twitter.com/edoverflow)氏が公開する[セキュリティポリシー](https://github.com/EdOverflow/hackerone-security-policy/blob/master/POLICY.md)では「通常許容されるリスク」として認定外になっている。必ずしも認定される脆弱性ではないが、imgタグが読み込んだリソースをブラウザが処理する際にセキュリティリスクが生じる可能性もあるため、外部リソースを指定できる場合は401インジェクションを挙げて報告する価値はある。
 
-今回発見した脆弱性は、制度に従いモナバコ公式Twitter（[@monabako](https://twitter.com/monabako)）へDMで報告した。軽微な脆弱性だったが変り種として認定してもらい、「Thank you」を意味すると思われる[39MONA](https://1manen.net/crypto.php?amount=39&currency=MONA)を頂いた<sup id="f1">[¹](#fn1)</sup>。認定の連絡から1時間もたたずに入金されたのには驚き、仮想通貨での報奨金支払いのメリットを実感した。
+今回発見した脆弱性は、制度に従いモナバコ公式Twitter（[@monabako](https://twitter.com/monabako)）へDMで報告した。軽微な脆弱性だったが変り種として認定してもらい、「Thank you」を意味すると思われる39MONAを頂いた<sup id="f1">[¹](#fn1)</sup>。認定の連絡から1時間もたたずに入金されたのには驚き、仮想通貨での報奨金支払いのメリットを実感した。
 
 ##### 時系列
 

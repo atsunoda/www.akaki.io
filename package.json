@@ -1,19 +1,4 @@
 {
-  "name": "www.akaki.io",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/atsunoda/www.akaki.io.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/atsunoda/www.akaki.io/issues"
-  },
-  "homepage": "https://github.com/atsunoda/www.akaki.io#readme",
   "dependencies": {
     "honkit": "6.0.0",
     "patch-package": "8.0.0"

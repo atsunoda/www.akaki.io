@@ -4,7 +4,7 @@ description: A previous article demonstrated short message service (SMS) over th
 
 # Availability of SMS over NAS on Commercial Mobile Networks in Japan
 
-<p class="modest" align="left">Dec 3, 2024</p>
+<time datetime="2024-12-03">Dec 3, 2024</time>
 
 ---
 
@@ -14,7 +14,7 @@ A previous [article](/2024/decision_procedure_for_originating_numbers_in_sms_ove
 
 The availability of SMS over NAS in Japan depends on the MNO, as shown in Table 1. Since IMS is enabled on Japanese MNOs’ mobile networks, when sending short messages from the default Messages app on Android, three of the four operators used SMS over IMS, while one used SMS over NAS. In contrast, when sending from the modem of the Android device using AT commands, even operators that used SMS over IMS also used SMS over NAS. The availability of SMS over NAS depends on the MNO’s network configuration and was confirmed to be available even when IMS is enabled.
 
-<p class="modest" align="center">Table 1: SMS transport methods used by Japanese MNOs.</p>
+<figure><figcaption>Table 1: SMS transport methods used by Japanese MNOs.</figcaption></figure>
 
 |                  | NTT Docomo   | KDDI         | SoftBank     | Rakuten      |
 | :--------------: | :----------: | :----------: | :----------: | :----------: |
@@ -27,28 +27,23 @@ To identify the SMS transport method, tests were conducted on the networks of fo
 
 The SMS packets were captured using SCAT, a tool that captures packets carried by radio signals based on diagnostic messages from Qualcomm and Samsung modems<sup id="f1">[¹](#fn1)</sup>. The Galaxy S24 (SM-S921Q) used in this test has a Qualcomm Snapdragon modem. Therefore, access to diagnostic messages was enabled by entering `*#0808#` in the Phone app and changing the USB setting to `RNDIS + DM + MODEM + ADB`. The Galaxy S24 was connected to a MacBook via USB, and SCAT was run to capture SMS packets, as shown in Figure 1.
 
-<img src="/assets/2024/availability_of_sms_over_nas_on_commercial_mobile_networks_in_japan/30_figure1.webp" width="770" height="158" decoding="async" alt="" />
-<p class="modest" align="center">Figure 1: Running SCAT to capture SMS packets.</p>
+<figure><img src="/assets/2024/availability_of_sms_over_nas_on_commercial_mobile_networks_in_japan/30_figure1.webp" width="770" height="158" decoding="async" alt="" /><figcaption>Figure 1: Running SCAT to capture SMS packets.</figcaption></figure>
 
 ## Sending SMS from the Messages App
 
 When sending short messages from the Messages app, SMS Protocol Data Units (PDUs) were encapsulated into SIP packets and transported on the NTT Docomo and KDDI networks. Figure 2 shows a SIP packet captured on the NTT Docomo network; the SMS-SUBMIT is loaded in the message body of the SIP packet. To detect the SIP packet in Wireshark, the User Datagram Protocol (UDP) must be decoded as Internet Protocol version 6 (IPv6)<sup id="f2">[²](#fn2)</sup>. This confirms that SMS over IMS is used.
 
-<img src="/assets/2024/availability_of_sms_over_nas_on_commercial_mobile_networks_in_japan/30_figure2.webp" width="770" height="563" decoding="async" alt="" />
-<p class="modest" align="center">Figure 2: SMS PDU encapsulated in the SIP packet.</p>
+<figure><img src="/assets/2024/availability_of_sms_over_nas_on_commercial_mobile_networks_in_japan/30_figure2.webp" width="770" height="563" decoding="async" alt="" /><figcaption>Figure 2: SMS PDU encapsulated in the SIP packet.</figcaption></figure>
 
 The Rakuten network also transported short messages using SMS over IMS. However, no SIP packets containing SMS PDUs were observed; instead, as shown in Figure 3, Encapsulating Security Payload (ESP) packets were captured when a short message was sent. This suggests that the SMS PDU is encrypted in one of these packets. Since decrypting ESP packets is beyond the scope of this test, the SMS transport method was identified using Android logs. Figure 4 shows the output from the `logcat` command when a short message was sent. These logs confirm that SMS over IMS is used.
 
-<img src="/assets/2024/availability_of_sms_over_nas_on_commercial_mobile_networks_in_japan/30_figure3.webp" width="770" height="235" decoding="async" alt="" />
-<p class="modest" align="center">Figure 3: ESP packets captured when a short message was sent.</p>
+<figure><img src="/assets/2024/availability_of_sms_over_nas_on_commercial_mobile_networks_in_japan/30_figure3.webp" width="770" height="235" decoding="async" alt="" /><figcaption>Figure 3: ESP packets captured when a short message was sent.</figcaption></figure>
 
-<img src="/assets/2024/availability_of_sms_over_nas_on_commercial_mobile_networks_in_japan/30_figure4.webp" width="770" height="188" decoding="async" alt="" />
-<p class="modest" align="center">Figure 4: Logs output when a short message was sent.</p>
+<figure><img src="/assets/2024/availability_of_sms_over_nas_on_commercial_mobile_networks_in_japan/30_figure4.webp" width="770" height="188" decoding="async" alt="" /><figcaption>Figure 4: Logs output when a short message was sent.</figcaption></figure>
 
 In contrast, the SoftBank network transported short messages using SMS over NAS. Figure 5 shows a NAS packet captured when a short message was sent; the SMS-SUBMIT is loaded in the message container of the NAS packet. As noted in the previous [article](/2023/decision_procedure_for_originating_numbers_in_sms_over_ims.md), the `+g.3gpp.smsip` parameter must be set in the SIP REGISTER request to use SMS over IMS. While the other three operators had this parameter set, SoftBank did not. Therefore, it can be concluded that SMS over NAS is used even when IMS is enabled.
 
-<img src="/assets/2024/availability_of_sms_over_nas_on_commercial_mobile_networks_in_japan/30_figure5.webp" width="770" height="575" decoding="async" alt="" />
-<p class="modest" align="center">Figure 5: SMS PDU encapsulated in the NAS packet.</p>
+<figure><img src="/assets/2024/availability_of_sms_over_nas_on_commercial_mobile_networks_in_japan/30_figure5.webp" width="770" height="575" decoding="async" alt="" /><figcaption>Figure 5: SMS PDU encapsulated in the NAS packet.</figcaption></figure>
 
 Operators other than SoftBank may also use SMS over NAS if they are not registered for IMS. Disabling IMS on an Android device results in deregistration. However, the Galaxy S24 lacks an option to manually disable IMS. As a workaround, the behavior of sending short messages were tested under the following condition: immediately after turning on airplane mode to deregister IMS and turning it off again, i.e., before IMS re-registration was completed. This test confirmed that SMS over NAS was used on the NTT Docomo network, whereas no evidence of its use was found on KDDI and Rakuten. Further analysis is required to clarify the factors influencing the Messages app’s selection of SMS transport methods.
 
@@ -56,19 +51,15 @@ Operators other than SoftBank may also use SMS over NAS if they are not register
 
 When sending short messages from the modem embedded in the Android device using AT commands, the messages were transported using SMS over NAS. AT commands are used to control modems and other devices through a serial interface. As noted in a previous [article](/2022/transmission_and_detection_of_silent_sms_in_android.md), short messages can be sent using AT commands. In this test, SMS over NAS was confirmed on the NTT Docomo, SoftBank, and Rakuten networks. Figure 6 shows a NAS packet captured on the Rakuten network. Since NAS packets are not encrypted by ESP, it can be confirmed using Wireshark that the packet contains the SMS PDU.
 
-<img src="/assets/2024/availability_of_sms_over_nas_on_commercial_mobile_networks_in_japan/30_figure6.webp" width="770" height="648" decoding="async" alt="" />
-<p class="modest" align="center">Figure 6: SMS PDU sent using AT commands.</p>
+<figure><img src="/assets/2024/availability_of_sms_over_nas_on_commercial_mobile_networks_in_japan/30_figure6.webp" width="770" height="648" decoding="async" alt="" /><figcaption>Figure 6: SMS PDU sent using AT commands.</figcaption></figure>
 
 However, when attempting to send a short message using the `AT+CMGS` command on the KDDI network, a `+CMS ERROR: 500` was returned. Since the packets captured at this time do not contain an SMS PDU, it is clear that no message was sent from the modem. According to 3GPP TS 24.301<sup id="f3">[³](#fn3)</sup>, which defines the NAS specification for the Evolved Packet System (EPS), in order to use SMS in the EPS, the user equipment must set `SMS only` in the `Additional update type` element of the Attach request, and the core network must set `SMS only` in the `Additional update result` element of the Attach accept. As shown in Figure 7, `SMS only` was set in the Attach request when connecting to all MNO networks. Furthermore, `SMS only` was also set in the Attach accept from the NTT Docomo, SoftBank, and Rakuten networks, as shown in Figure 8. In contrast, the Attach accept from the KDDI network did not have the `Additional update result` element as shown in Figure 9. Therefore, it can be concluded that the error occurred because KDDI’s EPS does not provide SMS. Based on these results, the use of SMS over NAS on the KDDI network could not be confirmed.
 
-<img src="/assets/2024/availability_of_sms_over_nas_on_commercial_mobile_networks_in_japan/30_figure7.webp" width="770" height="504" decoding="async" alt="" />
-<p class="modest" align="center">Figure 7: Attach request to the NTT Docomo network.</p>
+<figure><img src="/assets/2024/availability_of_sms_over_nas_on_commercial_mobile_networks_in_japan/30_figure7.webp" width="770" height="504" decoding="async" alt="" /><figcaption>Figure 7: Attach request to the NTT Docomo network.</figcaption></figure>
 
-<img src="/assets/2024/availability_of_sms_over_nas_on_commercial_mobile_networks_in_japan/30_figure8.webp" width="770" height="431" decoding="async" alt="" />
-<p class="modest" align="center">Figure 8: Attach accept from the NTT Docomo network.</p>
+<figure><img src="/assets/2024/availability_of_sms_over_nas_on_commercial_mobile_networks_in_japan/30_figure8.webp" width="770" height="431" decoding="async" alt="" /><figcaption>Figure 8: Attach accept from the NTT Docomo network.</figcaption></figure>
 
-<img src="/assets/2024/availability_of_sms_over_nas_on_commercial_mobile_networks_in_japan/30_figure9.webp" width="770" height="358" decoding="async" alt="" />
-<p class="modest" align="center">Figure 9: Attach accept from the KDDI network.</p>
+<figure><img src="/assets/2024/availability_of_sms_over_nas_on_commercial_mobile_networks_in_japan/30_figure9.webp" width="770" height="358" decoding="async" alt="" /><figcaption>Figure 9: Attach accept from the KDDI network.</figcaption></figure>
 
 ## Conclusion and Future Work
 

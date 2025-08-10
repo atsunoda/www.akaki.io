@@ -4,7 +4,7 @@ description: 第2回目は倫理的なハッカーとしてのルールを説明
 
 # 倫理的なハッカーとして守るべきルールとは
 
-<p class="modest" align="left">Sep 5, 2016</p>
+<time datetime="2016-09-05">Sep 5, 2016</time>
 
 ---
 

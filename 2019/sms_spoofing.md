@@ -4,7 +4,7 @@ description: サイバー犯罪に詳しい@ozuma5119氏からスミッシング
 
 # SMSで送信元を偽装したメッセージを送る
 
-<p class="modest" align="left">Sep 2, 2019</p>
+<time datetime="2019-09-02">Sep 2, 2019</time>
 
 ---
 
@@ -12,8 +12,7 @@ description: サイバー犯罪に詳しい@ozuma5119氏からスミッシング
 
 JC3の注意喚起では、以下の図を用いて「SMSの送信元を偽装したメッセージが正規の送信者のスレッドに届く」と説明している。
 
-<p align="center"><img src="/assets/2019/sms_spoofing/smscert.webp" width="500" height="558" decoding="async" alt="smscert"></p>
-<p class="modest" align="center">出典：通信事業者を騙るスミッシング詐欺の手法に係る注意喚起 - JC3</p>
+<figure><img src="/assets/2019/sms_spoofing/smscert.webp" width="500" height="558" decoding="async" alt="" /><figcaption>出典：通信事業者を騙るスミッシング詐欺の手法に係る注意喚起 - JC3</figcaption></figure>
 
 普段から何の疑いもなくSMSを利用していた私は驚愕した。正規のスレッドにフィッシングメッセージが入ってくるなんて。注意喚起を読んだだけでは信じられなかったので、クラウド電話サービス「Twilio」を利用して実際に試してみる。なおTwilioの利用規約では送信元を偽装して他者を欺く行為を禁止しているため<sup id="f1">[¹](#fn1)</sup>、検証は私が所有する以下の環境で行なう。
 
@@ -39,7 +38,7 @@ curl -X POST https://api.twilio.com/2010-04-01/Accounts/{$ACCOUNT_SID}/Messages.
 -u $ACCOUNT_SID:$AUTH_TOKEN
 ```
 
-<p align="center"><img src="/assets/2019/sms_spoofing/amazon_hello.webp" width="300" height="318" decoding="async" alt="amazon_hello"></p>
+<figure><img src="/assets/2019/sms_spoofing/amazon_hello.webp" width="300" height="318" decoding="async" alt="" /></figure>
 
 Twilioから送信したメッセージ「hello」が正規のスレッドに含まれた。JC3の説明は本当だった。日本語やURLリンクを含めた現実的なフィッシングメッセージの送信も試みる。Curlでは長文のメッセージが送りづらかったので、TwilioのPythonモジュールを使用してメッセージを送る。
 
@@ -60,11 +59,11 @@ message = client.messages.create(
 )
 ```
 
-<p align="center"><img src="/assets/2019/sms_spoofing/amazon_fake.webp" width="300" height="430" decoding="async" alt="amazon_fake"></p>
+<figure><img src="/assets/2019/sms_spoofing/amazon_fake.webp" width="300" height="430" decoding="async" alt="" /></figure>
 
 URLリンクを含んだ日本語のメッセージも送信できた。Androidの公式メッセージアプリでも同様に送信元の偽装を試みる。Googleからのメッセージの送信者IDである `Google` をFromの値に指定すると、送信したメッセージが正規のスレッドに含まれた。
 
-<p align="center"><img src="/assets/2019/sms_spoofing/google_fake.webp" width="300" height="270" decoding="async" alt="google_fake"></p>
+<figure><img src="/assets/2019/sms_spoofing/google_fake.webp" width="300" height="270" decoding="async" alt="" /></figure>
 
 なお当初はAmazonではなくAppleのスレッドでの実証を予定していたが、Fromの値に `Apple` を指定すると[Error 21212](https://www.twilio.com/docs/errors/21212)が発生した。Fromの値を `Applo` に変更するとメッセージを送信できるため、Twilio側で特定の送信者IDの指定を禁止していると推測する。
 
@@ -81,7 +80,7 @@ $ curl -X POST https://api.twilio.com/2010-04-01/Accounts/{$ACCOUNT_SID}/Message
 
 送信元が電話番号で表記されているスレッドにも偽装したメッセージを含められるのか。スーパーコールフリー番号が送信元になっているPayPayからのメッセージのスレッドで偽装を試みる。
 
-<p align="center"><img src="/assets/2019/sms_spoofing/paypay_auth.webp" width="300" height="211" decoding="async" alt="paypay_auth"></p>
+<figure><img src="/assets/2019/sms_spoofing/paypay_auth.webp" width="300" height="211" decoding="async" alt="" /></figure>
 
 送信元の電話番号である `0120 990 637` をFromの値に指定すると[Error 21212](https://www.twilio.com/docs/errors/21212)が発生する。Fromの値にスペースを含めたのが原因と考え、国番号を追加した `+81120990637` に変更するとエラーコードが変化する。新たに発生した[Error 21606](https://www.twilio.com/docs/api/errors/21606)の解説によると、Twilioはスパム対策のためアカウントに紐付いていない電話番号をFromの値に指定できない仕様であった。
 
@@ -96,12 +95,12 @@ $ curl -X POST https://api.twilio.com/2010-04-01/Accounts/{$ACCOUNT_SID}/Message
 
 Twilioを利用した検証では、送信元の電話番号を偽装して正規のスレッドにメッセージを含めることはできなかった。しかし正規のスレッドに含めることを目的としなければ、独自に送信者IDを指定するだけで偽装したメッセージを送れる。送信者IDを `PayPay` と指定すればPayPayからの公式メッセージを装える。
 
-<p align="center"><img src="/assets/2019/sms_spoofing/paypay_list.webp" width="300" height="120" decoding="async" alt="paypay_list"></p>
-<p align="center"><img src="/assets/2019/sms_spoofing/paypay_fake.webp" width="300" height="272" decoding="async" alt="paypay_fake"></p>
+<figure><img src="/assets/2019/sms_spoofing/paypay_list.webp" width="300" height="120" decoding="async" alt="" /></figure>
+<figure><img src="/assets/2019/sms_spoofing/paypay_fake.webp" width="300" height="272" decoding="async" alt="" /></figure>
 
 iOSとAndroidの公式メッセージアプリには、メッセージ内のURLリンクを画像やタイトルを含んだリンクに置き換えるリンクプレビュー機能が搭載されている。iOSでは連絡先に登録していない送信元からのメッセージだとプレビューが機能しなかった。しかしAndroidではアプリの設定で自動プレビューが有効になっていると、連絡先に登録していない送信元であってもプレビューが機能した。プレビューを読み込むと正規サイトとの共通点が増えるため、異変に気づきにくくなる。
 
-<p align="center"><img src="/assets/2019/sms_spoofing/paypay_fake_preview.webp" width="300" height="414" decoding="async" alt="paypay_fake_preview"></p>
+<figure><img src="/assets/2019/sms_spoofing/paypay_fake_preview.webp" width="300" height="414" decoding="async" alt="" /></figure>
 
 ## 所感
 

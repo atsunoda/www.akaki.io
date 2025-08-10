@@ -4,7 +4,7 @@ description: ロシアのバグハンターであるSergey Bobrov氏（@Black2Fa
 
 # Request-URIのパスからのCRLFインジェクション
 
-<p class="modest" align="left">Feb 14, 2018</p>
+<time datetime="2018-02-14">Feb 14, 2018</time>
 
 ---
 

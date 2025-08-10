@@ -4,7 +4,7 @@ description: 以前、ロシアのバグハンターSergey Bobrov氏（@Black2Fa
 
 # Request-URIのパスからのオープンリダイレクト
 
-<p class="modest" align="left">Nov 27, 2018</p>
+<time datetime="2018-11-27">Nov 27, 2018</time>
 
 ---
 

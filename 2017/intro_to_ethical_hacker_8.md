@@ -4,7 +4,7 @@ description: 第8回目はアクセス制御の不備による脆弱性を取り
 
 # 脆弱性を見つけよう アクセス制御の不備編
 
-<p class="modest" align="left">May 29, 2017</p>
+<time datetime="2017-05-29">May 29, 2017</time>
 
 ---
 
@@ -24,23 +24,19 @@ description: 第8回目はアクセス制御の不備による脆弱性を取り
 
 図1はユーザー「bob」がアップロードした写真の一覧ページ `/view.php` です。このページではURLに付与されたパラメータ `userid` でユーザーを識別しているようです。ユーザー「bob」のIDは `2` です。
 
-<img src="/assets/2017/intro_to_ethical_hacker_8/e8_figure1.webp" width="770" height="362" decoding="async" alt="">
-<p class="modest" align="center">図1. ユーザー「bob」の写真一覧ページ</p>
+<figure><img src="/assets/2017/intro_to_ethical_hacker_8/e8_figure1.webp" width="770" height="362" decoding="async" alt="" /><figcaption>図1. ユーザー「bob」の写真一覧ページ</figcaption></figure>
 
 WackoPickoにログインしていない状態で写真一覧ページにアクセスすると、図2のようにログインページにリダイレクトされました。このページではアクセス制御が行なわれており、ログインした状態でなければアクセスできないようです。他のユーザーがアップロードした写真を見るにはログインしなければなりません。
 
-<img src="/assets/2017/intro_to_ethical_hacker_8/e8_figure2.webp" width="770" height="267" decoding="async" alt="">
-<p class="modest" align="center">図2. ログインしていない状態でアクセスした際の挙動</p>
+<figure><img src="/assets/2017/intro_to_ethical_hacker_8/e8_figure2.webp" width="770" height="267" decoding="async" alt="" /><figcaption>図2. ログインしていない状態でアクセスした際の挙動</figcaption></figure>
 
 他の機能も見ていくと、トップページのリンクから写真一覧のサンプルページ `/sample.php` がありました。このページはログインしていない状態でもアクセスできます。
 
-<img src="/assets/2017/intro_to_ethical_hacker_8/e8_figure3.webp" width="770" height="362" decoding="async" alt="">
-<p class="modest" align="center">図3. 写真のサンプルページ</p>
+<figure><img src="/assets/2017/intro_to_ethical_hacker_8/e8_figure3.webp" width="770" height="362" decoding="async" alt="" /><figcaption>図3. 写真のサンプルページ</figcaption></figure>
 
 サンプルページのURLにもパラメータ `userid` が付与されています。サンプルユーザーのIDは `1` です。このIDを操作することで特定のユーザーがアップロードした写真を表示できそうです。IDを `2` に付け替えてアクセスすると、ユーザー「bob」の写真が表示されました。
 
-<img src="/assets/2017/intro_to_ethical_hacker_8/e8_figure4.webp" width="770" height="362" decoding="async" alt="">
-<p class="modest" align="center">図4. サンプルページに表示されたユーザー「bob」の写真</p>
+<figure><img src="/assets/2017/intro_to_ethical_hacker_8/e8_figure4.webp" width="770" height="362" decoding="async" alt="" /><figcaption>図4. サンプルページに表示されたユーザー「bob」の写真</figcaption></figure>
 
 ログインした状態でないと見れないはずの写真をログインしていない状態で見れました。アクセス制御を回避して本来権限のない情報にアクセスできる状態です。さらに、IDは連番であると推測し `3` 、`4` 、`5` とインクリメントすることで、他のユーザーの写真も見れそうです。
 

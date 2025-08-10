@@ -4,7 +4,7 @@ description: 中国のEC市場ではSNS要素を取り入れたソーシャルEC
 
 # 共同購入型ソーシャルECでのフィッシング詐欺の手口
 
-<p class="modest" align="left">Aug 26, 2020</p>
+<time datetime="2020-08-26">Aug 26, 2020</time>
 
 ---
 
@@ -18,12 +18,11 @@ description: 中国のEC市場ではSNS要素を取り入れたソーシャルEC
 
 拼多多の共同購入は、消費者自らがSNSを利用して共同購入者を募る仕組みである。24時間以内に既定の人数を集めると共同購入が成立し、定価より安い値段で商品を購入できる。既定の人数を集めるにはWeChatやQQなどのSNSを利用して、家族や友人に共同購入への招待リンクを共有する<sup id="f3">[³](#fn3)</sup>。消費者自身の人間関係を生かして共同購入を成立させる仕組みになっている。
 
-<img src="/assets/2020/pinduoduo_phishing/pinduoduo.webp" width="770" height="381" decoding="async" alt="pinduoduo">
-<p class="modest" align="center">出典：Pinduoduo Overview - Pinduoduo Inc.<p>
+<figure><img src="/assets/2020/pinduoduo_phishing/pinduoduo.webp" width="770" height="381" decoding="async" alt="" /><figcaption>出典：Pinduoduo Overview - Pinduoduo Inc.</figcaption></figure>
 
 このような仕組みを応用し、消費者たちは他人同士でも共同購入し合うため、SNS上のグループチャットで招待リンクを共有するようになった。拼多多の共同購入グループに参加するには、WeChatやWeiboで「拼多多互助群」などと検索してヒットしたグループのQRコードをスキャンする。実際にWeChatのグループに参加すると、共同購入への招待リンクが頻繁に投稿されていた。
 
-<p align="center"><img src="/assets/2020/pinduoduo_phishing/sp_wechat_group.webp" width="300" height="489" decoding="async" alt="sp_wechat_group"><p>
+<figure><img src="/assets/2020/pinduoduo_phishing/sp_wechat_group.webp" width="300" height="489" decoding="async" alt="" /></figure>
 
 ## 共同購入グループに潜む罠
 

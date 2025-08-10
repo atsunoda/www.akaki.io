@@ -4,7 +4,7 @@ description: 2019年4月20日に神戸デジタル・ラボで開催された大
 
 # 大和セキュリティ勉強会でPowerShellの基礎を学ぶ
 
-<p class="modest" align="left">Apr 30, 2019</p>
+<time datetime="2019-04-30">Apr 30, 2019</time>
 
 ---
 
@@ -14,8 +14,7 @@ description: 2019年4月20日に神戸デジタル・ラボで開催された大
 
 PowerShellは、2006年にMicrosoftがリリースしたコマンドラインシェルおよびスクリプト言語で、Windows 7以降のOSには標準搭載されている。GitHubが2018年に発表した[急成長している言語ランキング](https://github.blog/jp/2018-11-20-state-of-the-octoverse-top-programming-languages/#%e6%80%a5%e6%88%90%e9%95%b7%e3%81%97%e3%81%a6%e3%81%84%e3%82%8b%e8%a8%80%e8%aa%9e%ef%bc%88%e3%82%b3%e3%83%b3%e3%83%88%e3%83%aa%e3%83%93%e3%83%a5%e3%83%bc%e3%82%bf%e6%95%b0%ef%bc%892018%e5%b9%b49)では4位になるなど注目を浴びている。またアメリカのセキュリティ企業であるRed Canaryが2019年に公開したレポートによると、PowerShellは[ATT&CK](https://attack.mitre.org/)の中で最も悪用されているテクニックであり、攻撃者からの人気も高い<sup id="f1">[¹](#fn1)</sup>。
 
-<img src="/assets/2019/learning_powershell/redcanary_graph.webp" width="770" height="97" decoding="async" alt="redcanary_graph">
-<p class="modest" align="center">出典：Threat Detection Report 2019 - Red Canary</p>
+<figure><img src="/assets/2019/learning_powershell/redcanary_graph.webp" width="770" height="97" decoding="async" alt="" /><figcaption>出典：Threat Detection Report 2019 - Red Canary</figcaption></figure>
 
 PowerShellにはMicrosoftが開発した「Windows PowerShell」と、その後オープンソース化した「PowerShell Core」の2種類が存在する。MicrosoftはWindows PowerShellの開発を既に終了し、現在はPowerShell Coreの開発に注力している。しかし利用できるモジュールの多さから攻撃者は現在もWindows PowerShellを使用するケースが多いため、勉強会ではWindows PowerShellからの学習を推奨していた。
 
@@ -29,17 +28,17 @@ Windows PowerShellはバージョン5.0から[Just Enough Administration](https:
 
 PowerShellのコマンドは `動詞-名詞` の形式で名付けられた[コマンドレット](https://docs.microsoft.com/ja-jp/powershell/scripting/learn/learning-powershell-names#cmdlets-use-verb-noun-names-to-reduce-command-memorization)の他に、[エイリアス](https://docs.microsoft.com/ja-jp/powershell/scripting/learn/using-familiar-command-names)や関数、Windowsに付属するネイティブコマンド（ `ping.exe` のようなEXE形式のコマンド）も含まれる。多くのコマンドレットにはUnix形式、Windows形式、PowerShell形式の3つのエイリアスが設定されている。例えば、指定のディレクトリにあるファイルの一覧を表示する `Get-ChildItem` の場合、`ls`、`dir`、`gci` がエイリアスとして機能する。エイリアスの設定は `Get-Alias` で確認できる。
 
-<img src="/assets/2019/learning_powershell/get-alias.webp" width="770" height="106" decoding="async" alt="get-alias">
+<figure><img src="/assets/2019/learning_powershell/get-alias.webp" width="770" height="106" decoding="async" alt="" /></figure>
 
 PowerShellでもLinuxと同様にリダイレクト（ `>` や `>>` ）を使用できるが、勉強会では [`Out-*` コマンドレットによるリダイレクト](https://docs.microsoft.com/ja-jp/powershell/scripting/samples/redirecting-data-with-out---cmdlets)を推奨していた。またパイプライン（ `|` ）もLinuxと同様に使用できる。[PowerShellのパイプライン](https://docs.microsoft.com/ja-jp/powershell/scripting/learn/understanding-the-powershell-pipeline)の出力はテキストではなくオブジェクトになるため、`awk` や `sed` のようなコマンドで整形する必要がない。例えば、実行中のプロセスの名前だけをファイルに書き出す場合、以下のようにコマンドを実行すればよい。`Select-Object` で指定したプロパティの情報だけをファイルに書き出せる。
 
-<img src="/assets/2019/learning_powershell/get-process.webp" width="770" height="28" decoding="async" alt="get-process">
+<figure><img src="/assets/2019/learning_powershell/get-process.webp" width="770" height="28" decoding="async" alt="" /></figure>
 
 ### PowerShellモジュール
 
 コマンドやスクリプトは[PowerShellモジュール](https://docs.microsoft.com/en-us/powershell/developer/module/understanding-a-windows-powershell-module)というファイルで定義されている。PowerShellモジュールは `$env:PSModulePath` に設定されたディレクトリから読み込まれる。読み込まれたモジュールは `Get-Module` で確認できる。
 
-<img src="/assets/2019/learning_powershell/get-module.webp" width="770" height="127" decoding="async" alt="get-module">
+<figure><img src="/assets/2019/learning_powershell/get-module.webp" width="770" height="127" decoding="async" alt="" /></figure>
 
 新たにモジュールを追加する場合は `Import-Module` を使用する。
 
@@ -56,19 +55,19 @@ Function Add-Numbers([int]$one, [int]$two) {
 }
 ```
 
-<img src="/assets/2019/learning_powershell/add-numbers.webp" width="770" height="76" decoding="async" alt="add-numbers">
+<figure><img src="/assets/2019/learning_powershell/add-numbers.webp" width="770" height="76" decoding="async" alt="" /></figure>
 
 ### PowerShellプロファイル
 
 [PowerShellプロファイル](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_profiles)は自動起動スクリプトであり、Linuxの `.bashrc` のような役割を持つ。攻撃者はPowerShellマルウェアをプロファイルとして登録する可能性があるのでフォレンジックで確認すべきポイントとのこと。以下のコマンドを実行すると設定されているプロファイルを確認できる。
 
-<img src="/assets/2019/learning_powershell/profile.webp" width="770" height="116" decoding="async" alt="profile">
+<figure><img src="/assets/2019/learning_powershell/profile.webp" width="770" height="116" decoding="async" alt="" /></figure>
 
 ### PowerShellの実行ポリシー
 
 PowerShellには[実行ポリシー](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_execution_policies)という制限機能があり、デフォルトでは第三者のスクリプトを実行できない「[Restricted](https://docs.microsoft.com/ja-jp/powershell/module/microsoft.powershell.core/about/about_execution_policies#restricted)」が設定されている。署名されていないローカルのスクリプトを実行したりモジュールを追加したりする場合は、PowerShellを管理者権限で起動して `Set-ExecutionPolicy` により実行ポリシーを「[RemoteSigned](https://docs.microsoft.com/ja-jp/powershell/module/microsoft.powershell.core/about/about_execution_policies#remotesigned)」などに変更する必要がある。
 
-<img src="/assets/2019/learning_powershell/set-executionpolicy.webp" width="770" height="63" decoding="async" alt="set-executionpolicy">
+<figure><img src="/assets/2019/learning_powershell/set-executionpolicy.webp" width="770" height="63" decoding="async" alt="" /></figure>
 
 PowerShellの実行ポリシーにはさまざまなバイパス手法が発見されている<sup id="f2">[²](#fn2)</sup>。しかしMicrosoftは実行ポリシーをセキュリティ対策として位置付けていないため<sup id="f3">[³](#fn3)</sup>、完全に修正されておらず現在もバイパスは可能とのこと。
 
@@ -78,7 +77,7 @@ PowerShellの実行ポリシーにはさまざまなバイパス手法が発見�
 
 まずレベル1のユーザー `century1` でサーバーにログインする。レベル1のユーザーはJoeアカウントになっているため、パスワードに `century1` を入力してログインする。
 
-<img src="/assets/2019/learning_powershell/century1.webp" width="770" height="114" decoding="async" alt="century1">
+<figure><img src="/assets/2019/learning_powershell/century1.webp" width="770" height="114" decoding="async" alt="" /></figure>
 
 レベル1のユーザーの状態で与えられた問題に挑戦し、その解答がレベル2のユーザーのパスワードとなる。参考としてレベル1の解法を紹介する。レベル1の問題（[Century1](http://underthewire.tech/century/century1.htm)）は以下である。
 
@@ -86,11 +85,11 @@ PowerShellの実行ポリシーにはさまざまなバイパス手法が発見�
 
 PowerShellのビルドバージョンがレベル2のパスワードらしいので、`$PSVersionTable` を実行してバージョン情報を取得する。
 
-<img src="/assets/2019/learning_powershell/psversion.webp" width="770" height="210" decoding="async" alt="psversion">
+<figure><img src="/assets/2019/learning_powershell/psversion.webp" width="770" height="210" decoding="async" alt="" /></figure>
 
 BuildVersionの値は `10.0.14393.2791` となっている。この値をレベル2のユーザー `century2` のパスワードとして入力するとログインに成功する。
 
-<img src="/assets/2019/learning_powershell/century2.webp" width="770" height="115" decoding="async" alt="century2">
+<figure><img src="/assets/2019/learning_powershell/century2.webp" width="770" height="115" decoding="async" alt="" /></figure>
 
 この状態でレベル2の問題（[Century2](http://underthewire.tech/century/century2.htm)）に取り組む。徐々に難易度が上がっていく問題に挑戦し、レベル15まで解答できればステージクリアとなる。私は勉強会の時間内にレベル9まで解答できた。
 

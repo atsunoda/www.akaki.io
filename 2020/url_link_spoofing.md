@@ -4,7 +4,7 @@ description: フィッシング詐欺における偽サイトへの誘導では�
 
 # Slackで認定されたURLリンク偽装の脆弱性
 
-<p class="modest" align="left">Apr 27, 2020</p>
+<time datetime="2020-04-27">Apr 27, 2020</time>
 
 ---
 
@@ -20,7 +20,7 @@ HTMLでは、ハイパーリンクとして表示するURLと、実際にリン�
 
 このように、URLリンクを偽装する行為は「[Link Manipulation](https://www.phishing.org/phishing-techniques#:~:text=Link%20Manipulation)」というフィッシング手法として知られており、偽のログインページや正規ファイルに偽装したマルウェアなどへの誘導に悪用される。私宛に届いたAppleをかたるフィッシングメールでもURLリンクが偽装されていた。
 
-<p align="center"><img src="/assets/2020/url_link_spoofing/apple_phishing.webp" width="600" height="421" decoding="async" alt="apple_phishing"></p>
+<figure><img src="/assets/2020/url_link_spoofing/apple_phishing.webp" width="600" height="421" decoding="async" alt="" /></figure>
 
 ## Slackの脆弱性
 
@@ -41,11 +41,11 @@ HTMLでは、ハイパーリンクとして表示するURLと、実際にリン�
  ...
 ```
 
-<img src="/assets/2020/url_link_spoofing/spoof_url.webp" width="600" height="160" decoding="async" alt="spoof_url">
+<figure><img src="/assets/2020/url_link_spoofing/spoof_url.webp" width="600" height="160" decoding="async" alt="" /></figure>
 
 Slackのワークスペースでは同じ名前のメンバーが共存できる<sup id="f2">[²](#fn2)</sup>。そのため、ワークスペース内で影響力のある人物になりすまして偽装したURLリンクを投稿することで、他のメンバーからのクリック率を高められると考えた。レポートでは、FacebookのCEOであるMark Zuckerberg氏が参加するワークスペースを仮定し、求人募集をうたう投稿の例を示した。
 
-<img src="/assets/2020/url_link_spoofing/fake_url.webp" width="770" height="172" decoding="async" alt="fake_url">
+<figure><img src="/assets/2020/url_link_spoofing/fake_url.webp" width="770" height="172" decoding="async" alt="" /></figure>
 
 Slackは当初、「この攻撃はワークスペース内でのメンバー間の対立が前提になっている」と述べ、URLリンクの偽装を脆弱性として認めなかった。その後、私はSlackとOutlookを連携できることを知り<sup id="f3">[³](#fn3)</sup>、もしメンバーのひとりがOutlookで受信したメールをSlackに転送していた場合、攻撃者はそのメンバー宛にメールを送り付けることで、外部から偽装したURLリンクを投稿できると考えた。「そのような攻撃はメンバー間の対立とは限らない」と再検討を依頼すると、Slackはこの偽装を脆弱性として認め対策を講じた。
 
@@ -68,17 +68,17 @@ Slackは当初、「この攻撃はワークスペース内でのメンバー間
  ...
 ```
 
-<img src="/assets/2020/url_link_spoofing/userinfo_url.webp" width="600" height="263" decoding="async" alt="userinfo_url">
+<figure><img src="/assets/2020/url_link_spoofing/userinfo_url.webp" width="600" height="263" decoding="async" alt="" /></figure>
 
 ### 脆弱性への緩和策
 
 2020年2月にSlackは、UIからハイパーリンクを投稿できる機能をリリースした<sup id="f4">[⁴](#fn4)</sup>。書式設定のリンクアイコン `🔗` から任意のリンクを生成できるため、実際のリンク先と表示が異なるURLリンクの投稿も可能である。しかし、そのように偽装されたURLリンクをクリックすると、以下のような警告ダイアログが現れるようになった。
 
-<p align="center"><img src="/assets/2020/url_link_spoofing/warning_dialog.webp" width="600" height="282" decoding="async" alt="warning_dialog"></p>
+<figure><img src="/assets/2020/url_link_spoofing/warning_dialog.webp" width="600" height="282" decoding="async" alt="" /></figure>
 
 さらに、リンクにカーソルを合わせると、URLがポップアップで表示されるようにもなった。これにより、ステータスバーが無いデスクトップアプリでも実際のリンク先を確認できる。改行文字による偽装もポップアップには及ばない。
 
-<img src="/assets/2020/url_link_spoofing/link_popup.webp" width="600" height="310" decoding="async" alt="link_popup">
+<figure><img src="/assets/2020/url_link_spoofing/link_popup.webp" width="600" height="310" decoding="async" alt="" /></figure>
 
 ## 所感
 

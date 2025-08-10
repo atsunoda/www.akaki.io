@@ -4,7 +4,7 @@ description: 前回の記事ではクラウド電話サービス「Twilio」を�
 
 # SMSで送信元の電話番号を偽装したメッセージを送る
 
-<p class="modest" align="left">Nov 11, 2019</p>
+<time datetime="2019-11-11">Nov 11, 2019</time>
 
 ---
 
@@ -22,7 +22,7 @@ SMSの偽装について調べていくと、電話番号を偽装したSMSを�
 
 SMSGangから偽装したメッセージを送るには事前にPINコードを購入する必要がある。テストメッセージは無料で送信できるため、デバイスで受信できることを確認してからPINコードを購入したい。SMSGangがサポートしている通信事業者を確認すると、日本ではDOCOMO回線とSoftBank回線が対象になっている。
 
-<img src="/assets/2019/sms_spoofing_2/smsgang_support.webp" width="770" height="104" decoding="async" alt="smsgang_support">
+<figure><img src="/assets/2019/sms_spoofing_2/smsgang_support.webp" width="770" height="104" decoding="async" alt="" /></figure>
 
 SoftBank回線の電話番号宛に送信したテストメッセージはデバイスで正常に受信できたが、DOCOMO回線の番号では受信できない。KDDI回線の番号でも確認したが受信できない。PINコードの購入後に再検証したが、SMSGangから送信したメッセージをDOCOMO回線とKDDI回線では受信できなかった。そのため以降で示す挙動は全てSoftBank回線で実証したものである。この挙動は既に[SoftBank CSIRT](https://www.nca.gr.jp/member/softbank-csirt.html)へ報告し、現在は再現しなくなっている。ソフトバンクからも注意喚起が行なわれている<sup id="f2">[²](#fn2)</sup>。 
 
@@ -30,11 +30,11 @@ SoftBank回線の電話番号宛に送信したテストメッセージはデバ
 
 宛先となるToの値にSoftBank回線の電話番号を、Fromの値にはAmazonの2段階認証で使用されていた `09090097540` を国際形式で入力し、有効なPINコードと共にメッセージを送る。
 
-<p align="center"><img src="/assets/2019/sms_spoofing_2/smsgang_form.webp" width="600" height="376" decoding="async" alt="smsgang_form"></p>
+<figure><img src="/assets/2019/sms_spoofing_2/smsgang_form.webp" width="600" height="376" decoding="async" alt="" /></figure>
 
 フォーム上にはメッセージを送信した旨が表示される。しかしデバイスではメッセージを受信できない。送信履歴に表示されたステータスは `FAILED` になっている。
 
-<img src="/assets/2019/sms_spoofing_2/smsgang_failed.webp" width="770" height="27" decoding="async" alt="smsgang_failed">
+<figure><img src="/assets/2019/sms_spoofing_2/smsgang_failed.webp" width="770" height="27" decoding="async" alt="" /></figure>
 
 Fromの値を `090` から始まる国内形式に変更しても送信ステータスは `FAILED` になる。その他にも `+8190` 以外の携帯番号や東京の市外局番、スーパーコールフリー番号も確認したが、全て `FAILED` になり国内番号への偽装は実証できなかった。
 
@@ -42,16 +42,16 @@ Fromの値を `090` から始まる国内形式に変更しても送信ステー
 
 Twilioで取得した `+1` から始まる米国番号をFromの値に指定すると、送信ステータスは `DELIVERED` になりデバイスでもメッセージを受信できた。
 
-<img src="/assets/2019/sms_spoofing_2/smsgang_delivered.webp" width="770" height="27" decoding="async" alt="smsgang_delivered">
+<figure><img src="/assets/2019/sms_spoofing_2/smsgang_delivered.webp" width="770" height="27" decoding="async" alt="" /></figure>
 
 送信元の電話番号を偽装したメッセージは、Twilioから送信した正規のメッセージと同じスレッドに含まれる。
 
-<p align="center"><img src="/assets/2019/sms_spoofing_2/us_spoof.webp" width="300" height="197" decoding="async" alt="us_spoof"></p>
+<figure><img src="/assets/2019/sms_spoofing_2/us_spoof.webp" width="300" height="197" decoding="async" alt="" /></figure>
 
 さらにTwilioで取得した `+44` から始まる英国番号にも偽装できた。電話番号を連絡先に登録した状態でも偽装したメッセージは正規のスレッドに含まれるため、連絡先に登録している海外の知人とのやり取りの中にフィッシングメッセージが入ってくる状態だった。
 
-<p align="center"><img src="/assets/2019/sms_spoofing_2/jane.webp" width="300" height="133" decoding="async" alt="hk_regist"></p>
-<p align="center"><img src="/assets/2019/sms_spoofing_2/jane_spoof.webp" width="300" height="236" decoding="async" alt="hk_spoof"></p>
+<figure><img src="/assets/2019/sms_spoofing_2/jane.webp" width="300" height="133" decoding="async" alt="" /></figure>
+<figure><img src="/assets/2019/sms_spoofing_2/jane_spoof.webp" width="300" height="236" decoding="async" alt="" /></figure>
 
 SMSGangから電話番号を偽装したメッセージに対する返信は正規の番号に送られる。そのため上記スレッドでの `Are you okay?` という返信はTwilioの番号に届く。Janeになりすました状態では被害者とやり取りできないため、攻撃者が被害者とのコミュニケーションを望む場合は被害者を別の連絡手段に誘導する必要があった。
 
@@ -59,13 +59,13 @@ SMSGangから電話番号を偽装したメッセージに対する返信は正�
 
 通常の電話番号より短い桁数で構成されるショートコードにも偽装できた。SoftBank回線を初期設定した際の通知で使用されていた `900008` という6桁の番号に偽装している。
 
-<p align="center"><img src="/assets/2019/sms_spoofing_2/shortcode_spoof.webp" width="300" height="268" decoding="async" alt="shortcode_spoof"></p>
+<figure><img src="/assets/2019/sms_spoofing_2/shortcode_spoof.webp" width="300" height="268" decoding="async" alt="" /></figure>
 
 ### 問い合わせ特番への偽装
 
 ソフトバンクの総合案内で使用されている `157` という問い合わせ特番にも偽装できた。この番号からMy SoftBankへのログイン情報やセキュリティ番号が通知されるため、ソフトバンクの利用者を狙ったスミッシングに悪用される恐れがあった。
 
-<p align="center"><img src="/assets/2019/sms_spoofing_2/157_spoof.webp" width="300" height="329" decoding="async" alt="157_spoof"></p>
+<figure><img src="/assets/2019/sms_spoofing_2/157_spoof.webp" width="300" height="329" decoding="async" alt="" /></figure>
 
 ## 送信者ID制限の回避
 
@@ -73,7 +73,7 @@ SMSGangから電話番号を偽装したメッセージに対する返信は正�
 
 しかし送信者IDを `NTTDOCOMO` に偽装したメッセージをSMSGangから送信するとSoftBank回線のデバイスで受信できた。ドコモからソフトバンクに乗り換えた利用者を標的としたフィッシングメッセージも送れる状態だった。
 
-<p align="center"><img src="/assets/2019/sms_spoofing_2/docomo_spoof.webp" width="300" height="196" decoding="async" alt="docomo_spoof"></p>
+<figure><img src="/assets/2019/sms_spoofing_2/docomo_spoof.webp" width="300" height="196" decoding="async" alt="" /></figure>
 
 ## 所感
 

@@ -4,7 +4,7 @@ description: Previous articles 1 and 2 demonstrated short message service (SMS) 
 
 # Sending Arbitrary SMS over NAS Messages with an Extended srsUE
 
-<p class="modest" align="left">Jan 28, 2025</p>
+<time datetime="2025-01-28">Jan 28, 2025</time>
 
 ---
 
@@ -23,8 +23,7 @@ By extending the open-source implementation of srsUE, SMS over NAS messages can 
 
 To investigate the actual behavior of SMS over NAS, it is necessary to manipulate data not visible to users in general message exchange. In SMS client apps, users can only input values such as a destination phone number and message text. This means that only certain parts of an SMS Protocol Data Unit (PDU) can be manipulated. Figure 1 illustrates the control plane protocol stack shown in 3GPP TS 38.300<sup id="f1">[¹](#fn1)</sup>, which defines the 5G radio interface protocol architecture, with the addition of SMS. To investigate the behavior of the Access and Mobility Management Function (AMF) and the Short Message Service Function (SMSF), which control SMS over NAS in the CN, it is necessary to manipulate the SMS PDUs and the underlying NAS messages.
 
-<p align="center"><img src="/assets/2025/sending_arbitrary_sms_over_nas_messages_with_an_extended_srsue/31_figure1.webp" width="600" height="284" decoding="async" alt=""></p>
-<p class="modest" align="center">Figure 1: SMS over NAS protocol stack.</p>
+<figure><img src="/assets/2025/sending_arbitrary_sms_over_nas_messages_with_an_extended_srsue/31_figure1.webp" width="600" height="284" decoding="async" alt="" /><figcaption>Figure 1: SMS over NAS protocol stack.</figcaption></figure>
 
 However, mobile devices are limited in their SMS sending capabilities. SMS client apps installed on mobile devices send messages using APIs provided by OSs such as Android and iOS. Android exchanges data with the modem through an abstraction layer called the Radio Interface Layer (RIL), while iOS uses a layer called CommCenter<sup id="f2">[²](#fn2)</sup>. NAS layer communications are handled internally within the modem. Therefore, manipulating NAS messages before they are sent from mobile devices requires the use of tools provided by the modem vendor or rewriting the modem firmware<sup id="f3">[³](#fn3)</sup>. As noted in a previous [article](/2022/transmission_and_detection_of_silent_sms_in_android.md), even if root privileges are obtained on the OS to access non-public APIs, or if AT commands are used to access the modem directly, the scope of manipulation is limited to the SMS PDUs.
 
@@ -34,8 +33,7 @@ To send arbitrary SMS over NAS messages, srsUE has been extended. srsUE is an op
 
 The srsUE has been extended to send SMS over NAS messages after completing the registration procedure with the CN. SMS over NAS is forwarded in the control plane, allowing UEs to send messages before establishing a data session. Figure 2 shows the sequence of the extended srsUE connection process. After establishing an RRC connection with the gNB, the srsUE sends a Registration Request message to the AMF (Step 1 in Figure 2). This triggers the AMF to authenticate the srsUE’s subscriber information and register it with the SMSF, as shown in Figure 8 of the previous [article](/2024/decision_procedure_for_originating_numbers_in_sms_over_nas.md). The AMF then sends a Registration Accept message to the srsUE, and the srsUE responds with a Registration Complete message (Steps 2 and 3 in Figure 2). The srsUE then sends an Uplink NAS transport message loaded with an SMS PDU to the AMF (Step 4 in Figure 2). This step has been added by the extension.
 
-<img src="/assets/2025/sending_arbitrary_sms_over_nas_messages_with_an_extended_srsue/31_figure2.webp" width="770" height="410" decoding="async" alt="">
-<p class="modest" align="center">Figure 2: Sequence of the extended srsUE connection process.</p>
+<figure><img src="/assets/2025/sending_arbitrary_sms_over_nas_messages_with_an_extended_srsue/31_figure2.webp" width="770" height="410" decoding="async" alt="" /><figcaption>Figure 2: Sequence of the extended srsUE connection process.</figcaption></figure>
 
 Before sending SMS, the UE must request and be allowed to use SMS from the CN in the registration procedure. According to 3GPP TS 24.501<sup id="f5">[⁵](#fn5)</sup>, which defines the NAS specification for the 5G System (5GS), in order to use SMS in the 5GS, the UE must set `SMS over NAS supported` in the `5GS update type` element of the Registration Request message, and the AMF must set `SMS over NAS allowed` in the `5GS registration result` element of the Registration Accept message. Since the srsUE sets `SMS over NAS not supported` in the `5GS update type` element within the `send_security_mode_complete()` function in [`nas_5g.cc`](https://github.com/atsunoda/smsUE/blob/748a71ad77f38bef7d53f7f3e4e66fabcc2f589a/srsue/src/stack/upper/nas_5g.cc#L496), it has been changed to `SMS over NAS supported` as shown in Figure 3.
 
@@ -44,7 +42,7 @@ modified_registration_request.update_type_5gs.sms_requested.value =
 -   update_type_5gs_t::SMS_requested_type::options::sms_over_nas_not_supported;
 +   update_type_5gs_t::SMS_requested_type::options::sms_over_nas_supported;
 ```
-<p class="modest" align="center">Figure 3: 5G update type changed to support SMS over NAS.</p>
+<figure><figcaption>Figure 3: 5G update type changed to support SMS over NAS.</figcaption></figure>
 
 The SMS sending process has been added to run after the registration procedure is complete. When the srsUE receives the Registration Accept message from the AMF, it executes the `handle_registration_accept()` function in [`nas_5g.cc`](https://github.com/atsunoda/smsUE/blob/748a71ad77f38bef7d53f7f3e4e66fabcc2f589a/srsue/src/stack/upper/nas_5g.cc#L869). At the end of this function, it calls the `send_registration_complete()` function to send the Registration Complete message, and then calls the `trigger_pdu_session_est()` function to initiate the establishment of the PDU session. The `send_sms_over_nas_message()` function, which executes the SMS sending process, has been added to be called after the `send_registration_complete()` function is executed, as shown in Figure 4.
 
@@ -61,7 +59,7 @@ int nas_5g::handle_registration_accept(registration_accept_t& registration_accep
   return SRSRAN_SUCCESS;
 }
 ```
-<p class="modest" align="center">Figure 4: Added SMS sending function call.</p>
+<figure><figcaption>Figure 4: Added SMS sending function call.</figcaption></figure>
 
 The `send_sms_over_nas_message()` function, which executes the SMS sending process, has been added to [`nas_5g.cc`](https://github.com/atsunoda/smsUE/blob/748a71ad77f38bef7d53f7f3e4e66fabcc2f589a/srsue/src/stack/upper/nas_5g.cc#L356-L400). Figure 5 shows the code for this function. In the case of SMS over NAS, since an SMS PDU is encapsulated in the payload of an Uplink NAS transport message, the `payload_container_type` is set to `sms`. The SMS PDU to be sent is loaded into the `payload_container_contents`. The byte sequence in Figure 5 corresponds to the SMS PDU shown in Figure 13 of the previous [article](/2024/decision_procedure_for_originating_numbers_in_sms_over_nas.md). The constructed Uplink NAS transport message is finally passed to the RRC layer as a Service Data Unit (SDU) and transmitted over the air.
 
@@ -112,35 +110,29 @@ int nas_5g::send_sms_over_nas_message()
   return SRSRAN_SUCCESS;
 }
 ```
-<p class="modest" align="center">Figure 5: Source code for the SMS sending function.</p>
+<figure><figcaption>Figure 5: Source code for the SMS sending function.</figcaption></figure>
 
 ## Demonstration of the Extended srsUE
 
 The extended srsUE was demonstrated on a private 5G mobile network. The demonstration reused the mobile network described in the previous [article](/2024/decision_procedure_for_originating_numbers_in_sms_over_nas.md) and the subscriber information shown in a different previous [article](/2023/decision_procedure_for_originating_numbers_in_sms_over_ims.md). The srsUE was used as the sender of the SMS over NAS message and the Pixel 6 was used as the receiver. Therefore, the srsUE was assigned the IMSI `001010000000001` and the phone number `818001234567`, while the Pixel 6 was assigned `001010000000002` and `819001234567`. Two USRP B205mini-i<sup id="f6">[⁶](#fn6)</sup> were used as the radio hardware for the gNB and the srsUE. As shown in Figure 6, these devices were placed inside a shielded box during the demonstration.
 
-<p align="center"><img src="/assets/2025/sending_arbitrary_sms_over_nas_messages_with_an_extended_srsue/31_figure6.webp" width="500" height="325" decoding="async" alt=""></p>
-<p class="modest" align="center">Figure 6: Devices used in the demonstration.</p>
+<figure><img src="/assets/2025/sending_arbitrary_sms_over_nas_messages_with_an_extended_srsue/31_figure6.webp" width="500" height="325" decoding="async" alt="" /><figcaption>Figure 6: Devices used in the demonstration.</figcaption></figure>
 
 The demonstration of the extended srsUE sending the SMS over NAS message is shown in Figure 7. In the figure, the srsUE is running in a terminal after the Pixel 6 has connected to the mobile network. The srsUE sends the message after completing the registration procedure with the CN, and the Pixel 6 receives it. The Pixel 6 displays the srsUE’s phone number `818001234567` as the originating number of the received message. By analyzing the packets captured during the demonstration, it is confirmed that the srsUE sends the SMS over NAS message as expected.
 
-<video controls muted playsinline poster="/assets/2025/sending_arbitrary_sms_over_nas_messages_with_an_extended_srsue/31_figure7.webp" src="/assets/2025/sending_arbitrary_sms_over_nas_messages_with_an_extended_srsue/31_figure7.mp4" type="video/mp4"></video>
-<p class="modest" align="center">Figure 7: Demonstration of the extended srsUE sending the SMS over NAS message.</p>
+<figure><video controls muted playsinline poster="/assets/2025/sending_arbitrary_sms_over_nas_messages_with_an_extended_srsue/31_figure7.webp" src="/assets/2025/sending_arbitrary_sms_over_nas_messages_with_an_extended_srsue/31_figure7.mp4" type="video/mp4"></video><figcaption>Figure 7: Demonstration of the extended srsUE sending the SMS over NAS message.</figcaption></figure>
 
 First, the extended srsUE is confirmed to support SMS over NAS. As shown in Figure 3, the srsUE has been modified to inform the CN that it supports SMS over NAS in the Registration Request message. In the Registration Request message captured on the srsUE, the `5GS update type` element is set to `SMS over NAS transport requested (SMS requested): Supported`, as shown in Figure 8. Consequently, in the Registration Accept message, the `5GS registration result` element is set to `SMS over NAS: Allowed`, as shown in Figure 9. These results mean that the extended srsUE is allowed by the CN to use SMS over NAS.
 
-<img src="/assets/2025/sending_arbitrary_sms_over_nas_messages_with_an_extended_srsue/31_figure8.webp" width="770" height="298" decoding="async" alt="">
-<p class="modest" align="center">Figure 8: Packet details of the Registration Request message.</p>
+<figure><img src="/assets/2025/sending_arbitrary_sms_over_nas_messages_with_an_extended_srsue/31_figure8.webp" width="770" height="298" decoding="async" alt="" /><figcaption>Figure 8: Packet details of the Registration Request message.</figcaption></figure>
 
-<img src="/assets/2025/sending_arbitrary_sms_over_nas_messages_with_an_extended_srsue/31_figure9.webp" width="770" height="285" decoding="async" alt="">
-<p class="modest" align="center">Figure 9: Packet details of the Registration Accept message.</p>
+<figure><img src="/assets/2025/sending_arbitrary_sms_over_nas_messages_with_an_extended_srsue/31_figure9.webp" width="770" height="285" decoding="async" alt="" /><figcaption>Figure 9: Packet details of the Registration Accept message.</figcaption></figure>
 
 Next, the extended srsUE is confirmed to send SMS over NAS messages as expected. As shown in Figure 5, the srsUE loads the byte sequence representing the SMS PDU into the payload of the Uplink NAS transport message. In the captured Uplink NAS transport message, the byte sequence is interpreted as the SMS PDU, as shown in Figure 10. Furthermore, in the Nsmsf_SMService_UplinkSMS request from AMF to SMSF captured in the CN, the byte sequence matches as shown in Figure 11. Based on these results, it is concluded that the srsUE sends SMS over NAS messages as implemented.
 
-<img src="/assets/2025/sending_arbitrary_sms_over_nas_messages_with_an_extended_srsue/31_figure10.webp" width="770" height="435" decoding="async" alt="">
-<p class="modest" align="center">Figure 10: Packet details of the Uplink NAS transport message.</p>
+<figure><img src="/assets/2025/sending_arbitrary_sms_over_nas_messages_with_an_extended_srsue/31_figure10.webp" width="770" height="435" decoding="async" alt="" /><figcaption>Figure 10: Packet details of the Uplink NAS transport message.</figcaption></figure>
 
-<img src="/assets/2025/sending_arbitrary_sms_over_nas_messages_with_an_extended_srsue/31_figure11.webp" width="770" height="372" decoding="async" alt="">
-<p class="modest" align="center">Figure 11: Packet details of the Nsmsf_SMService_UplinkSMS request.</p>
+<figure><img src="/assets/2025/sending_arbitrary_sms_over_nas_messages_with_an_extended_srsue/31_figure11.webp" width="770" height="372" decoding="async" alt="" /><figcaption>Figure 11: Packet details of the Nsmsf_SMService_UplinkSMS request.</figcaption></figure>
 
 ## Conclusion and Future Work
 

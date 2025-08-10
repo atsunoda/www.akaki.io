@@ -1,6 +1,10 @@
 .markdown-section hr {height: 1px;}
 .markdown-section video {max-width: 100%;}
 .markdown-section img {height: auto;}
+.markdown-section figure {text-align: center; margin-bottom: .85em;}
+.markdown-section figure:has(+ table) {margin-bottom: .5em;}
+.markdown-section pre:has(+ figure) {margin-bottom: .5em;}
 .book .book-body .page-inner section {font-size: 1.6rem;}
-.book .book-body .page-inner .modest {font-size: 1.4rem;}
+.book .book-body .page-inner time {font-size: 1.4rem; opacity: 0.5;}
+.book .book-body .page-inner figcaption {font-size: 1.4rem; opacity: 0.5;}
 .book-header .js-toolbar-action {display: none;}

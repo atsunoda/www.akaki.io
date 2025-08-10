@@ -4,7 +4,7 @@ description: 第1回目は脆弱性の概要と扱い方を説明します。
 
 # 倫理的なハッカーになるにはまず脆弱性を知ろう
 
-<p class="modest" align="left">Aug 8, 2016</p>
+<time datetime="2016-08-08">Aug 8, 2016</time>
 
 ---
 

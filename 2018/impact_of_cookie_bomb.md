@@ -4,7 +4,7 @@ description: 前々回の記事の執筆中に、私が普段から利用して�
 
 # CRLFインジェクションによるCookie Bombの脅威
 
-<p class="modest" align="left">Mar 11, 2018</p>
+<time datetime="2018-03-11">Mar 11, 2018</time>
 
 ---
 
@@ -139,7 +139,7 @@ https://atsunoda.github.io/demo/impact_of_cookie_bomb/example.html
 
 このURLはドメインが対象サイトのものでないためアクセス率の低下が懸念される。[偽装ドメインを利用する](https://www.farsightsecurity.com/2018/01/17/mschiffm-touched_by_an_idn/)という手もあるが、対象サイトの運営会社や不特定多数のユーザーへの不利益を望むのであれば、このURLをSNSで拡散するだけでも効果があるだろう。Twitterでは[Twitterカード](https://dev.twitter.com/web/sign-inhttps://dev.twitter.com/ja/cards/overview)の仕組みを悪用し、対象サイトのタイトルや概要、画像を設置することでツイート上のリンクを偽装できる。
 
-<p align="center"><img src="/assets/2018/impact_of_cookie_bomb/fake_tweet.webp" width="300" height="277" decoding="async" alt="fake_tweet"></p>
+<figure><img src="/assets/2018/impact_of_cookie_bomb/fake_tweet.webp" width="300" height="277" decoding="async" alt="" /></figure>
 
 このツイートを閲覧したユーザーがリンクを踏むとブラウザまたはアプリに非常に長いCookieが付与され、対象サイトにアクセスできなくなる恐れがある。今回のケースではiPhoneのTwitterアプリとChrome、Safari、EdgeでCookie Bombの影響を受け、対象サイトにアクセスできなくなった<sup id="f2">[²](#fn2)</sup>。Androidでは検証していないが同様の可能性はあった。
 

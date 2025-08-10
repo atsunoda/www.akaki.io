@@ -4,7 +4,7 @@ description: これまでの記事では脆弱性報奨金制度で認定され�
 
 # 脆弱性報奨金制度で認定されづらいテキストインジェクション
 
-<p class="modest" align="left">Jan 7, 2019</p>
+<time datetime="2019-01-07">Jan 7, 2019</time>
 
 ---
 
@@ -18,7 +18,7 @@ description: これまでの記事では脆弱性報奨金制度で認定され�
 
 hxxps://example.com/has%20been%20changed%20by%20a%20new%20one%20hxxps://evil.com%20so%20go%20to%20the%20new%20one%20since%20this%20one
 
-<img src="/assets/2019/text_injection/not_found.webp" width="770" height="294" decoding="async" alt="not_found">
+<figure><img src="/assets/2019/text_injection/not_found.webp" width="770" height="294" decoding="async" alt="" /></figure>
 
 エラーメッセージの `/` 以降の黄色い部分が追記された文章である。本来は存在しないパスが表示される部分に、文章として成り立つような文字列を挿入している。この例ではパスからの入力により文章を挿入しているが、パラメータの値から挿入できるケースも当然ある。私が過去に報告した挙動もPOSTリクエストでの入力値が表示される部分に存在していた。
 
@@ -39,7 +39,7 @@ hxxps://example.com/has%20been%20changed%20by%20a%20new%20one%20hxxps://evil.com
 
 これにより本来プロフィール名が表示される部分に以下のような文章が表示される<sup id="f1">[¹](#fn1)</sup>。改行はできないため全角スペース `\u3000` によりインデントを調整している。
 
-<img src="/assets/2019/text_injection/monabako.webp" width="770" height="549" decoding="async" alt="monabako">
+<figure><img src="/assets/2019/text_injection/monabako.webp" width="770" height="549" decoding="async" alt="" /></figure>
 
 攻撃者によって差別的表現や宗教的表現を含む文章を書き込まれ、そのページをSNSで拡散された場合にサービスのイメージ低下などの風評被害につながる恐れがあると報告したが、脆弱性として認定されなかった。評価理由についてモナバコは「本件は脆弱性ではなく運用の問題」と述べている。
 
@@ -59,7 +59,7 @@ cybozu.com共通管理のお問い合わせフォームでは、投稿時に指�
 
 これにより以下のような受付メールが指定のメールアドレス宛に送信される。操作した所属組織（`commonCompany`）は文頭の黄色い部分、個人名（`commonPerson`）は `To` 以降のオレンジ色の部分に出力されている。個人名の後方に複数の改行を含めることで本来の定型文を下に追いやっている。
 
-<img src="/assets/2019/text_injection/cybozu.webp" width="770" height="559" decoding="async" alt="cybozu">
+<figure><img src="/assets/2019/text_injection/cybozu.webp" width="770" height="559" decoding="async" alt="" /></figure>
 
 投稿時のリクエストに含まれるGETパラメータ `_lc` とAccept-Languageヘッダの値を操作することで、受付メールのタイトルと定型文を英語に変更できる。そのため標的となった日本人は英語のタイトルや定型文を読み飛ばし、不正に追記された日本語の文章に注目する可能性が高い。さらにお問い合わせフォームでは任意のファイルをアップロードでき、受付メールにはアップロードしたファイルが添付される。攻撃者は不正なファイルをアップロードし、被害者のメールアドレスを指定した不正なお問い合わせを投稿することで、上記のようなメールを被害者に送りつけられる状態だった。
 
@@ -73,7 +73,7 @@ cybozu.com共通管理のお問い合わせフォームでは、投稿時に指�
 
 hxxps://developer.spotify.com/?query=evil.com%20%E3%81%AB%E7%A7%BB%E8%A1%8C%E3%81%97%E3%81%BE%E3%81%97%E3%81%9F%E3%80%82
 
-<img src="/assets/2019/text_injection/spotify.webp" width="770" height="341" decoding="async" alt="spotify">
+<figure><img src="/assets/2019/text_injection/spotify.webp" width="770" height="341" decoding="async" alt="" /></figure>
 
 攻撃者によって拡散されたURLからアクセスした被害者が外部サイトへ誘導される恐れなどが考えられる。しかしSpotifyのサイトでは検索ワードの表示幅が狭いため長文は表示できず、改行もできない。これ以上の詳細な文章は表示できないため実際に悪用される可能性は低い。なお[Spotifyの脆弱性報奨金制度](https://hackerone.com/spotify)はテキストインジェクションを認定対象外としているため、この挙動はSpotifyに報告していない<sup id="f2">[²](#fn2)</sup>。
 
@@ -83,7 +83,7 @@ HackerOneブログの前身である[withinsecurity](https://hackerone.com/withi
 
 hxxps://example.com/wp-login.php?error=Your%20account%20has%20been%20hacked%2C%20Please%20call%20us%20this%20number%2003-9999-0000%20OR%20Drop%20mail%20at%20oscar%40evil.com
 
-<img src="/assets/2019/text_injection/withinsecurity.webp" width="770" height="534" decoding="async" alt="withinsecurity">
+<figure><img src="/assets/2019/text_injection/withinsecurity.webp" width="770" height="534" decoding="async" alt="" /></figure>
 
 この例では攻撃者が細工したURLからログインページにアクセスした被害者が脅迫されている。他にも被害者が偽のログインページに誘導される恐れなどが考えられる。
 

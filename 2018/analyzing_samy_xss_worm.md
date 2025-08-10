@@ -4,7 +4,7 @@ description: この記事はセキュリティ・キャンプWS「The Anatomy of
 
 # XSSワーム「Samy」の動作を解析する
 
-<p class="modest" align="left">Mar 1, 2018</p>
+<time datetime="2018-03-01">Mar 1, 2018</time>
 
 ---
 
@@ -20,7 +20,7 @@ description: この記事はセキュリティ・キャンプWS「The Anatomy of
 
 今回は[Kamkar氏のサイト](https://samy.pl/popular/tech.html)に残されている[Samyのコード](https://gist.github.com/atsunoda/efe6970e522b6af9c0cdecea0fa251bf#file-samy)を整形し、[変数名を付与したコード](https://gist.github.com/atsunoda/efe6970e522b6af9c0cdecea0fa251bf#file-samy-js)を引用しながら感染動作を解析する。Samyのコードフローを図に示すと以下のようになる。
 
-<p align="center"><img src="/assets/2018/analyzing_samy_xss_worm/samy's_activity.webp" width="700" height="726" decoding="async" alt="samy's_activity"></p>
+<figure><img src="/assets/2018/analyzing_samy_xss_worm/samy's_activity.webp" width="700" height="726" decoding="async" alt="" /></figure>
 
 MySpaceのプロフィールは `profile.myspace.com` と `www.myspace.com` の両方のドメインから閲覧できる仕様だった。しかし編集は後者からしか行なえなかったため、最初にサブドメインを確認している。感染動作に利用するページとそのURLは以下である。
 

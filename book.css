@@ -1,7 +1,6 @@
-.modest {font-size: 1.4rem;}
 .markdown-section hr {height: 1px;}
 .markdown-section video {max-width: 100%;}
 .markdown-section img {height: auto;}
 .book .book-body .page-inner section {font-size: 1.6rem;}
+.book .book-body .page-inner .modest {font-size: 1.4rem;}
 .book-header .js-toolbar-action {display: none;}
-.book-header .btn {text-transform: none; font-weight: bold;}

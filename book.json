@@ -1,5 +1,5 @@
 {
-	"plugins": ["-search", "-lunr", "-fontsettings"],
+	"plugins": ["-theme-default", "-search", "-lunr", "-fontsettings", "@honkit/honkit-plugin-theme"],
 	"styles": {
 		"website": "book.css"
 	}

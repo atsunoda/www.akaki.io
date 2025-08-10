@@ -11,7 +11,7 @@ description: Previous articles 1 and 2 demonstrated short message service (SMS) 
 Previous articles [1](/2024/decision_procedure_for_originating_numbers_in_sms_over_nas.md) and [2](/2024/availability_of_sms_over_nas_on_commercial_mobile_networks_in_japan.md) demonstrated short message service (SMS) over Non-Access Stratum (NAS) in private and commercial mobile networks. In these demonstrations, messages were sent according to the specifications of the operating system (OS) and modem of mobile devices. To investigate the actual behavior of SMS over NAS in more detail, it is necessary to have the capability to send messages that are not constrained by device vendors’ specifications. Therefore, this article extends the capability of srsUE to send arbitrary SMS over NAS messages.
 
 <blockquote style="border-left-color: #1f6feb; color: inherit;">
-<p style="color: #1f6feb;"><i class="fa fa-info-circle" style="margin-right: 10px;"></i><b>Note</b></p>
+<p style="color: #1f6feb;"><b>Note</b></p>
 The extended srsUE, which supports SMS sending as well as receiving and various sending options, can be checked out from GitHub as “smsUE”: <a href="https://github.com/atsunoda/smsUE" target="_blank">https://github.com/atsunoda/smsUE</a>
 </blockquote>
 

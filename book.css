@@ -1,10 +1,16 @@
+* {-webkit-tap-highlight-color: transparent;}
 .markdown-section hr {height: 1px;}
 .markdown-section video {max-width: 100%;}
 .markdown-section img {height: auto;}
 .markdown-section figure {text-align: center; margin-bottom: .85em;}
 .markdown-section figure:has(+ table) {margin-bottom: .5em;}
 .markdown-section pre:has(+ figure) {margin-bottom: .5em;}
-.book .book-body .page-inner section {font-size: 1.6rem;}
-.book .book-body .page-inner time {font-size: 1.4rem; opacity: 0.5;}
-.book .book-body .page-inner figcaption {font-size: 1.4rem; opacity: 0.5;}
-.book-header .js-toolbar-action {display: none;}
+.book .book-body .page-inner time {font-size: 14px; opacity: 0.5;}
+.book .book-body .page-inner figcaption {font-size: 14px; opacity: 0.5;}
+.book .book-body {left: 0;}
+.book-header {display: block; padding: 0 8px;}
+.book-header .pull-left {float: left;}
+.book-header .pull-right {float: right;}
+.book-header img {opacity: 0.3;}
+.book-header .pull-left:hover img {opacity: 1;}
+.book-header .pull-right:hover img {opacity: 1;}

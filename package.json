@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "honkit": "6.0.0",
+    "@honkit/honkit-plugin-theme": "6.0.0",
     "patch-package": "8.0.0"
   },
   "overrides": {

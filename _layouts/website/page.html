@@ -14,18 +14,6 @@
     {% endif %}
 {% endblock %}
 
-{% block javascript %}
-    <script src="{{ "gitbook.js"|resolveAsset }}"></script>
-    <script src="{{ "theme.js"|resolveAsset }}"></script>
-    {% for resource in plugins.resources.js %}
-        {% if resource.url %}
-        <script src="{{ resource.url }}"></script>
-        {% else %}
-        <script src="{{ resource.path|resolveAsset }}"></script>
-        {% endif %}
-    {% endfor %}
-{% endblock %}
-
 {% block body %}
 <div class="book">
     <div class="book-body">
@@ -49,12 +37,5 @@
             </div>
         {% endblock %}
     </div>
-
-    <script>
-        var gitbook = gitbook || [];
-        gitbook.push(function() {
-            gitbook.page.hasChanged({{ template.getJSContext()|dump|safe }});
-        });
-    </script>
 </div>
 {% endblock %}

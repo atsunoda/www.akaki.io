@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="{% if page.lang == "ja" %}{{ "ja" }}{% else %}{{ "en" }}{% endif %}">
+<html lang="{{ page.lang|d("en") }}">
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">

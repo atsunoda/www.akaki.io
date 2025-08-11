@@ -1,18 +1,15 @@
 <!DOCTYPE HTML>
-<html lang="{{ config.language }}" {% if page.dir == "rtl" %}dir="rtl"{% endif %}>
+<html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <title>{% if file.path == "README.md" %}{{ config.title|d("Akaki I/O", true) }}{% else %}{{ page.title }} - {{ config.title|d("Akaki I/O", true) }}{% endif %}</title>
         <meta name="description" content="{{ page.description }}">
-
-        <meta property="og:title" content="{{ page.title }}" />
-        <meta property="og:description" content="{{ page.description }}" />
-        <meta property="og:image" content="https://akaki.io/icons/icon.png" />
-
-        {% if config.author %}<meta name="author" content="{{ config.author }}">{% endif %}
-        {% if config.isbn %}<meta name="identifier" content="{{ config.isbn }}" scheme="ISBN">{% endif %}
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
         {% block style %}
+                <link rel="stylesheet" href="{{ "style.css"|resolveAsset }}">
             {% for resource in plugins.resources.css %}
                 {% if resource.url %}
                 <link rel="stylesheet" href="{{ resource.url }}">
@@ -20,10 +17,12 @@
                 <link rel="stylesheet" href="{{ resource.path|resolveAsset }}">
                 {% endif %}
             {% endfor %}
+            {% for type, style in config.styles %}
+                {% if fileExists(style) and type == "website" %}
+                <link rel="stylesheet" href="{{ style|resolveFile }}">
+                {% endif %}
+            {% endfor %}
         {% endblock %}
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="apple-mobile-web-app-capable" content="yes">
-        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
         <link rel="apple-touch-icon" sizes="180x180" href="/icons/icon.png">
         <link rel="icon" type="image/png" href="/icons/favicon.png">
         <link rel="alternate" type="application/atom+xml" title="Akaki I/O" href="/atom.xml" />

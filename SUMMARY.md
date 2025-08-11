@@ -57,8 +57,3 @@
   * [Webアプリケーションの脆弱性を見つけるには](2016/intro_to_ethical_hacker_3.md)
   * [倫理的なハッカーとして守るべきルールとは](2016/intro_to_ethical_hacker_2.md)
   * [倫理的なハッカーになるにはまず脆弱性を知ろう](2016/intro_to_ethical_hacker_1.md)
-
----
-
-* [Privacy Policy](README.md#privacy-policy)
-

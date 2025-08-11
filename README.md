@@ -78,9 +78,3 @@ This site is maintained by Akaki Tsunoda on GitHub.
 * [Webアプリケーションの脆弱性を見つけるには](2016/intro_to_ethical_hacker_3.md)
 * [倫理的なハッカーとして守るべきルールとは](2016/intro_to_ethical_hacker_2.md)
 * [倫理的なハッカーになるにはまず脆弱性を知ろう](2016/intro_to_ethical_hacker_1.md)
-
-### Privacy Policy
-
-This site uses Cloudflare Web Analytics to analyze usage. Cloudflare Web Analytics collects non-personally identifiable information using JavaScript. For more details about the information Cloudflare collects and how they use it, refer to their policy.  
-[https://www.cloudflare.com/privacypolicy/](https://www.cloudflare.com/privacypolicy/)
-

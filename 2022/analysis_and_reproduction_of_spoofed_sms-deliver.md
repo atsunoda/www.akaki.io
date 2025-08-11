@@ -1,7 +1,3 @@
----
-description: As past articles 1 (in Japanese) and 2 (in Japanese) have indicated, the originating display name (called the “sender ID”) of the SMS can be spoofed. However, when I reviewed the SMS technical specifications in a previous article, SMS-SUBMIT did not have a field to load the sender ID. How are the alphanumeric characters of the sender ID transferred? This study reveals the answer to this question by analyzing the spoofed SMS-DELIVER.
----
-
 # Analysis and Reproduction of Spoofed SMS-DELIVER
 
 <time datetime="2022-03-21">Mar 21, 2022</time>

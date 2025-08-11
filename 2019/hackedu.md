@@ -1,10 +1,10 @@
 ---
-description: サイバーセキュリティに関する体験型学習サービスを提供する「HackEDU」がHackerOneと提携し、過去に報告された脆弱性を再現できるサンドボックス環境をリリースした。HackEDUの無料アカウントを作成するだけで、HackerOneに報告された5つの脆弱性のサンドボックス環境を利用できる。
+lang: ja
 ---
 
 # HackerOneに報告された脆弱性をHackEDUで再現する
 
-<time datetime="2019-03-08">Mar 8, 2019</time>
+<time datetime="2019-03-08">2019年3月8日</time>
 
 ---
 

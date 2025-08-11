@@ -1,11 +1,4 @@
----
-description: This site is maintained by Akaki Tsunoda on GitHub.
----
-
 # Akaki I/O
-
-This site is maintained by Akaki Tsunoda on GitHub.  
-[https://github.com/atsunoda/www.akaki.io](https://github.com/atsunoda/www.akaki.io)
 
 ### 2025
 * [Reproducing SMS over NAS Spoofing in a Private 5G Mobile Network](2025/reproducing_sms_over_nas_spoofing_in_a_private_5g_mobile_network.md)

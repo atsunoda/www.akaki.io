@@ -1,10 +1,10 @@
 ---
-description: 第4回目はHTTP通信の書き換えによるWebアプリケーションへの入力値操作を説明します。
+lang: ja
 ---
 
 # Webアプリケーションへの入力値を操作しよう
 
-<time datetime="2016-11-14">Nov 14, 2016</time>
+<time datetime="2016-11-14">2016年11月14日</time>
 
 ---
 

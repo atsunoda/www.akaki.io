@@ -1,10 +1,10 @@
 ---
-description: 第7回目はSQLインジェクションの脆弱性を取り上げます。
+lang: ja
 ---
 
 # 脆弱性を見つけよう SQLインジェクション編
 
-<time datetime="2017-03-27">Mar 27, 2017</time>
+<time datetime="2017-03-27">2017年3月27日</time>
 
 ---
 

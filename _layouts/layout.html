@@ -1,13 +1,15 @@
 <!DOCTYPE HTML>
-<html lang="en">
+<html lang="{% if page.lang == "ja" %}{{ "ja" }}{% else %}{{ "en" }}{% endif %}">
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>{% if file.path == "README.md" %}{{ config.title|d("Akaki I/O", true) }}{% else %}{{ page.title }} - {{ config.title|d("Akaki I/O", true) }}{% endif %}</title>
-        <meta name="description" content="{{ page.description }}">
+        <title>{% if file.path == "README.md" %}{{ "Akaki I/O" }}{% else %}{{ page.title }} - {{ "Akaki I/O" }}{% endif %}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+        <link rel="apple-touch-icon" sizes="180x180" href="/icons/icon.png">
+        <link rel="icon" type="image/png" href="/icons/favicon.png">
+        <link rel="alternate" type="application/atom+xml" title="Akaki I/O" href="/atom.xml">
         {% block style %}
                 <link rel="stylesheet" href="{{ "style.css"|resolveAsset }}">
             {% for resource in plugins.resources.css %}
@@ -23,9 +25,6 @@
                 {% endif %}
             {% endfor %}
         {% endblock %}
-        <link rel="apple-touch-icon" sizes="180x180" href="/icons/icon.png">
-        <link rel="icon" type="image/png" href="/icons/favicon.png">
-        <link rel="alternate" type="application/atom+xml" title="Akaki I/O" href="/atom.xml" />
     </head>
     <body>
         {% block body %}{% endblock %}

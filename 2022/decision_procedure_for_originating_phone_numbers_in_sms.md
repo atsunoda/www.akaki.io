@@ -1,7 +1,3 @@
----
-description: As indicated in a previous article, submit_sm, a SMPP protocol, has a field for loading the originating phone number. However, another previous article indicated that SMS-SUBMIT, a protocol defined by 3GPP, has no such field. How does a SMSC determine originating phone numbers when transferring a short message within the mobile network? This article reveals the answer to this question by observing the SMS transfer flow in a virtual private mobile network.
----
-
 # Decision Procedure for Originating Phone Numbers in SMS
 
 <time datetime="2022-07-18">Jul 18, 2022</time>

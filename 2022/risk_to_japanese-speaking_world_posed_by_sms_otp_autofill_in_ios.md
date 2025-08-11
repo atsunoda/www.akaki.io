@@ -1,7 +1,3 @@
----
-description: iOS, which is a mobile operating system developed by Apple, includes a feature that allows users to autofill website forms with a one-time password (OTP) sent during short message service (SMS) authentication. This feature carries the risk of automatically entering OTPs, sent by legitimate services, to phishing websites, a risk that has already been proven for English-language web services. As indicated in my previous study, the risk may also extend to Japanese-language web services. In this study, the risk to major web services that send OTPs with Japanese-language SMS messages was studied. Consequently, the risk was demonstrated in 7 of the 10 websites studied. Furthermore, a mitigation measure was proposed for service providers.
----
-
 # Risk to Japanese-speaking World posed by SMS OTP Autofill in iOS
 
 <time datetime="2022-11-14">Nov 14, 2022</time>

@@ -1,10 +1,10 @@
 ---
-description: この記事はセキュリティ・キャンプWS「The Anatomy of Malware 完全版」の応募課題として提出したものである。公開にあたり一部文章の修正と図式の差し替えを行なった。
+lang: ja
 ---
 
 # XSSワーム「Samy」の動作を解析する
 
-<time datetime="2018-03-01">Mar 1, 2018</time>
+<time datetime="2018-03-01">2018年3月1日</time>
 
 ---
 

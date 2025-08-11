@@ -1,10 +1,10 @@
 ---
-description: 前々回の記事の執筆中に、私が普段から利用しているサイトでCRLFインジェクションの脆弱性を発見した。その問題を関係者へ報告する際に、現実的な脅威としてCookie Bombを挙げた。その経緯をまとめておく。
+lang: ja
 ---
 
 # CRLFインジェクションによるCookie Bombの脅威
 
-<time datetime="2018-03-11">Mar 11, 2018</time>
+<time datetime="2018-03-11">2018年3月11日</time>
 
 ---
 

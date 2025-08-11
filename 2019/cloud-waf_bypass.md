@@ -1,10 +1,10 @@
 ---
-description: 昨年末に「How i was able to pwned application by Bypassing Cloudflare WAF」を読んで、CloudflareのWAFをバイパスする方法とそれがバグバウンティで認定された事例を知った。記事を書いた@vis_hacker氏は調査に「CloudFlair」というツールを使用しており、このツールを開発した@christophetd氏も同様の方法で報奨金を獲得していた。
+lang: ja
 ---
 
 # オリジンIPの特定によるクラウド型WAFのバイパス
 
-<time datetime="2019-05-27">May 27, 2019</time>
+<time datetime="2019-05-27">2019年5月27日</time>
 
 ---
 

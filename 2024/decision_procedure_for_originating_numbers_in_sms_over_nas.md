@@ -1,7 +1,3 @@
----
-description: Previous articles 1 and 2 clarified the decision procedure for originating numbers in short message service (SMS) via the Mobile Switching Centre (MSC) and over the IP Multimedia Subsystem (IMS). However, SMS in 5G mobile networks may also be provided over the Non-Access Stratum (NAS) protocol. By analyzing packets and logs generated when sending and receiving a short message in a private 5G mobile network, this article clarifies how originating numbers are determined in SMS over NAS.
----
-
 # Decision Procedure for Originating Numbers in SMS over NAS
 
 <time datetime="2024-10-07">Oct 7, 2024</time>

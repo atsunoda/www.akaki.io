@@ -1,7 +1,3 @@
----
-description: Previous articles 1 and 2 demonstrated short message service (SMS) over Non-Access Stratum (NAS) in private and commercial mobile networks. In these demonstrations, messages were sent according to the specifications of the operating system (OS) and modem of mobile devices. To investigate the actual behavior of SMS over NAS in more detail, it is necessary to have the capability to send messages that are not constrained by device vendors’ specifications. Therefore, this article extends the capability of srsUE to send arbitrary SMS over NAS messages.
----
-
 # Sending Arbitrary SMS over NAS Messages with an Extended srsUE
 
 <time datetime="2025-01-28">Jan 28, 2025</time>

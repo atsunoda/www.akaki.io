@@ -1,7 +1,3 @@
----
-description: A previous article demonstrated short message service (SMS) over the Non-Access Stratum (NAS) in a private mobile network. However, as noted in another previous article, SMS can also be transported via the IP Multimedia Subsystem (IMS) using the Session Initiation Protocol (SIP). Under what circumstances is SMS over NAS used on commercial mobile networks provided by mobile network operators (MNOs)? This article examines the availability of SMS over NAS by capturing packets of short messages sent on commercial mobile networks in Japan.
----
-
 # Availability of SMS over NAS on Commercial Mobile Networks in Japan
 
 <time datetime="2024-12-03">Dec 3, 2024</time>

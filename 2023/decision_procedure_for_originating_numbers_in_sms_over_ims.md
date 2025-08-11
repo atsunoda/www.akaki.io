@@ -1,7 +1,3 @@
----
-description: A previous article clarified the decision procedure for originating numbers in SMS via a Mobile Switching Centre (MSC). An MSC is a 2G circuit-switched network node, whereas modern 4G and 5G networks can provide SMS over IP Multimedia Subsystem (IMS) connected to a packet-switched network. By reviewing the technical specifications and analyzing packets captured in a private mobile network, this article clarifies the answer to how Short Message Service Centers (SMSCs) determine the originating number in SMS over IMS.
----
-
 # Decision Procedure for Originating Numbers in SMS over IMS
 
 <time datetime="2023-03-27">Mar 27, 2023</time>

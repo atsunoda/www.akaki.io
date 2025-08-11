@@ -1,7 +1,3 @@
----
-description: I recently wrote articles 1, 2, and 3, which focused on short message service (SMS) over Non-Access Stratum (NAS). A previous study has shown that SMS over NAS can be exploited for origin spoofing in Long Term Evolution (LTE) networks. Does the same spoofability exist in 5G mobile networks? In this article, I experimentally reproduce SMS over NAS spoofing in a private 5G mobile network based on the methods presented in the previous study.
----
-
 # Reproducing SMS over NAS Spoofing in a Private 5G Mobile Network
 
 <time datetime="2025-02-27">Feb 27, 2025</time>

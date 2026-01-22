@@ -48,14 +48,6 @@
 </entry>
 
 <entry>
-<title>Investigating Threats Posed by SMS Origin Spoofing to IoT Devices - arXiv</title>
-<link href="https://arxiv.org/abs/2310.11052" rel="alternate" />
-<id>tag:akaki.io:entry://2023-10-18</id>
-<updated>2023-10-18T09:00:00Z</updated>
-<summary>The short message service (SMS) is a service for exchanging texts via mobile networks that has been developed not only as a means of text communication between subscribers but also as a means to remotely manage Internet of Things (IoT) devices. However, the originating number of an SMS can be spoofed. If IoT devices authenticate administrators based on the originating number of an SMS, the authentication is bypassed via SMS origin spoofing. Consequently, IoT devices are at risk of accepting commands from attackers and performing unauthorized actions. Accordingly, in this study, the specifications of major cellular IoT gateways were evaluated by focusing on remote management via SMS, and the authentication bypass hypothesis was verified. The results showed that 25 of the 32 targeted products supported SMS-based remote management, and 20 implemented authentication based on the originating number of the SMS. Furthermore, by spoofing the originating number of the SMS, one product was demonstrated to be remotely exploitable through authentication bypassing. Thus, this study revealed the threats posed by SMS origin spoofing to IoT devices and proved that SMS origin spoofing not only threatens text communication between people but also puts machine communication at risk.</summary>
-</entry>
-
-<entry>
 <title>Demonstrating Spoofability of an Originating Number when Sending an SMS using SMPP - ACM</title>
 <link href="https://dl.acm.org/doi/10.1145/3615667" rel="alternate" />
 <id>tag:akaki.io:entry://2023-10-16</id>
